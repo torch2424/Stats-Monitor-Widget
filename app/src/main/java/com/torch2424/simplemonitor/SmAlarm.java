@@ -774,7 +774,7 @@ public class SmAlarm extends BroadcastReceiver
 
 	        
 			//available external storage in megabytes
-	        long availableBlocksEx = externalStat.getBlockCountLong();
+	        long availableBlocksEx = externalStat.getAvailableBlocksLong();
 	        long availableExternal = (long) ((blockSizeEx) * (availableBlocksEx)) / megs;
 	        
 	        //total external storage in megabytes
