@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Stats Monitor</string>
+    <string name="loading">Loading...</string>
+    <string name="Time">Time</string>
+    <string name="System">System</string>
+    <string name="Memory">Memory</string>
+    <string name="title_activity_configure_widget">Configure Widget</string>
+    <string name="title_activity_text_size_chooser">Choose Text Size</string>
+    <string name="action_settings">Settings</string>
+    <string name="ConfigTitle">Uncheck to remove items from widget, check them to add! Don\'t forget launchers allow you to resize this widget to any size you want! Scroll down to save configurations!</string>
+    <string name="TimeTitle">Time Title</string>
+    <string name="Date">Date</string>
+    <string name="systemTitle">System Title</string>
+    <string name="cpu">CPU</string>
+    <string name="battery">Battery Left</string>
+    <string name="batteryTemp">Battery Temp</string>
+     <string name="batteryChange">Battery Percent Change Per Hour \n(Please allow an hour to take effect)</string>
+    <string name="uptime">Uptime</string>
+    <string name="memoryTitle">Memory Title</string>
+    <string name="internal">Internal Memory</string>
+    <string name="external">External Memory</string>
+    <string name="ram">Ram</string>
+    <string name="networkTitle">Network Title</string>
+    <string name="networkType">Network Name</string>
+    <string name="networkUp">Upload Speed</string>
+    <string name="networkDown">Download Speed</string>
+    <string name="saveConfig">Save Configurations</string>
+    <string name="chooseColor">Choose Text Color</string>
+    <string name="chooseTextSize">Choose Text Size</string>
+    <!-- possibly addanother text view here, stating default colors and press save config to save -->
+    <string name="chooseBackColor">Choose Background Color</string>
+    <string name="title_activity_color_chooser">Text Color Chooser</string>
+    <string name="title_activity_color_back_chooser">Background Color Chooser</string>
+    <string name="advanced_textview">Enable checkbox to enable the feature, or leave checkboxes empty to keep/restore defaults! Need to press save to enable or restore!</string>
+    <string name="tapConfig">Disable Tap to Configure Widget (Must be creating a fresh widget)</string>
+    <string name="memoryGB">Display storage memory in GB rather than MB</string>
+     <string name="ramGB">Display RAM memory in GB rather than MB</string>
+    <string name="hourFormat">24 hour time format</string>
+    <string name="textBack">Text and Background Settings</string>
+    <string name="title_activity_advanced_settings">Advanced Settings</string>
+    <string name="textLeft">Align text to the left</string>
+    <string name="textRight">Align text to the right</string>
+    <string name="textCenter">Align text to the center</string>
+    <string name="multiCPU">Multiple CPU support (Creates a CPU section)</string>
+    <string name="shortDays">Abbreviate Date Days (Mon, Tue, etc...)</string>
+    <string name="kilobyteSpeed">Network speed in Kilobytes per second</string>
+    <string name="Network">Network</string>
+    <string name="oneSec">Update every second (Network 3s)</string>
+    <string name="threeSec">Update every 3 seconds (Network 9s)</string>
+    <string name="fiveSec">Update every 5 seconds (Network 15s)</string>
+    <string name="degreesF">Battery temperature in fahrenheit</string>
+    <string name="externalText">If external memory is not working for you, enter the path to it here</string>
+    <string name="externalPath">Enter Here, Leave blank if working</string>
+    <string name="noCPUTitle">Remove CPU Title (If present)</string>
+  
+    
+    <string name="sizeSmall">Stats Monitor 1x1</string>
+    <string name="sizeOne">Stats Monitor 2x1</string>
+    <string name="sizeTwo">Stats Monitor 2x2</string>
+    <string name="sizeThree">Stats Monitor 2x3</string>
+    <string name="sizeFour">Stats Monitor 2x4</string>
+    
+    
+</resources>
