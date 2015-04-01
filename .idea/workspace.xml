@@ -55,8 +55,8 @@
       <file leaf-file-name="SmAlarm.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/simplemonitor/SmAlarm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.91689754" vertical-offset="11459" max-vertical-offset="17355">
-              <caret line="827" column="38" selection-start-line="827" selection-start-column="38" selection-end-line="827" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.58448756" vertical-offset="12104" max-vertical-offset="17355">
+              <caret line="862" column="33" selection-start-line="862" selection-start-column="33" selection-end-line="862" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -1397,8 +1397,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/simplemonitor/SmAlarm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.91689754" vertical-offset="11459" max-vertical-offset="17355">
-          <caret line="827" column="38" selection-start-line="827" selection-start-column="38" selection-end-line="827" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.58448756" vertical-offset="12104" max-vertical-offset="17355">
+          <caret line="862" column="33" selection-start-line="862" selection-start-column="33" selection-end-line="862" selection-end-column="33" />
           <folding />
         </state>
       </provider>

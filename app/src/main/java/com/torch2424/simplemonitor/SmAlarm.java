@@ -860,7 +860,7 @@ public class SmAlarm extends BroadcastReceiver
 		    //put values into array
 		    arrayOfString = str2.split("\\s+");
 		    //total Memory
-		    initial_memory = Integer.valueOf(arrayOfString[1]).intValue() * 1024;   
+		    initial_memory = Long.valueOf(arrayOfString[1]).intValue() * 1024;
 		    localBufferedReader.close();
 		    return initial_memory;
 		    } 
