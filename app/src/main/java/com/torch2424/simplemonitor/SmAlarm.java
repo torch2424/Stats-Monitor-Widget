@@ -769,24 +769,24 @@ public class SmAlarm extends BroadcastReceiver
 			StatFs internalStat = new StatFs(internalPath.getAbsolutePath());
 
 			//declaring get block sizes
-	        long blockSizeEx = externalStat.getBlockSize();
-	        long blockSizeIn = internalStat.getBlockSize();
+	        long blockSizeEx = externalStat.getBlockSizeLong();
+	        long blockSizeIn = internalStat.getBlockSizeLong();
 
 	        
 			//available external storage in megabytes
-	        long availableBlocksEx = externalStat.getAvailableBlocks();
-	        long availableExternal = ((long)(blockSizeEx) * (long)(availableBlocksEx)) / megs;
+	        long availableBlocksEx = externalStat.getBlockCountLong();
+	        long availableExternal = (long) ((blockSizeEx) * (availableBlocksEx)) / megs;
 	        
 	        //total external storage in megabytes
-	        long totalBlocksEx = externalStat.getBlockCount();
-	        long totalExternal = ((long)(blockSizeEx) * (long)(totalBlocksEx)) / megs;
+	        long totalBlocksEx = externalStat.getBlockCountLong();
+	        long totalExternal = (long) ((blockSizeEx) * (totalBlocksEx)) / megs;
 	        
 	        //available internal storage in megs
-	        long availBlocksIn = internalStat.getAvailableBlocks();
-	        long availInternal = ((long)(blockSizeIn) * (long)(availBlocksIn)) / megs;
+	        long availBlocksIn = internalStat.getAvailableBlocksLong();
+	        long availInternal = (long) ((blockSizeIn) * (availBlocksIn)) / megs;
 	        
 	        //total blocks in internal storage in megs
-	        long totalBlocksIn = internalStat.getBlockCount();
+	        long totalBlocksIn = internalStat.getBlockCountLong();
 	        long totalInternal = ((long)(blockSizeIn) * (long)(totalBlocksIn)) / megs;
 	        
 	        //Gigabyte display settings
