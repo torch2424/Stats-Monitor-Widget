@@ -819,6 +819,7 @@ public class SmAlarm extends BroadcastReceiver
 			//to fix ram stats try replacing context.asjdhjkasd with context.getapplicationcontext.ajksdasdjk
 			//create memory infor method, use activity method to get the context of our system, 
 			//then the rest is self-explanatory
+            //Using longs since our block size can exceed integer capacity
 			MemoryInfo mi = new MemoryInfo();
 			ActivityManager activityManager = (ActivityManager) context.getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
 			activityManager.getMemoryInfo(mi);
