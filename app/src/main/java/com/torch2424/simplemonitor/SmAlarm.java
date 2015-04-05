@@ -26,6 +26,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -152,8 +153,8 @@ public class SmAlarm extends BroadcastReceiver
             //testing rounded edges
             //Setting rounded edges
             if(true) {
-                ShapeDrawable shapeDrawable = (ShapeDrawable) context.getResources().getDrawable(R.drawable.cornerslarge);
-                shapeDrawable.getPaint().setColor(backColor);
+                GradientDrawable shapeDrawable = (GradientDrawable ) context.getResources().getDrawable(R.drawable.cornerslarge);
+                shapeDrawable.setColor(backColor);
                 views.setInt(R.id.widgetLayout, "setBackgroundResource", R.drawable.cornerslarge);
             }
             else {
