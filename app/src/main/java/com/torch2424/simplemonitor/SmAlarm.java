@@ -150,6 +150,8 @@ public class SmAlarm extends BroadcastReceiver
 		{
 			//setting background
 			views.setInt(R.id.widgetLayout, "setBackgroundColor", backColor);
+            //Setting rounded edges
+            views.setInt(R.id.widgetLayout, "setBackgroundResource", R.drawable.cornerslarge);
 			//setting Colors
 			views.setTextColor(R.id.timeTitle, textColor);
 			views.setTextColor(R.id.systemTitle, textColor);
