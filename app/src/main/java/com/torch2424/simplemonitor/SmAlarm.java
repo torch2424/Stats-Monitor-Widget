@@ -26,6 +26,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.ShapeDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.NetworkInfo.State;
@@ -146,12 +147,19 @@ public class SmAlarm extends BroadcastReceiver
 			degreesFBool = prefs.getBoolean("DEGREESF", false);
 			externalString = prefs.getString("EXTERNALPATH", "");
 		}
-		public void sectionConfig ()
+		public void sectionConfig (Context context)
 		{
-			//setting background
-			views.setInt(R.id.widgetLayout, "setBackgroundColor", backColor);
+            //testing rounded edges
             //Setting rounded edges
-            views.setInt(R.id.widgetLayout, "setBackgroundResource", R.drawable.cornerslarge);
+            if(true) {
+                ShapeDrawable shapeDrawable = (ShapeDrawable) context.getResources().getDrawable(R.drawable.cornerslarge);
+                shapeDrawable.getPaint().setColor(backColor);
+                views.setInt(R.id.widgetLayout, "setBackgroundResource", R.drawable.cornerslarge);
+            }
+            else {
+                //setting background
+                views.setInt(R.id.widgetLayout, "setBackgroundColor", backColor);
+            }
 			//setting Colors
 			views.setTextColor(R.id.timeTitle, textColor);
 			views.setTextColor(R.id.systemTitle, textColor);
@@ -1042,7 +1050,7 @@ public class SmAlarm extends BroadcastReceiver
 		//getting which sections to omit
 		configPrefs(context);
 		//call title config methods to omit methods
-		sectionConfig();
+		sectionConfig(context);
 		//call time methods, not calling if unchecked
 		if(boolTime || boolDate)
 		{
