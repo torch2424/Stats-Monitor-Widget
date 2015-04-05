@@ -154,7 +154,7 @@ public class SmAlarm extends BroadcastReceiver
             //Setting rounded edges
             if(true) {
                 GradientDrawable shapeDrawable = (GradientDrawable ) context.getResources().getDrawable(R.drawable.cornerslarge);
-                shapeDrawable.setColor(backColor);
+                //shapeDrawable.setColor(backColor);
                 views.setInt(R.id.widgetLayout, "setBackgroundResource", R.drawable.cornerslarge);
             }
             else {
