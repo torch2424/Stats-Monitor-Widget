@@ -1,0 +1,168 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5sp"
+        android:layout_marginRight="5sp"
+        android:orientation="vertical"
+        tools:context=".ConfigureWidget" >
+
+    <TextView
+        android:id="@+id/configTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="@string/ConfigTitle"/>
+
+   <CheckBox
+        android:id="@+id/checkTimeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="@string/TimeTitle" />
+   
+    <CheckBox
+        android:id="@+id/checkTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="@string/Time" />
+    
+     <CheckBox
+        android:id="@+id/checkDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="@string/Date" />
+
+     <CheckBox
+        android:id="@+id/checkSystemTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="@string/systemTitle" />
+     
+      <CheckBox
+        android:id="@+id/checkUptime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="@string/uptime" />
+     
+      
+      <CheckBox
+        android:id="@+id/checkBattery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="@string/battery" />
+      
+      <CheckBox
+        android:id="@+id/checkTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="@string/batteryTemp" />
+      
+      <!--  
+      
+      <CheckBox
+        android:id="@+id/checkChange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="@string/batteryChange" />
+        
+        -->
+      
+      <CheckBox
+        android:id="@+id/checkCpu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="@string/cpu" />
+      
+      <CheckBox
+        android:id="@+id/checkMemoryTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="@string/memoryTitle" />
+      
+       <CheckBox
+        android:id="@+id/checkInternal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="@string/internal" />
+       
+       <CheckBox
+        android:id="@+id/checkExternal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="@string/external" />
+        
+        <CheckBox
+        android:id="@+id/checkRam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="@string/ram" />
+        
+        <CheckBox
+        android:id="@+id/checkNetworkTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="@string/networkTitle" />
+        
+        <CheckBox
+        android:id="@+id/checkNetType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="@string/networkType" />
+        
+        <CheckBox
+        android:id="@+id/checkNetUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="@string/networkUp" />
+        
+        <CheckBox
+        android:id="@+id/checkNetDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:text="@string/networkDown" />
+        
+        <Button
+           android:id="@+id/TextBackSettings"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="@string/textBack" 
+           android:onClick="TextBackSettings"/>
+       
+       <Button
+           android:id="@+id/advancedSettings"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="@string/title_activity_advanced_settings" 
+           android:onClick="advancedSettings"/>
+       
+
+       <Button
+           android:id="@+id/saveConfig"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="@string/saveConfig" 
+           android:onClick="saveConfig"/>
+      
+</LinearLayout>
+</ScrollView><!-- From: file:/home/torch2424/Dropbox/Android%20Source/StatsMonitor1/app/src/main/res/layout/configure_widget.xml -->
