@@ -807,10 +807,10 @@ public class SmAlarm extends BroadcastReceiver
 	        if (memoryGB == true)
 	        {
 	        	//use a decimal format to only show two places, and use .0 to get a decimal
-	        	float usedFloatInternal =  ((totalInternal - availInternal)/1024.0f);
-	        	float totalFloatInternal = (totalInternal/1024.0f);
-	        	float usedFloatExternal =  ((totalExternal - availableExternal)/1024.0f);
-	        	float totalFloatExternal = (totalExternal/1024.0f);
+	        	float usedFloatInternal =  ((totalInternal - availInternal)/1000.0f);
+	        	float totalFloatInternal = (totalInternal/1000.0f);
+	        	float usedFloatExternal =  ((totalExternal - availableExternal)/1000.0f);
+	        	float totalFloatExternal = (totalExternal/1000.0f);
 	        	DecimalFormat format = new DecimalFormat("0.00");
 	        	 views.setTextViewText(R.id.internalTitle, "Used Internal Storage:");
 	 	        views.setTextViewText(R.id.externalTitle, "Used External Storage:");
