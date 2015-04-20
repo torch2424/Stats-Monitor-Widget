@@ -843,8 +843,8 @@ public class SmAlarm extends BroadcastReceiver
 			if(ramBool == true)
 			{
 				DecimalFormat format = new DecimalFormat("0.00");
-				float usedFloat = (used / 1024.0f);
-				float totalFloat = (total / 1024.0f);
+				float usedFloat = (used / 1000.0f);
+				float totalFloat = (total / 1000.0f);
 				views.setTextViewText(R.id.ram, "Used Ram: " + format.format(usedFloat) + "/" + format.format(totalFloat) + "GB");	
 			}
 			else
