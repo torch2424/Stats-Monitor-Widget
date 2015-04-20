@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.torch2424.statsmonitorwidget"
-        minSdkVersion 8
+        minSdkVersion 18
         targetSdkVersion 21
     }
 
@@ -19,5 +19,5 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:19.1.0'
+    compile 'com.android.support:support-v4:21.0.3'
 }

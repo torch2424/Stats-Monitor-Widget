@@ -741,7 +741,7 @@ public class SmAlarm extends BroadcastReceiver
 		{
 			//may need permissions
 			//declaring a constant I will be using for megabyte conversion
-			final long megs = 1048576;
+			final long megs = 1048576L;
 			File externalPath = Environment.getExternalStorageDirectory();
 			File internalPath = Environment.getDataDirectory();
 			if(externalString.equals("") == false && new File(externalString).exists())
@@ -789,28 +789,28 @@ public class SmAlarm extends BroadcastReceiver
 	        
 			//available external storage in megabytes
 	        long availableBlocksEx = externalStat.getAvailableBlocksLong();
-	        long availableExternal = (long) ((blockSizeEx) * (availableBlocksEx)) / megs;
+	        long availableExternal = ((blockSizeEx) * (availableBlocksEx)) / megs;
 	        
 	        //total external storage in megabytes
 	        long totalBlocksEx = externalStat.getBlockCountLong();
-	        long totalExternal = (long) ((blockSizeEx) * (totalBlocksEx)) / megs;
+	        long totalExternal = ((blockSizeEx) * (totalBlocksEx)) / megs;
 	        
 	        //available internal storage in megs
 	        long availBlocksIn = internalStat.getAvailableBlocksLong();
-	        long availInternal = (long) ((blockSizeIn) * (availBlocksIn)) / megs;
+	        long availInternal = ((blockSizeIn) * (availBlocksIn)) / megs;
 	        
 	        //total blocks in internal storage in megs
 	        long totalBlocksIn = internalStat.getBlockCountLong();
-	        long totalInternal = ((long)(blockSizeIn) * (long)(totalBlocksIn)) / megs;
+	        long totalInternal = ((blockSizeIn) * (totalBlocksIn)) / megs;
 	        
 	        //Gigabyte display settings
 	        if (memoryGB == true)
 	        {
 	        	//use a decimal format to only show two places, and use .0 to get a decimal
-	        	float usedFloatInternal = (float) ((totalInternal - availInternal)/1024.0);
-	        	float totalFloatInternal = (float) (totalInternal/1024.0);
-	        	float usedFloatExternal = (float) ((totalExternal - availableExternal)/1024.0);
-	        	float totalFloatExternal = (float) (totalExternal/1024.0);
+	        	float usedFloatInternal =  ((totalInternal - availInternal)/1024.0f);
+	        	float totalFloatInternal = (totalInternal/1024.0f);
+	        	float usedFloatExternal =  ((totalExternal - availableExternal)/1024.0f);
+	        	float totalFloatExternal = (totalExternal/1024.0f);
 	        	DecimalFormat format = new DecimalFormat("0.00");
 	        	 views.setTextViewText(R.id.internalTitle, "Used Internal Storage:");
 	 	        views.setTextViewText(R.id.externalTitle, "Used External Storage:");
@@ -843,8 +843,8 @@ public class SmAlarm extends BroadcastReceiver
 			if(ramBool == true)
 			{
 				DecimalFormat format = new DecimalFormat("0.00");
-				float usedFloat = (float) (used / 1024.0);
-				float totalFloat = (float) (total / 1024.0);
+				float usedFloat = (used / 1024.0f);
+				float totalFloat = (total / 1024.0f);
 				views.setTextViewText(R.id.ram, "Used Ram: " + format.format(usedFloat) + "/" + format.format(totalFloat) + "GB");	
 			}
 			else
