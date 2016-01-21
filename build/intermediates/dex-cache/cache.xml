@@ -2,25 +2,25 @@
 <items version="2" >
 
     <item
-        jar="/home/torch2424/Dropbox/Android Source/StatsMonitor1/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jar="/home/torch2424/Source/Stats-Monitor-Widget/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="/home/torch2424/Dropbox/Android Source/StatsMonitor1/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-e4c585fdf312a7eb2adc68d111da99819068baef.jar" />
+        <dex dex="/home/torch2424/Source/Stats-Monitor-Widget/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-b82aad37b9a191fdd3ef61587b327ff5705c17aa.jar" />
+    </item>
+    <item
+        jar="/home/torch2424/Source/Stats-Monitor-Widget/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/home/torch2424/Source/Stats-Monitor-Widget/app/build/intermediates/pre-dexed/debug/classes-9a5d3cda31dffc462df1fc654e9a41c4b38ac736.jar" />
     </item>
     <item
         jar="/home/torch2424/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="/home/torch2424/Dropbox/Android Source/StatsMonitor1/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-0effdda8fe7f5238d515573882e8ea3d33f8c2ca.jar" />
-    </item>
-    <item
-        jar="/home/torch2424/Dropbox/Android Source/StatsMonitor1/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="/home/torch2424/Dropbox/Android Source/StatsMonitor1/app/build/intermediates/pre-dexed/debug/classes-b655676cb2675194bc6fc2db1627d56235497776.jar" />
+        <dex dex="/home/torch2424/Source/Stats-Monitor-Widget/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-0effdda8fe7f5238d515573882e8ea3d33f8c2ca.jar" />
     </item>
 
 </items>

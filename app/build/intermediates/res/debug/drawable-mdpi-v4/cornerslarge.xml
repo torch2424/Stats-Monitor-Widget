@@ -3,4 +3,4 @@
     <solid android:color="#FFFF00"/>
     <corners android:radius="25dip"/>
     <padding android:left="5dip" android:top="5dip" android:right="5dip"/>
-</shape><!-- From: file:/home/torch2424/Dropbox/Android%20Source/StatsMonitor1/app/src/main/res/drawable-mdpi/cornerslarge.xml -->
+</shape><!-- From: file:/home/torch2424/Source/Stats-Monitor-Widget/app/src/main/res/drawable-mdpi/cornerslarge.xml -->

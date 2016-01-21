@@ -8,4 +8,4 @@
     android:widgetCategory="home_screen" 
     android:configure="com.torch2424.simplemonitor.ConfigureWidget" >
 </appwidget-provider>
-<!-- From: file:/home/torch2424/Dropbox/Android%20Source/StatsMonitor1/app/src/main/res/xml/supersmall.xml -->
+<!-- From: file:/home/torch2424/Source/Stats-Monitor-Widget/app/src/main/res/xml/supersmall.xml -->

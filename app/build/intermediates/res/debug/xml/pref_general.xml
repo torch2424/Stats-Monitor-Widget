@@ -33,4 +33,4 @@
         android:title="@string/pref_title_add_friends_to_messages" />
 
 </PreferenceScreen>
-<!-- From: file:/home/torch2424/Dropbox/Android%20Source/StatsMonitor1/app/src/main/res/xml/pref_general.xml -->
+<!-- From: file:/home/torch2424/Source/Stats-Monitor-Widget/app/src/main/res/xml/pref_general.xml -->

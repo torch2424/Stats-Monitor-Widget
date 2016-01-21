@@ -10,38 +10,33 @@ import android.os.SystemClock;
 
 public class SmProvider extends AppWidgetProvider 
 {
-	//change to 2x2
-		
-		//Time, System (cpu and uptime), memory (hdd and ram), network
-		//need to add: complete network stats (3g not just wifi) and (ram stats not currently correct)
-		//to remove textviews cant set text size to zero, you have to set visibility to gone
-		//http://stackoverflow.com/questions/6721616/how-can-i-to-change-text-size-in-remoteviews
+    //2X2
 
-		//declaring here to access in on disabled
-		PendingIntent pending;
-		Intent intent;
-		AlarmManager manager;
-		
-		//need peniding intent flags to properly create and destroy alarm
-		public void onEnabled(Context context)
-		{
-			//creating alarm manager to update every second
-			manager=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-			intent = new Intent(context, SmAlarm.class);
-			pending = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+    //declaring here to access in on disabled
+    PendingIntent pending;
+    Intent intent;
+    ProviderHelper helper = new ProviderHelper();
 
-			manager.setRepeating(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime(),1000, pending);
-		}
-		
-		//remember toasts that couldnt exeute fast enough, are put into stack, and you have to 
-		//wait for all to be executed even after you remove widget
-		public void onDisabled(Context context)
-		{
-			//killing alarm manager so widget doesnt hog resources
-			//in the future need to set things up for multiple widgets
-			manager=(AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-			intent = new Intent(context, SmAlarm.class);
-			pending = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-			manager.cancel(pending);
-		}
+    //need peniding intent flags to properly create and destroy alarm
+    public void onEnabled(Context context)
+    {
+
+        //Create our intents
+        intent = new Intent(context, SmAlarm.class);
+
+        pending = PendingIntent.getBroadcast(context,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+
+        //Use the helper to call the alarm through the runnable
+        helper.callAlarm(pending);
+    }
+
+
+    public void onDisabled(Context context)
+    {
+        //Stop the Handler
+        intent = new Intent(context, SmAlarm.class);
+        pending = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        helper.stopAlarm(pending);
+    }
 }

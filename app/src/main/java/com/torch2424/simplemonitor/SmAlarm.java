@@ -38,6 +38,7 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.os.SystemClock;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -1023,31 +1024,6 @@ public class SmAlarm extends BroadcastReceiver
 		}
 	}
 	
-	//some threads to take some load off of the main thread
-			//threads not working
-			/*
-			Handler handler=new Handler();
-
-			Runnable cpuR = new Runnable()
-			{
-			    public void run() 
-			    {
-			    	widgetCpu();
-			    }
-			};
-
-			Runnable diskR = new Runnable()
-			{
-			    public void run() 
-			    {
-			    	diskSpace();
-			    }
-			};
-			
-			*/
-	
-
-	
 	public void update(Context context, Intent intent)
 	{
 		views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
@@ -1055,6 +1031,7 @@ public class SmAlarm extends BroadcastReceiver
 		configPrefs(context);
 		//call title config methods to omit methods
 		sectionConfig();
+
 		//call time methods, not calling if unchecked
 		if(boolTime || boolDate)
 		{
@@ -1089,8 +1066,6 @@ public class SmAlarm extends BroadcastReceiver
 		//call memory methods
 		if(boolInternal || boolExternal)
 		{
-			//place cpu on it's own thread hopefully it helps?
-			//see functions above
 			diskSpace();
 		}
 		
@@ -1147,12 +1122,7 @@ public class SmAlarm extends BroadcastReceiver
 	@Override
 	public void onReceive(Context context, Intent intent) 
 	{
-		// TODO Auto-generated method stub
-		// test toast Toast.makeText(context, "Alarm went off", Toast.LENGTH_SHORT).show();
-		//initialize remoteviews to our layout
-		
-		//not using on recieve directly for update interval
-		
+
 		//use our preferences as a quick and easy way to store the previous value
 		prefs = context.getSharedPreferences("MyPrefs", 0);
 		Editor editor = prefs.edit();	
