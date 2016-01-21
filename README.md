@@ -14,10 +14,6 @@ Clone the repo, and open in Android Studio :) These projects may have weird issu
 Android since the Eclipse days, things may need a little work to get everything up and running!
 
 
-##License
+## License
 
-All Assets and rights of the application are reserved to Aaron Turner (Me)
-
-However this code is open-source and may be used to help in your own projects
-
-P.S I don't know much about each licenses haha
+Licensed under the [Apache License 2.0](http://choosealicense.com/licenses/apache-2.0/)
