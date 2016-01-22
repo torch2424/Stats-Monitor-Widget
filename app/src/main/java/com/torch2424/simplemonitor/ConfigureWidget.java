@@ -26,12 +26,10 @@ public class ConfigureWidget extends Activity
 	CheckBox checkSystemTitle;
 	CheckBox checkBattery;
 	CheckBox checkTemp;
-	CheckBox checkChange;
 	CheckBox checkCpu;
 	CheckBox checkUptime;
 	CheckBox checkMemoryTitle;
-	CheckBox checkInternal;
-	CheckBox checkExternal;
+	CheckBox checkMemory;
 	CheckBox checkRam;
 	CheckBox checkNetworkTitle;
 	CheckBox checkNetworkType;
@@ -43,12 +41,10 @@ public class ConfigureWidget extends Activity
 	boolean systemTitle;
 	boolean battery;
 	boolean temp;
-	boolean change;
 	boolean cpu;
 	boolean uptime;
 	boolean memoryTitle;
-	boolean internal;
-	boolean external;
+	boolean memory;
 	boolean ram;
 	boolean networkTitle;
 	boolean networkType;
@@ -90,8 +86,7 @@ public class ConfigureWidget extends Activity
 		checkCpu = (CheckBox) findViewById(R.id.checkCpu);
 		checkUptime = (CheckBox) findViewById(R.id.checkUptime);
 		checkMemoryTitle = (CheckBox) findViewById(R.id.checkMemoryTitle);
-		checkInternal = (CheckBox) findViewById(R.id.checkInternal);
-		checkExternal = (CheckBox) findViewById(R.id.checkExternal);
+		checkMemory = (CheckBox) findViewById(R.id.checkMemory);
 		checkRam = (CheckBox) findViewById(R.id.checkRam);
 		checkNetworkTitle = (CheckBox) findViewById(R.id.checkNetworkTitle);
 		checkNetworkType = (CheckBox) findViewById(R.id.checkNetType);
@@ -110,8 +105,7 @@ public class ConfigureWidget extends Activity
 		cpu = prefs.getBoolean("CPU", true);
 		uptime = prefs.getBoolean("UPTIME", true);
 		memoryTitle = prefs.getBoolean("MEMORYTITLE", true);
-		internal = prefs.getBoolean("INTERNAL", true);
-		external = prefs.getBoolean("EXTERNAL", true);
+		memory = prefs.getBoolean("MEMORY", true);
 		ram = prefs.getBoolean("RAM", true);
 		networkTitle = prefs.getBoolean("NETWORKTITLE", true);
 		networkType = prefs.getBoolean("NETWORKTYPE", true);
@@ -201,21 +195,13 @@ public class ConfigureWidget extends Activity
 		{
 			checkMemoryTitle.setChecked(false);
 		}
-		if (internal == true)
+		if (memory == true)
 		{
-			checkInternal.setChecked(true);
+			checkMemory.setChecked(true);
 		}
 		else
 		{
-			checkInternal.setChecked(false);
-		}
-		if (external == true)
-		{
-			checkExternal.setChecked(true);
-		}
-		else
-		{
-			checkExternal.setChecked(false);
+			checkMemory.setChecked(false);
 		}
 		if (ram == true)
 		{
@@ -281,8 +267,7 @@ public class ConfigureWidget extends Activity
 		cpu = checkCpu.isChecked();
 		uptime = checkUptime.isChecked();
 		memoryTitle = checkMemoryTitle.isChecked();
-		internal = checkInternal.isChecked();
-		external = checkExternal.isChecked();
+		memory = checkMemory.isChecked();
 		ram = checkRam.isChecked();
 		networkTitle = checkNetworkTitle.isChecked();
 		networkType = checkNetworkType.isChecked();
@@ -303,8 +288,7 @@ public class ConfigureWidget extends Activity
 		editor.putBoolean("CPU", cpu);
 		editor.putBoolean("UPTIME", uptime);
 		editor.putBoolean("MEMORYTITLE", memoryTitle);
-		editor.putBoolean("INTERNAL", internal);
-		editor.putBoolean("EXTERNAL", external);
+		editor.putBoolean("MEMORY", memory);
 		editor.putBoolean("RAM", ram);
 		editor.putBoolean("NETWORKTITLE", networkTitle);
 		editor.putBoolean("NETWORKTYPE", networkType);

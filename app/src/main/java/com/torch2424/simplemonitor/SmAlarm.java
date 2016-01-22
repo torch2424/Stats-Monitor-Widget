@@ -53,6 +53,7 @@ public class SmAlarm extends BroadcastReceiver
 		RemoteViews views;
 	//getting access to the config values
 		ConfigureWidget config = new ConfigureWidget();
+
 		//getting prefs and boolean values for which sections to display
 		SharedPreferences prefs;
 		boolean boolTimeTitle;
@@ -65,13 +66,15 @@ public class SmAlarm extends BroadcastReceiver
 		boolean boolCpu;
 		boolean boolUptime;
 		boolean boolMemoryTitle;
-		boolean boolInternal;
-		boolean boolExternal;
+        //Boolean for if there is an internal and external storage
+        boolean isExternalStorage;
+		boolean boolMemory;
 		boolean boolRam;
 		boolean boolNetworkTitle;
 		boolean boolNetworkType;
 		boolean boolNetworkUp;
 		boolean boolNetworkDown;
+
 		//advanced settings
 		boolean tapConfig;
 		boolean memoryGB;
@@ -88,9 +91,13 @@ public class SmAlarm extends BroadcastReceiver
 		boolean degreesFBool;
 		String externalString;
 		int secs; //for if people want a slower update interval
+
+
 		//setting up colors
 		int textColor;
 		int backColor;
+
+
 		//setting up text sizes
 		int textSize;
 		int textTitleSize;
@@ -118,8 +125,7 @@ public class SmAlarm extends BroadcastReceiver
 			boolCpu = prefs.getBoolean("CPU", true);
 			boolUptime = prefs.getBoolean("UPTIME", true);
 			boolMemoryTitle = prefs.getBoolean("MEMORYTITLE", true);
-			boolInternal = prefs.getBoolean("INTERNAL", true);
-			boolExternal = prefs.getBoolean("EXTERNAL", true);
+			boolMemory = prefs.getBoolean("MEMORY", true);
 			boolRam = prefs.getBoolean("RAM", true);
 			boolNetworkTitle = prefs.getBoolean("NETWORKTITLE", true);
 			boolNetworkType = prefs.getBoolean("NETWORKTYPE", true);
@@ -131,9 +137,13 @@ public class SmAlarm extends BroadcastReceiver
 			textColor = prefs.getInt("TEXTCOLOR", Color.LTGRAY);
 			//default background is transparent
 			backColor = prefs.getInt("BACKCOLOR", Color.TRANSPARENT);
+
+
 			//text sizes
 			textSize = prefs.getInt("TEXTSIZE", 12);
 			textTitleSize = prefs.getInt("TEXTTITLESIZE", 18);
+
+
 			//advanced settings
 			tapConfig = prefs.getBoolean("TAPCONFIG", false);
 			memoryGB = prefs.getBoolean("MEMORYGB", false);
@@ -308,35 +318,45 @@ public class SmAlarm extends BroadcastReceiver
 				{
 					views.setViewVisibility(R.id.uptime, View.VISIBLE); 
 				}
-			 if(boolInternal == false)
+			 if(boolMemory == false)
 		        {
+
+                    //Set all memory views to false
 		        	views.setViewVisibility(R.id.internal, View.GONE); 
-		        	views.setViewVisibility(R.id.internalTitle, View.GONE); 
-		        }
+		        	views.setViewVisibility(R.id.internalTitle, View.GONE);
+                    views.setViewVisibility(R.id.external, View.GONE);
+                    views.setViewVisibility(R.id.externalTitle, View.GONE);
+                }
 			 else
 		        {
+
+                    //Set the views to visible
 		        	views.setViewVisibility(R.id.internal, View.VISIBLE);
-		        	views.setViewVisibility(R.id.internalTitle, View.VISIBLE); 
-		        }
-		        if(boolExternal == false)
-		        {
-		        	views.setViewVisibility(R.id.external, View.GONE);
-		        	views.setViewVisibility(R.id.externalTitle, View.GONE); 
-		        }
-		        else
-		        {
-		        	if(Environment.getExternalStorageDirectory().exists() == false)
-		        	{
-		        		boolExternal = false;
-		        		views.setViewVisibility(R.id.external, View.GONE);
-			        	views.setViewVisibility(R.id.externalTitle, View.GONE); 
-		        	}
-		        	else
-		        	{
-		        	views.setViewVisibility(R.id.external, View.VISIBLE);
-		        	views.setViewVisibility(R.id.externalTitle, View.VISIBLE); 
-		        	}
-		        }
+		        	views.setViewVisibility(R.id.internalTitle, View.VISIBLE);
+
+                    //Check if we have two seperate directories
+                    if(Environment.getExternalStorageDirectory().exists() &&
+                            Environment.getExternalStorageDirectory() != Environment.getDataDirectory()) {
+
+
+                        //Set the views to visible
+                        views.setViewVisibility(R.id.external, View.VISIBLE);
+                        views.setViewVisibility(R.id.externalTitle, View.VISIBLE);
+
+                        //Set the singe storage directory boolean
+                        isExternalStorage = false;
+                    }
+                    else {
+
+                        //Set them to not visible
+                        views.setViewVisibility(R.id.external, View.GONE);
+                        views.setViewVisibility(R.id.externalTitle, View.GONE);
+
+                        //Set the singe storage directory boolean
+                        isExternalStorage = false;
+
+                    }
+                }
 		        if(boolRam == false)
 		        {
 		        	views.setViewVisibility(R.id.ram, View.GONE); 
@@ -1064,7 +1084,7 @@ public class SmAlarm extends BroadcastReceiver
 		}
 		
 		//call memory methods
-		if(boolInternal || boolExternal)
+		if(boolMemory)
 		{
 			diskSpace();
 		}
