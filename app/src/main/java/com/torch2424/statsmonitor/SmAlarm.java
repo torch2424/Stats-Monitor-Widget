@@ -38,6 +38,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.RemoteViews;
 
+import com.torch2424.statsmonitor.com.torch2424.statshelpers.BatteryHelper;
 import com.torch2424.statsmonitor.com.torch2424.statshelpers.MemoryHelper;
 import com.torch2424.statsmonitor.com.torch2424.statshelpers.TimeHelper;
 import com.torch2424.statsmonitorwidget.R;
@@ -145,7 +146,6 @@ public class SmAlarm extends BroadcastReceiver
 			CPUBool = prefs.getBoolean("MULTICPU", false);
 			TitleBool = prefs.getBoolean("NOCPUTITLE", false);
 			kilobytesBool = prefs.getBoolean("KILOBYTE", false);
-			degreesFBool = prefs.getBoolean("DEGREESF", false);
 		}
 		public void sectionConfig ()
 		{
@@ -348,40 +348,6 @@ public class SmAlarm extends BroadcastReceiver
 		        	views.setViewVisibility(R.id.networkDown, View.GONE); 
 		        }
 		        
-		}
-		
-		public void widgetBattery(Context context)
-		{
-			//taken from android devs
-			//get an intent filter to get battery status, which returns a function call
-			//we just call this intent to get whatever info we want
-			//android bug where if we use context.register reciver is excepted when it shouldnt be
-			//we need get application context to work since it calls correctly and has greater lifetime
-			IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-			Intent battery = context.getApplicationContext().registerReceiver(null, ifilter);
-			int level = battery.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
-			int scale = battery.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
-			//added to get battery temperature
-			int temperature = battery.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0);
-			//putting it into a percent float
-			percent = (level / (float)scale) * 100;
-			
-			String batteryString = "Battery Left: " + (int)(percent) + "%";
-			String temp = "";
-			String temperatureString = "";
-			if(degreesFBool)
-			{
-				temp = Integer.toString(((temperature/10) * 9 / 5) + 32);
-				temperatureString = "Battery Temp: " + temp + " °F"; 
-			}
-			else
-			{
-				temp = Integer.toString(temperature/10);
-				temperatureString = "Battery Temp: " + temp + " °C"; 
-			}
-			//set into text view
-			views.setTextViewText(R.id.battery, batteryString);
-			views.setTextViewText(R.id.batteryTemp, temperatureString);
 		}
 		
 		public void widgetCpu() 
@@ -757,6 +723,9 @@ public class SmAlarm extends BroadcastReceiver
         //Create our Time manager
         TimeHelper timeMan = new TimeHelper(views, prefs);
 
+        //Create our Battery Manage
+        BatteryHelper battMan = new BatteryHelper(views, prefs);
+
         //Create diskspace manager
         MemoryHelper diskMan = new MemoryHelper(views, prefs);
 
@@ -769,7 +738,8 @@ public class SmAlarm extends BroadcastReceiver
 		//call system methods
 		if(boolBattery || boolTemp)
 		{
-			widgetBattery(context);
+			battMan.getBatteryPercent(context);
+            battMan.getBatteryTemp(context);
 		}
 		
 		if(boolCpu)

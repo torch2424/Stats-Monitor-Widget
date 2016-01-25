@@ -10,10 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15e07a6a-5544-432c-9ee7-241acea28265" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/TimeHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/MemoryHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/MemoryHelper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/BatteryHelper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/SmAlarm.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/SmAlarm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Stats-Monitor-Widget.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -58,8 +56,20 @@
       <file leaf-file-name="SmAlarm.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/SmAlarm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2583732">
-              <caret line="775" column="9" selection-start-line="775" selection-start-column="9" selection-end-line="775" selection-end-column="9" />
+            <state vertical-scroll-proportion="21.272728">
+              <caret line="741" column="42" selection-start-line="741" selection-start-column="42" selection-end-line="741" selection-end-column="42" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BatteryHelper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/BatteryHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="61" column="34" selection-start-line="61" selection-start-column="34" selection-end-line="61" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -71,7 +81,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/TimeHelper.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="74" column="27" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="27" />
+              <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1353,6 +1363,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/simplemonitor/SmAlarm.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/MemoryHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/TimeHelper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/BatteryHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/SmAlarm.java" />
       </list>
     </option>
@@ -1956,7 +1967,17 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/TimeHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="74" column="27" selection-start-line="74" selection-start-column="27" selection-end-line="74" selection-end-column="27" />
+          <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/BatteryHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="61" column="34" selection-start-line="61" selection-start-column="34" selection-end-line="61" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1965,8 +1986,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/SmAlarm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2583732">
-          <caret line="775" column="9" selection-start-line="775" selection-start-column="9" selection-end-line="775" selection-end-column="9" />
+        <state vertical-scroll-proportion="21.272728">
+          <caret line="741" column="42" selection-start-line="741" selection-start-column="42" selection-end-line="741" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
