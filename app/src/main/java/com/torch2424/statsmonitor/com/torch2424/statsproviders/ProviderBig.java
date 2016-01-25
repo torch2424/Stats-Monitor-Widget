@@ -1,10 +1,11 @@
-package com.torch2424.statsmonitor;
+package com.torch2424.statsmonitor.com.torch2424.statsproviders;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 
+import com.torch2424.statsmonitor.SmAlarm;
 import com.torch2424.statsmonitor.com.torch2424.statshelpers.ProviderHelper;
 
 

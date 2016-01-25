@@ -27,7 +27,7 @@
         <!-- android exported false to stop it from getting stuff from other apps -->
         
         
-        <receiver android:name="com.torch2424.statsmonitor.SuperSmall"
+        <receiver android:name="com.torch2424.statsmonitor.com.torch2424.statsproviders.SuperSmall"
             android:label="@string/sizeSmall">
             <intent-filter android:exported="false">
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -38,7 +38,7 @@
                 android:resource="@xml/supersmall" />
         </receiver>
         
-        <receiver android:name="com.torch2424.statsmonitor.ProviderSmall"
+        <receiver android:name="com.torch2424.statsmonitor.com.torch2424.statsproviders.ProviderSmall"
             android:label="@string/sizeOne">
             <intent-filter android:exported="false">
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -49,7 +49,7 @@
                 android:resource="@xml/statssmall" />
         </receiver>
         
-        <receiver android:name="com.torch2424.statsmonitor.SmProvider"
+        <receiver android:name="com.torch2424.statsmonitor.com.torch2424.statsproviders.SmProvider"
             android:label="@string/sizeTwo">
             <intent-filter android:exported="false">
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -60,7 +60,7 @@
                 android:resource="@xml/simplemonitorxml" />
         </receiver>
         
-        <receiver android:name="com.torch2424.statsmonitor.ProviderBig"
+        <receiver android:name="com.torch2424.statsmonitor.com.torch2424.statsproviders.ProviderBig"
             android:label="@string/sizeThree">
             <intent-filter android:exported="false">
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -71,7 +71,7 @@
                 android:resource="@xml/statsbig" />
         </receiver>
         
-        <receiver android:name="com.torch2424.statsmonitor.ProviderBigger"
+        <receiver android:name="com.torch2424.statsmonitor.com.torch2424.statsproviders.ProviderBigger"
             android:label="@string/sizeFour">
             <intent-filter android:exported="false">
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />

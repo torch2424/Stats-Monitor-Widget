@@ -1,7 +1,5 @@
 package com.torch2424.statsmonitor;
 
-import java.text.DecimalFormat;
-
 import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -21,6 +19,11 @@ import com.torch2424.statsmonitor.com.torch2424.statshelpers.CPUHelper;
 import com.torch2424.statsmonitor.com.torch2424.statshelpers.MemoryHelper;
 import com.torch2424.statsmonitor.com.torch2424.statshelpers.NetworkHelper;
 import com.torch2424.statsmonitor.com.torch2424.statshelpers.TimeHelper;
+import com.torch2424.statsmonitor.com.torch2424.statsproviders.ProviderBig;
+import com.torch2424.statsmonitor.com.torch2424.statsproviders.ProviderBigger;
+import com.torch2424.statsmonitor.com.torch2424.statsproviders.ProviderSmall;
+import com.torch2424.statsmonitor.com.torch2424.statsproviders.SmProvider;
+import com.torch2424.statsmonitor.com.torch2424.statsproviders.SuperSmall;
 import com.torch2424.statsmonitorwidget.R;
 
 
