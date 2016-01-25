@@ -39,6 +39,7 @@ import android.view.View;
 import android.widget.RemoteViews;
 
 import com.torch2424.statsmonitor.com.torch2424.statshelpers.MemoryHelper;
+import com.torch2424.statsmonitor.com.torch2424.statshelpers.TimeHelper;
 import com.torch2424.statsmonitorwidget.R;
 
 
@@ -139,12 +140,10 @@ public class SmAlarm extends BroadcastReceiver
 
 			//advanced settings
 			tapConfig = prefs.getBoolean("TAPCONFIG", false);
-			hourFormat = prefs.getBoolean("24HOUR", false);
 			centerBool = prefs.getBoolean("TEXTCENTER", false);
 			rightBool = prefs.getBoolean("TEXTRIGHT", false);
 			CPUBool = prefs.getBoolean("MULTICPU", false);
 			TitleBool = prefs.getBoolean("NOCPUTITLE", false);
-			shortBool = prefs.getBoolean("SHORTDAYS", false);
 			kilobytesBool = prefs.getBoolean("KILOBYTE", false);
 			degreesFBool = prefs.getBoolean("DEGREESF", false);
 		}
@@ -349,35 +348,6 @@ public class SmAlarm extends BroadcastReceiver
 		        	views.setViewVisibility(R.id.networkDown, View.GONE); 
 		        }
 		        
-		}
-		//function for time
-		@SuppressLint("SimpleDateFormat")
-		public void widgetTime()
-		{
-			//time, creating date and inserting it to simple date format
-			 Date date = new Date();
-			 SimpleDateFormat time= new SimpleDateFormat("hh:mm:ss a");
-			 SimpleDateFormat day = new SimpleDateFormat("EEEE, MMMM dd, yyyy");
-			 if(shortBool == true)
-			 {
-				 day = new SimpleDateFormat("EEE, MMMM dd, yyyy");
-			 }
-			 else
-			 {
-				 day = new SimpleDateFormat("EEEE, MMMM dd, yyyy");
-			 }
-			 //24 hour settings
-			 if(hourFormat == true)
-			 {
-				 time = new SimpleDateFormat("HH:mm:ss a");
-			 }
-			 else
-			 {
-				 time = new SimpleDateFormat("hh:mm:ss a");
-			 }
-			 //setting text to time
-			 views.setTextViewText(R.id.time, time.format(date));
-			 views.setTextViewText(R.id.date, day.format(date));
 		}
 		
 		public void widgetBattery(Context context)
@@ -638,28 +608,6 @@ public class SmAlarm extends BroadcastReceiver
 		        return 1;
 		    }
 		}
-		
-		public void systemUptime()
-		{
-			//getting uptime
-			long uptime = SystemClock.elapsedRealtime();
-			//have to make sure to reset days after days increases to compile with simple date format
-			//need to announce days globally or it gets reset to zero every time it is called
-			int days = (int) (uptime / 86400000) ;
-			uptime = uptime - (86400000 * days);
-			//convert everything into hours minutes and stuff, modulo next divided by in time spectrum
-			//dont even use these variables
-			//long seconds = (uptime/1000) % 60;
-			//long minutes = (seconds/60) % 60;
-			//long hours = (minutes/60) % 60;
-			//string for everything, bad alternatives couldnt get to work right
-			SimpleDateFormat timeFormat = new SimpleDateFormat("HH ':' mm ':' ss");
-			timeFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
-			String dayString = Integer.toString(days);
-			String timeString = "Uptime: " + dayString + "d " +  timeFormat.format(uptime);
-			//setting text to time
-			views.setTextViewText(R.id.uptime, timeString);
-		}
 	
 		//method to get network type
         public void networkType(Context context)
@@ -671,7 +619,6 @@ public class SmAlarm extends BroadcastReceiver
             //need to check for tablets to see if they have telephony
             boolean hasTelephony = context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
 
-            //
             if(hasTelephony)
             {
 
@@ -807,13 +754,16 @@ public class SmAlarm extends BroadcastReceiver
 		//call title config methods to omit methods
 		sectionConfig();
 
+        //Create our Time manager
+        TimeHelper timeMan = new TimeHelper(views, prefs);
+
         //Create diskspace manager
         MemoryHelper diskMan = new MemoryHelper(views, prefs);
 
 		//call time methods, not calling if unchecked
 		if(boolTime || boolDate)
 		{
-		widgetTime();
+            timeMan.getTime();
 		}
 		
 		//call system methods
@@ -824,14 +774,12 @@ public class SmAlarm extends BroadcastReceiver
 		
 		if(boolCpu)
 		{
-			//place cpu on it's own thread hopefully it helps?
-			//see functions above
 			widgetCpu();
 		}
 		
 		if(boolUptime)
 		{
-		systemUptime();
+		    timeMan.getUptime();
 		}
 		
 		//call memory methods
@@ -853,7 +801,7 @@ public class SmAlarm extends BroadcastReceiver
 		
 		if(boolNetworkUp || boolNetworkDown)
 		{
-		networkSpeeds();
+		    networkSpeeds();
 		}
 		
 		
@@ -873,7 +821,7 @@ public class SmAlarm extends BroadcastReceiver
 		}
 		else
 		{
-		views.setViewVisibility(R.id.CPUTitle, View.VISIBLE); 
+		    views.setViewVisibility(R.id.CPUTitle, View.VISIBLE);
 		}
 		
 		//update widget for all sizes

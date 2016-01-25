@@ -41,11 +41,11 @@ public class MemoryHelper {
     //Our views
     RemoteViews views;
 
-    public MemoryHelper(RemoteViews theView, SharedPreferences prefs) {
+    public MemoryHelper(RemoteViews parentView, SharedPreferences prefs) {
 
 
         //Set our view
-        views = theView;
+        views = parentView;
 
         //Show and hide our views accordingly to preferecnes
 
