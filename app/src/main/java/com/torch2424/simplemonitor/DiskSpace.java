@@ -28,7 +28,7 @@ public class DiskSpace {
     //Boolean to tell if we want out memory in Gigabytes or Megs
     boolean memoryGB;
 
-    //Our deicimal format for gigabyte display
+    //Our decimal format for gigabyte display
     final private DecimalFormat format = new DecimalFormat("0.00");
 
     //Our views
@@ -75,6 +75,9 @@ public class DiskSpace {
             oneStorage = true;
         }
 
+        //Now check if the external storage has space, if it doesnt, we have one storage
+        if(!oneStorage && !checkExternal()) oneStorage = true;
+
         //Set our view
         views = theView;
 
@@ -82,99 +85,102 @@ public class DiskSpace {
         memoryGB = memGB;
     }
 
-    public void diskSpace ()
-    {
-
-
-        //declaring external and internal statfs
-        StatFs externalStat = new StatFs(externalPath.getAbsolutePath());
-        StatFs internalStat = new StatFs(internalPath.getAbsolutePath());
-
-        //declaring get block sizes
-        long blockSizeEx = externalStat.getBlockSizeLong();
-        long blockSizeIn = internalStat.getBlockSizeLong();
-
-
-        //available external storage in megabytes
-        long availableBlocksEx = externalStat.getAvailableBlocksLong();
-        long availableExternal = ((blockSizeEx) * (availableBlocksEx)) / megs;
-
-        //total external storage in megabytes
-        long totalBlocksEx = externalStat.getBlockCountLong();
-        long totalExternal = ((blockSizeEx) * (totalBlocksEx)) / megs;
-
-        //available internal storage in megs
-        long availBlocksIn = internalStat.getAvailableBlocksLong();
-        long availInternal = ((blockSizeIn) * (availBlocksIn)) / megs;
-
-        //total blocks in internal storage in megs
-        long totalBlocksIn = internalStat.getBlockCountLong();
-        long totalInternal = ((blockSizeIn) * (totalBlocksIn)) / megs;
-
-        //Gigabyte display settings
-        if (memoryGB == true)
-        {
-            //use a decimal format to only show two places, and use .0 to get a decimal
-            float usedFloatInternal =  ((totalInternal - availInternal)/1000.0f);
-            float totalFloatInternal = (totalInternal/1000.0f);
-            float usedFloatExternal =  ((totalExternal - availableExternal)/1000.0f);
-            float totalFloatExternal = (totalExternal/1000.0f);
-            DecimalFormat format = new DecimalFormat("0.00");
-            views.setTextViewText(R.id.internalTitle, "Used Internal Storage:");
-            views.setTextViewText(R.id.externalTitle, "Used External Storage:");
-            views.setTextViewText(R.id.internal, format.format(usedFloatInternal) + "/" + format.format(totalFloatInternal) + " GB");
-            views.setTextViewText(R.id.external, format.format(usedFloatExternal) + "/" + format.format(totalFloatExternal) + " GB");
-        }
-        else
-        {
-            //setting up text views
-            views.setTextViewText(R.id.internalTitle, "Used Internal Storage:");
-            views.setTextViewText(R.id.externalTitle, "Used External Storage:");
-            views.setTextViewText(R.id.internal, Long.toString(totalInternal - availInternal) + "/" + Long.toString(totalInternal) + " MB");
-            views.setTextViewText(R.id.external, Long.toString(totalExternal - availableExternal) + "/" + Long.toString(totalExternal) + " MB");
-        }
-
-    }
-
     //Function to set the internal storage of the device
-    public void getInternalSpace() {
+    public void getSpace() {
 
         //declaring internal statfs
-        StatFs internalStat = new StatFs(internalPath.getAbsolutePath());
+        StatFs stats = new StatFs(internalPath.getAbsolutePath());
 
         //declaring get block sizes
-        long blockSizeIn = internalStat.getBlockSizeLong();
+        long blockSize = stats.getBlockSizeLong();
 
         //available internal storage in megs
-        long availBlocksIn = internalStat.getAvailableBlocksLong();
-        long availInternal = ((blockSizeIn) * (availBlocksIn)) / megs;
+        long availBlocks = stats.getAvailableBlocksLong();
+        long availMB = ((blockSize) * (availBlocks)) / megs;
 
         //total blocks in internal storage in megs
-        long totalBlocksIn = internalStat.getBlockCountLong();
-        long totalInternal = ((blockSizeIn) * (totalBlocksIn)) / megs;
+        long totalBlocks = stats.getBlockCountLong();
+        long totalMB = ((blockSize) * (totalBlocks)) / megs;
+
+        //setting up text views
+        //Check if we only have one storage
+        if(!oneStorage) views.setTextViewText(R.id.internalTitle, "Used Internal Storage:");
+        else views.setTextViewText(R.id.internalTitle, "Used Storage:");
 
         //Gigabyte display settings
         if (memoryGB == true)
         {
             //use a decimal format to only show two places, and use .0 to get a decimal
-            float usedFloatInternal = getGigs(totalInternal - availInternal);
-            float totalFloatInternal = getGigs(totalInternal);
-
-            //Check if we only have one storage
-            views.setTextViewText(R.id.internalTitle, "Used Internal Storage:");
-            views.setTextViewText(R.id.internal, format.format(usedFloatInternal) + "/" + format.format(totalFloatInternal) + " GB");
+            float usedFloat = getGigs(totalMB - availMB);
+            float totalFloat = getGigs(totalMB);
+            views.setTextViewText(R.id.internal, format.format(usedFloat) + "/" + format.format(totalFloat) + " GB");
         }
         else
         {
-            //setting up text views
-            views.setTextViewText(R.id.internalTitle, "Used Internal Storage:");
-            views.setTextViewText(R.id.internal, Long.toString(totalInternal - availInternal) + "/" + Long.toString(totalInternal) + " MB");
+            views.setTextViewText(R.id.internal, Long.toString(totalMB - availMB) + "/" + Long.toString(totalMB) + " MB");
+        }
+
+        //Now check for external storage, if we have it
+        if(!oneStorage) {
+            getExternalSpace();
         }
     }
 
+    //Function to get the external space
+    private void getExternalSpace() {
+
+        //declaring external statfs
+        StatFs stats = new StatFs(externalPath.getAbsolutePath());
+
+        //declaring get block sizes
+        long blockSize = stats.getBlockSizeLong();
+
+        //available external storage in megs
+        long availBlocks = stats.getAvailableBlocksLong();
+        long availMB = ((blockSize) * (availBlocks)) / megs;
+
+        //total blocks in external storage in megs
+        long totalBlocks = stats.getBlockCountLong();
+        long totalMB = ((blockSize) * (totalBlocks)) / megs;
+
+        //setting up text views
+        views.setTextViewText(R.id.externalTitle, "Used External Storage:");
+
+        //Gigabyte display settings
+        if (memoryGB == true)
+        {
+            //use a decimal format to only show two places, and use .0 to get a decimal
+            float usedFloat = getGigs(totalMB - availMB);
+            float totalFloat = getGigs(totalMB);
+            views.setTextViewText(R.id.external, format.format(usedFloat) + "/" + format.format(totalFloat) + " GB");
+        }
+        else
+        {
+            views.setTextViewText(R.id.external, Long.toString(totalMB - availMB) + "/" + Long.toString(totalMB) + " MB");
+        }
+
+    }
 
     //Function to convert from megabytes to gigabytes
     private float getGigs(long megs) {
         return megs / 1000.0f;
+    }
+
+    //Function to check if the external storage has space
+    private boolean checkExternal() {
+
+        //declaring external statfs
+        StatFs stats = new StatFs(externalPath.getAbsolutePath());
+
+        //declaring get block sizes
+        long blockSize = stats.getBlockSizeLong();
+
+        //total blocks in external storage in megs
+        long totalBlocks = stats.getBlockCountLong();
+        long totalMB = ((blockSize) * (totalBlocks)) / megs;
+
+        //Do a quick check if we have storage
+        if(totalMB > 0) return true;
+        else return false;
     }
 }
