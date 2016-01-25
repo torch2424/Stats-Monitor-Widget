@@ -1162,9 +1162,6 @@ public class SmAlarm extends BroadcastReceiver
 		secs = prefs.getInt("SECS", 0);
 		threeBool = prefs.getBoolean("THREESEC", false);
 		fiveBool = prefs.getBoolean("FIVESEC", false);
-
-        //Create diskspace manager
-        DiskSpace diskMan = new DiskSpace(views, memoryGB, externalString);
 		
 		if(updateBool)
 		{
@@ -1203,6 +1200,9 @@ public class SmAlarm extends BroadcastReceiver
 		 {
 			 update(context, intent);
 		 }
+
+            //Create diskspace manager
+            DiskSpace diskMan = new DiskSpace(views, memoryGB, externalString);
 	}
 		
 	}
