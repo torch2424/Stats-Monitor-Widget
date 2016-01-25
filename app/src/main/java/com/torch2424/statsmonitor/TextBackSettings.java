@@ -1,4 +1,4 @@
-package com.torch2424.simplemonitor;
+package com.torch2424.statsmonitor;
 
 import android.app.Activity;
 import android.content.Intent;

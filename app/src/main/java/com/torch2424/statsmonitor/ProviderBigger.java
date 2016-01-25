@@ -1,16 +1,16 @@
-package com.torch2424.simplemonitor;
+package com.torch2424.statsmonitor;
 
-import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
-import android.os.SystemClock;
+
+import com.torch2424.statsmonitor.com.torch2424.statshelpers.ProviderHelper;
 
 
-public class ProviderSmall extends AppWidgetProvider
+public class ProviderBigger extends AppWidgetProvider
 {
-    //2X1
+    //2X4
 
     //declaring here to access in on disabled
     PendingIntent pending;

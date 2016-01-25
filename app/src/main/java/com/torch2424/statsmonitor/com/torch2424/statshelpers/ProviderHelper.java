@@ -1,4 +1,4 @@
-package com.torch2424.simplemonitor;
+package com.torch2424.statsmonitor.com.torch2424.statshelpers;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetProvider;

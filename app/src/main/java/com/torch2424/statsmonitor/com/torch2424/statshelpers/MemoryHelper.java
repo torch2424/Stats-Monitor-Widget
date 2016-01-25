@@ -1,8 +1,11 @@
-package com.torch2424.simplemonitor;
+package com.torch2424.statsmonitor.com.torch2424.statshelpers;
 
+import android.app.ActivityManager;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Environment;
 import android.os.StatFs;
-import android.util.Log;
+import android.view.View;
 import android.widget.RemoteViews;
 
 import com.torch2424.statsmonitorwidget.R;
@@ -13,7 +16,7 @@ import java.text.DecimalFormat;
 /**
  * Created by torch2424 on 1/24/16.
  */
-public class DiskSpace {
+public class MemoryHelper {
 
     //Declaring a constant I will be using for megabyte conversion
     final private long megs = 1048576L;
@@ -25,8 +28,12 @@ public class DiskSpace {
     //Boolean to tell if we have a singular storage
     private boolean oneStorage;
 
+    //Memory manager for ram
+    ActivityManager.MemoryInfo mi;
+
     //Boolean to tell if we want out memory in Gigabytes or Megs
     boolean memoryGB;
+    boolean ramGB;
 
     //Our decimal format for gigabyte display
     final private DecimalFormat format = new DecimalFormat("0.00");
@@ -34,7 +41,20 @@ public class DiskSpace {
     //Our views
     RemoteViews views;
 
-    public DiskSpace(RemoteViews theView, boolean memGB, String inputExternal) {
+    public MemoryHelper(RemoteViews theView, SharedPreferences prefs) {
+
+
+        //Set our view
+        views = theView;
+
+        //Show and hide our views accordingly to preferecnes
+
+        //Our memory status
+        memoryGB = prefs.getBoolean("MEMORYGB", false);
+        ramGB = prefs.getBoolean("RAMGB", false);
+
+        //Our external String
+        String inputExternal = prefs.getString("EXTERNALPATH", "");
 
         //Get our paths
 
@@ -72,17 +92,26 @@ public class DiskSpace {
         }
         //We actually did only have a single storage
         else {
+
             oneStorage = true;
+
+            //Set external views to not visible
+            views.setViewVisibility(R.id.external, View.GONE);
+            views.setViewVisibility(R.id.externalTitle, View.GONE);
         }
 
         //Now check if the external storage has space, if it doesnt, we have one storage
-        if(!oneStorage && !checkExternal()) oneStorage = true;
+        if(!oneStorage && !checkExternal()) {
 
-        //Set our view
-        views = theView;
+            oneStorage = true;
 
-        //Our memory status
-        memoryGB = memGB;
+            //Set external views to not visible
+            views.setViewVisibility(R.id.external, View.GONE);
+            views.setViewVisibility(R.id.externalTitle, View.GONE);
+        }
+
+        //Get Ram Stuff
+        mi = new ActivityManager.MemoryInfo();
     }
 
     //Function to set the internal storage of the device
@@ -159,6 +188,25 @@ public class DiskSpace {
             views.setTextViewText(R.id.external, Long.toString(totalMB - availMB) + "/" + Long.toString(totalMB) + " MB");
         }
 
+    }
+
+    //Function to get Ram
+    public void getRam(Context context) {
+
+        ActivityManager activityManager = (ActivityManager) context.getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
+        activityManager.getMemoryInfo(mi);
+        long avail = mi.availMem / 1048576L;
+        long total = mi.totalMem / 1048576L;
+        if(ramGB == true)
+        {
+            float usedFloat = getGigs(total - avail);
+            float totalFloat = getGigs(total);
+            views.setTextViewText(R.id.ram, "Used Ram: " + format.format(usedFloat) + "/" + format.format(totalFloat) + "GB");
+        }
+        else
+        {
+            views.setTextViewText(R.id.ram, "Used Ram: " + Long.toString(total - avail) + "/" + Long.toString(total) + "MB");
+        }
     }
 
     //Function to convert from megabytes to gigabytes

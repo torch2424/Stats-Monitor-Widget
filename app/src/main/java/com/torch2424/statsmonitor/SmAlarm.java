@@ -1,9 +1,7 @@
-package com.torch2424.simplemonitor;
+package com.torch2424.statsmonitor;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileFilter;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.text.DecimalFormat;
@@ -26,7 +24,6 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.graphics.drawable.ShapeDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.NetworkInfo.State;
@@ -35,14 +32,13 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.BatteryManager;
 import android.os.Environment;
-import android.os.StatFs;
 import android.os.SystemClock;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.RemoteViews;
 
+import com.torch2424.statsmonitor.com.torch2424.statshelpers.MemoryHelper;
 import com.torch2424.statsmonitorwidget.R;
 
 
@@ -77,9 +73,7 @@ public class SmAlarm extends BroadcastReceiver
 
 		//advanced settings
 		boolean tapConfig;
-		boolean memoryGB;
 		boolean hourFormat;
-		boolean ramBool;
 		boolean rightBool;
 		boolean centerBool;
 		boolean CPUBool;
@@ -89,7 +83,6 @@ public class SmAlarm extends BroadcastReceiver
 		boolean threeBool;
 		boolean fiveBool;
 		boolean degreesFBool;
-		String externalString;
 		int secs; //for if people want a slower update interval
 
 
@@ -146,9 +139,7 @@ public class SmAlarm extends BroadcastReceiver
 
 			//advanced settings
 			tapConfig = prefs.getBoolean("TAPCONFIG", false);
-			memoryGB = prefs.getBoolean("MEMORYGB", false);
 			hourFormat = prefs.getBoolean("24HOUR", false);
-			ramBool = prefs.getBoolean("RAMGB", false);
 			centerBool = prefs.getBoolean("TEXTCENTER", false);
 			rightBool = prefs.getBoolean("TEXTRIGHT", false);
 			CPUBool = prefs.getBoolean("MULTICPU", false);
@@ -156,23 +147,10 @@ public class SmAlarm extends BroadcastReceiver
 			shortBool = prefs.getBoolean("SHORTDAYS", false);
 			kilobytesBool = prefs.getBoolean("KILOBYTE", false);
 			degreesFBool = prefs.getBoolean("DEGREESF", false);
-			externalString = prefs.getString("EXTERNALPATH", "");
 		}
 		public void sectionConfig ()
 		{
 
-            /* Need to add a unique shape view corresponding to each available color if
-            we wish to do this
-            //testing rounded edges
-            //Setting rounded edges
-            if(true) {
-                views.setInt(R.id.widgetLayout, "setBackgroundResource", R.drawable.cornerslarge);
-            }
-            else {
-                //setting background
-                views.setInt(R.id.widgetLayout, "setBackgroundColor", backColor);
-            }
-            */
             //setting background
             views.setInt(R.id.widgetLayout, "setBackgroundColor", backColor);
 			//setting Colors
@@ -291,17 +269,6 @@ public class SmAlarm extends BroadcastReceiver
 			 {
 				 views.setViewVisibility(R.id.batteryTemp, View.VISIBLE); 
 			 }
-			 
-			 /*
-			 if(boolChange == false)
-			 {
-				 //views.setViewVisibility(R.id.batteryChange, View.GONE);
-			 }
-			 else
-			 {
-				 //views.setViewVisibility(R.id.batteryChange, View.VISIBLE);
-			 }
-			 */
 			 if(boolCpu == false)
 			   {
 				   views.setViewVisibility(R.id.cpu, View.GONE); 
@@ -333,29 +300,9 @@ public class SmAlarm extends BroadcastReceiver
                     //Set the views to visible
 		        	views.setViewVisibility(R.id.internal, View.VISIBLE);
 		        	views.setViewVisibility(R.id.internalTitle, View.VISIBLE);
-
-                    //Check if we have two seperate directories
-                    if(Environment.getExternalStorageDirectory().exists() &&
-                            Environment.getExternalStorageDirectory() != Environment.getDataDirectory()) {
-
-
-                        //Set the views to visible
-                        views.setViewVisibility(R.id.external, View.VISIBLE);
-                        views.setViewVisibility(R.id.externalTitle, View.VISIBLE);
-
-                        //Set the singe storage directory boolean
-                        isExternalStorage = false;
-                    }
-                    else {
-
-                        //Set them to not visible
-                        views.setViewVisibility(R.id.external, View.GONE);
-                        views.setViewVisibility(R.id.externalTitle, View.GONE);
-
-                        //Set the singe storage directory boolean
-                        isExternalStorage = false;
-
-                    }
+                    //Set the views to visible
+                    views.setViewVisibility(R.id.external, View.VISIBLE);
+                    views.setViewVisibility(R.id.externalTitle, View.VISIBLE);
                 }
 		        if(boolRam == false)
 		        {
@@ -467,49 +414,6 @@ public class SmAlarm extends BroadcastReceiver
 			views.setTextViewText(R.id.batteryTemp, temperatureString);
 		}
 		
-		/* doesnt work :(
-		
-		//get battery percent loss per hour
-		public void batteryLoss()
-		{
-			boolean recordTime;
-			long oldTime;
-			//get time here since well get it every second no matter what
-			long time = System.currentTimeMillis();
-			//the percent change nee to get with the prefs for updagting
-			double percentLoss = prefs.getFloat("PERCENTLOSS", 0);
-			//get these for our ifs to check if we need to record the time or output loss
-			recordTime = prefs.getBoolean("RECORDTIME", true);
-			oldTime = prefs.getLong("OLDTIME", 0);
-			if(recordTime)
-			{
-				//record values if app just started, or hour has passed
-				Editor editor = prefs.edit();
-				editor.putLong("OLDTIME", time);
-				editor.putFloat("OLDPERCENT", percent);
-				editor.putBoolean("RECORDTIME", false);
-				editor.commit();
-			}
-			else if(oldTime + 3600000 <=  time)
-			{
-				//get our old values
-				float oldPercent = prefs.getFloat("OLDPERCENT", percent);
-				percentLoss = (percent - oldPercent)/(time - oldTime);
-				//record our values again
-				Editor editor = prefs.edit();
-				editor.putBoolean("RECORDTIME", true);
-				editor.commit();
-			}
-			
-			//get the format
-			//DecimalFormat format = new DecimalFormat("0.00");
-			//set the value
-			//views.setTextViewText(R.id.batteryChange, "Battery Change/Hr: " + format.format(percentLoss) + "%");
-			
-		}
-		
-		*/
-		
 		public void widgetCpu() 
 		{
 			//if multi core cpu support is enabled
@@ -528,7 +432,6 @@ public class SmAlarm extends BroadcastReceiver
 					try {
 						Thread.sleep(50);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
@@ -757,218 +660,59 @@ public class SmAlarm extends BroadcastReceiver
 			//setting text to time
 			views.setTextViewText(R.id.uptime, timeString);
 		}
-		
-		public void diskSpace ()
-		{
-			//may need permissions
-			//declaring a constant I will be using for megabyte conversion
-			final long megs = 1048576L;
-            File externalPath = Environment.getExternalStorageDirectory();
-            File internalPath = Environment.getDataDirectory();
-
-            //Check if we have two seperate directories
-            if(Environment.getExternalStorageDirectory().exists() &&
-                    Environment.getExternalStorageDirectory() != Environment.getDataDirectory()) {
-
-            }
-            else {
-
-                //Since we have an external path, run the old code that will find the external path and use it
-
-                if(externalString.equals("") == false && new File(externalString).exists())
-                {
-                    externalPath = new File(externalString);
-                }
-                else
-                {
-                    //use this to check if another removable storage, can put this in if, very difficult to directory used space or date
-                    File parentPath = new File("/mnt");
-                    File[] parentDir = parentPath.listFiles();
-                    //got this loop from stack, checks every directory to see if it is a an actual storage:
-                    //http://stackoverflow.com/questions/11281010/how-can-i-get-external-sd-card-path-for-android-4-0
-                    for ( File file : parentDir )
-                    {
-                        if ( file.isDirectory() && file.canRead() && (file.listFiles().length > 0) )
-                        {  // it is a real directory (not a USB drive)...
-                            String filePath = file.getAbsolutePath();
-                            //if it is any of these common directories, do not edit the external path
-                            if(filePath.contains("/mnt/sdcard") || filePath.contains("/mnt/asec") ||
-                                    filePath.contains("/mnt/obb") || filePath.contains("/mnt/secure") ||
-                                    filePath.contains("/mnt/shell") || filePath.contains("/mnt/obb") ||
-                                    filePath.contains("/mnt/usbdrivea") || filePath.contains("/mnt/usbdriveb") ||
-                                    filePath.contains("/mnt/usbdrivec") || filePath.contains("/mnt/usbdrived"))
-                            {
-
-                            }
-                            else
-                            {
-                                //fixing wrong info
-                                externalPath = file;
-                            }
-                        }
-                    }
-                }
-            }
-			
-			//declaring external and internal statfs
-			StatFs externalStat = new StatFs(externalPath.getAbsolutePath());
-			StatFs internalStat = new StatFs(internalPath.getAbsolutePath());
-
-			//declaring get block sizes
-	        long blockSizeEx = externalStat.getBlockSizeLong();
-	        long blockSizeIn = internalStat.getBlockSizeLong();
-
-	        
-			//available external storage in megabytes
-	        long availableBlocksEx = externalStat.getAvailableBlocksLong();
-	        long availableExternal = ((blockSizeEx) * (availableBlocksEx)) / megs;
-	        
-	        //total external storage in megabytes
-	        long totalBlocksEx = externalStat.getBlockCountLong();
-	        long totalExternal = ((blockSizeEx) * (totalBlocksEx)) / megs;
-
-	        //available internal storage in megs
-	        long availBlocksIn = internalStat.getAvailableBlocksLong();
-	        long availInternal = ((blockSizeIn) * (availBlocksIn)) / megs;
-
-	        //total blocks in internal storage in megs
-	        long totalBlocksIn = internalStat.getBlockCountLong();
-	        long totalInternal = ((blockSizeIn) * (totalBlocksIn)) / megs;
-	        
-	        //Gigabyte display settings
-	        if (memoryGB == true)
-	        {
-	        	//use a decimal format to only show two places, and use .0 to get a decimal
-	        	float usedFloatInternal =  ((totalInternal - availInternal)/1000.0f);
-	        	float totalFloatInternal = (totalInternal/1000.0f);
-	        	float usedFloatExternal =  ((totalExternal - availableExternal)/1000.0f);
-	        	float totalFloatExternal = (totalExternal/1000.0f);
-	        	DecimalFormat format = new DecimalFormat("0.00");
-	        	 views.setTextViewText(R.id.internalTitle, "Used Internal Storage:");
-	 	        views.setTextViewText(R.id.externalTitle, "Used External Storage:");
-	        	views.setTextViewText(R.id.internal, format.format(usedFloatInternal) + "/" + format.format(totalFloatInternal) + " GB");
-		        views.setTextViewText(R.id.external, format.format(usedFloatExternal) + "/" + format.format(totalFloatExternal) + " GB");
-	        }
-	        else
-	        {
-	        //setting up text views
-	        views.setTextViewText(R.id.internalTitle, "Used Internal Storage:");
-	        views.setTextViewText(R.id.externalTitle, "Used External Storage:");
-	        views.setTextViewText(R.id.internal, Long.toString(totalInternal - availInternal) + "/" + Long.toString(totalInternal) + " MB");
-	        views.setTextViewText(R.id.external, Long.toString(totalExternal - availableExternal) + "/" + Long.toString(totalExternal) + " MB");
-	        }
-		
-	}
-		
-		public void ramStats (Context context)
-		{
-			//to fix ram stats try replacing context.asjdhjkasd with context.getapplicationcontext.ajksdasdjk
-			//create memory infor method, use activity method to get the context of our system, 
-			//then the rest is self-explanatory
-            //Using longs since our block size can exceed integer capacity
-			MemoryInfo mi = new MemoryInfo();
-			ActivityManager activityManager = (ActivityManager) context.getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
-			activityManager.getMemoryInfo(mi);
-			long avail = mi.availMem / 1048576L;
-			long total = mi.totalMem / 1048576L;
-			long used = total - avail;
-			if(ramBool == true)
-			{
-				DecimalFormat format = new DecimalFormat("0.00");
-				float usedFloat = (used / 1000.0f);
-				float totalFloat = (total / 1000.0f);
-				views.setTextViewText(R.id.ram, "Used Ram: " + format.format(usedFloat) + "/" + format.format(totalFloat) + "GB");	
-			}
-			else
-			{
-			views.setTextViewText(R.id.ram, "Used Ram: " + Long.toString(used) + "/" + Long.toString(total) + "MB");
-			}
-		}
-
-        /****
-         * This function was to parse proc/meminfo for total memory but no longer needed
-         * since we can mi.gettotalmemory
-		//getting total memory, for pre API 15, ot from stack overflow
-		public long getTotalMemory() 
-		{  
-			//file location for where memvalues are stored
-		    String str1 = "/proc/meminfo";
-		    String str2;        
-		    String[] arrayOfString;
-		    //initializing total memory
-		    long initial_memory = 0;
-		    try 
-		    {
-		    	//read the file for memory info
-		    FileReader localFileReader = new FileReader(str1);
-		    BufferedReader localBufferedReader = new BufferedReader(    localFileReader, 8192);
-		    str2 = localBufferedReader.readLine();//meminfo
-		    //put values into array
-		    arrayOfString = str2.split("\\s+");
-		    //total Memory
-		    initial_memory = Long.valueOf(arrayOfString[1]).intValue() * 1024;
-		    localBufferedReader.close();
-		    return initial_memory;
-		    } 
-		    catch (IOException e) 
-		    {       
-		        return -1;
-		    }
-		  }
-		  */
 	
 		//method to get network type
-				public void networkType(Context context)
-				{
-					//gotten from stack
-					//http://stackoverflow.com/questions/2919414/get-network-type
-					ConnectivityManager conMan = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-					
-					//need to check for tablets to see if they have telephony
-					boolean hasTelephony = context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
-					
-					//
-					if(hasTelephony)
-					{
-					
-					TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-					
-					//mobile
-					State mobile = conMan.getNetworkInfo(0).getState();
-					
-					//if mobile dtata is conntected
-					if (mobile == NetworkInfo.State.CONNECTED || mobile == NetworkInfo.State.CONNECTING) 
-					{
-						
-						views.setTextViewText(R.id.networkType, tm.getNetworkOperatorName());
-					}
-					else
-					{
-						views.setTextViewText(R.id.networkType, "None");
-					}
-					
-					}
-					else
-					{
-						views.setTextViewText(R.id.networkType, "No Telephony found!");
-					}
-					
-					
-					//WIFI SECTION
-					//for wifi name
-					WifiManager wifiMgr = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-					WifiInfo wifiInfo = wifiMgr.getConnectionInfo();
+        public void networkType(Context context)
+        {
+            //gotten from stack
+            //http://stackoverflow.com/questions/2919414/get-network-type
+            ConnectivityManager conMan = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
-					//wifi
-					State wifi = conMan.getNetworkInfo(1).getState();
-					
-					//if wifi is connected
-					if (wifi == NetworkInfo.State.CONNECTED || wifi == NetworkInfo.State.CONNECTING) 
-					{
-						views.setTextViewText(R.id.networkType, wifiInfo.getSSID());
-					}
-					
-				}
+            //need to check for tablets to see if they have telephony
+            boolean hasTelephony = context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
+
+            //
+            if(hasTelephony)
+            {
+
+            TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+
+            //mobile
+            State mobile = conMan.getNetworkInfo(0).getState();
+
+            //if mobile dtata is conntected
+            if (mobile == NetworkInfo.State.CONNECTED || mobile == NetworkInfo.State.CONNECTING)
+            {
+
+                views.setTextViewText(R.id.networkType, tm.getNetworkOperatorName());
+            }
+            else
+            {
+                views.setTextViewText(R.id.networkType, "None");
+            }
+
+            }
+            else
+            {
+                views.setTextViewText(R.id.networkType, "No Telephony found!");
+            }
+
+
+            //WIFI SECTION
+            //for wifi name
+            WifiManager wifiMgr = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+            WifiInfo wifiInfo = wifiMgr.getConnectionInfo();
+
+            //wifi
+            State wifi = conMan.getNetworkInfo(1).getState();
+
+            //if wifi is connected
+            if (wifi == NetworkInfo.State.CONNECTED || wifi == NetworkInfo.State.CONNECTING)
+            {
+                views.setTextViewText(R.id.networkType, wifiInfo.getSSID());
+            }
+
+        }
 	
 	//method to get network speed
 	public void networkSpeeds()
@@ -1063,6 +807,9 @@ public class SmAlarm extends BroadcastReceiver
 		//call title config methods to omit methods
 		sectionConfig();
 
+        //Create diskspace manager
+        MemoryHelper diskMan = new MemoryHelper(views, prefs);
+
 		//call time methods, not calling if unchecked
 		if(boolTime || boolDate)
 		{
@@ -1074,13 +821,6 @@ public class SmAlarm extends BroadcastReceiver
 		{
 			widgetBattery(context);
 		}
-		
-		/*
-		if(boolChange)
-		{
-			batteryLoss();
-		}
-		*/
 		
 		if(boolCpu)
 		{
@@ -1097,18 +837,18 @@ public class SmAlarm extends BroadcastReceiver
 		//call memory methods
 		if(boolMemory)
 		{
-			diskSpace();
+            diskMan.getSpace();
 		}
 		
 		if(boolRam)
 		{
-			ramStats(context);
+			diskMan.getRam(context);
 		}
 		
 		//call netowork methods
 		if(boolNetworkType)
 		{
-		networkType(context);
+		    networkType(context);
 		}
 		
 		if(boolNetworkUp || boolNetworkDown)
@@ -1200,9 +940,6 @@ public class SmAlarm extends BroadcastReceiver
 		 {
 			 update(context, intent);
 		 }
-
-            //Create diskspace manager
-            DiskSpace diskMan = new DiskSpace(views, memoryGB, externalString);
 	}
 		
 	}
