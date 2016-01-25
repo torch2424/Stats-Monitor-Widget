@@ -1,11 +1,6 @@
 package com.torch2424.statsmonitor;
 
-import java.io.File;
-import java.io.FileFilter;
-import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.text.DecimalFormat;
-import java.util.regex.Pattern;
 
 import android.annotation.SuppressLint;
 import android.app.PendingIntent;
@@ -16,15 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.NetworkInfo.State;
-import android.net.TrafficStats;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
-import android.telephony.TelephonyManager;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -32,6 +19,7 @@ import android.widget.RemoteViews;
 import com.torch2424.statsmonitor.com.torch2424.statshelpers.BatteryHelper;
 import com.torch2424.statsmonitor.com.torch2424.statshelpers.CPUHelper;
 import com.torch2424.statsmonitor.com.torch2424.statshelpers.MemoryHelper;
+import com.torch2424.statsmonitor.com.torch2424.statshelpers.NetworkHelper;
 import com.torch2424.statsmonitor.com.torch2424.statshelpers.TimeHelper;
 import com.torch2424.statsmonitorwidget.R;
 
@@ -128,7 +116,6 @@ public class SmAlarm extends BroadcastReceiver
 			centerBool = prefs.getBoolean("TEXTCENTER", false);
 			rightBool = prefs.getBoolean("TEXTRIGHT", false);
 			TitleBool = prefs.getBoolean("NOCPUTITLE", false);
-			kilobytesBool = prefs.getBoolean("KILOBYTE", false);
 		}
 		public void sectionConfig ()
 		{
@@ -333,143 +320,6 @@ public class SmAlarm extends BroadcastReceiver
 		        
 		}
 	
-		//method to get network type
-        public void networkType(Context context)
-        {
-            //gotten from stack
-            //http://stackoverflow.com/questions/2919414/get-network-type
-            ConnectivityManager conMan = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-            //need to check for tablets to see if they have telephony
-            boolean hasTelephony = context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
-
-            if(hasTelephony)
-            {
-
-            TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-
-            //mobile
-            State mobile = conMan.getNetworkInfo(0).getState();
-
-            //if mobile dtata is conntected
-            if (mobile == NetworkInfo.State.CONNECTED || mobile == NetworkInfo.State.CONNECTING)
-            {
-
-                views.setTextViewText(R.id.networkType, tm.getNetworkOperatorName());
-            }
-            else
-            {
-                views.setTextViewText(R.id.networkType, "None");
-            }
-
-            }
-            else
-            {
-                views.setTextViewText(R.id.networkType, "No Telephony found!");
-            }
-
-
-            //WIFI SECTION
-            //for wifi name
-            WifiManager wifiMgr = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-            WifiInfo wifiInfo = wifiMgr.getConnectionInfo();
-
-            //wifi
-            State wifi = conMan.getNetworkInfo(1).getState();
-
-            //if wifi is connected
-            if (wifi == NetworkInfo.State.CONNECTED || wifi == NetworkInfo.State.CONNECTING)
-            {
-                views.setTextViewText(R.id.networkType, wifiInfo.getSSID());
-            }
-
-        }
-	
-	//method to get network speed
-	public void networkSpeeds()
-	{
-		//use traffic stats to get bytes since device boot
-		//checking for traffic stats report
-		
-		//use our preferences as a quick and easy way to store the previous value
-		Editor editor = prefs.edit();
-		//get the current bytes
-		long speedD = TrafficStats.getTotalRxBytes();
-		long speedU = TrafficStats.getTotalTxBytes();
-		long prevD;
-		long prevU;
-		double down = 0;
-		double up = 0;
-		int runCount;
-		
-
-		if(TrafficStats.getTotalRxBytes() == TrafficStats.UNSUPPORTED || TrafficStats.getTotalTxBytes() ==
-				TrafficStats.UNSUPPORTED)
-		{
-			views.setTextViewText(R.id.networkDown, "Sorry, but Traffic Stats is unsupported by your device");
-			views.setTextViewText(R.id.networkUp, "Sorry, but Traffic Stats is unsupported by your device");
-		}
-		else
-		{
-
-			//use our preferences as a quick and easy way to store and get the previous value
-			//and time
-			prevD = prefs.getLong("PREVD", 0);
-			prevU = prefs.getLong("PREVU", 0);
-			runCount = prefs.getInt("RUNCOUNT", 0);
-			if(prevD == 0 && prevU == 0 && runCount == 0)
-			{
-				//store the previous values without setting down or up
-				editor.putLong("PREVD", speedD);
-				editor.putLong("PREVU", speedU);
-				editor.putInt("RUNCOUNT", 1);
-				editor.commit();
-			}
-			else
-			{
-				if(runCount > 2)
-				{
-				//set the values while committing the new value
-				//setting precision for values
-				DecimalFormat format = new DecimalFormat("0.00");
-				if(kilobytesBool)
-				{
-					//kilobytes
-					down = (speedD - prevD) / 1024.0 / 3.0;
-					up = (speedU - prevU) / 1024.0 / 3.0;
-					
-					//set text of our widget to our values
-					views.setTextViewText(R.id.networkDown, "Download: " + format.format(down) + " kB/s");
-					views.setTextViewText(R.id.networkUp, "Upload: " + format.format(up) + " kB/s");
-				}
-				else
-				{
-				//megabits
-				down = (speedD - prevD) * 8 / 1024.0 / 1024.0 / 3.0;
-				up = (speedU - prevU) * 8 / 1024.0 / 1024.0 / 3.0;
-				
-				//set text of our widget to our values
-				views.setTextViewText(R.id.networkDown, "Download: " + format.format(down) + " Mbps");
-				views.setTextViewText(R.id.networkUp, "Upload: " + format.format(up) + " Mbps");
-				}
-				//saving our previous values
-				editor.putLong("PREVD", 0);
-				editor.putLong("PREVU", 0);
-				editor.putInt("RUNCOUNT", 0);
-				editor.commit();
-				
-				}
-				else
-				{
-					runCount++;
-					editor.putInt("RUNCOUNT", runCount);
-					editor.commit();
-				}
-			}
-		
-		}
-	}
-	
 	public void update(Context context, Intent intent)
 	{
 		views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
@@ -489,6 +339,10 @@ public class SmAlarm extends BroadcastReceiver
 
         //Create our CPU Helper
         CPUHelper cpuMan = new CPUHelper(views, prefs);
+
+        //Create Network Manager
+        NetworkHelper networkMan = new NetworkHelper(views, prefs);
+
 
 		//call time methods, not calling if unchecked
 		if(boolTime || boolDate)
@@ -527,12 +381,12 @@ public class SmAlarm extends BroadcastReceiver
 		//call netowork methods
 		if(boolNetworkType)
 		{
-		    networkType(context);
+		    networkMan.getNetworkType(context);
 		}
 		
 		if(boolNetworkUp || boolNetworkDown)
 		{
-		    networkSpeeds();
+		    networkMan.getSpeeds();
 		}
 		
 		

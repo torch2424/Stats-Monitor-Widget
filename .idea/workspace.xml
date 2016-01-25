@@ -10,9 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15e07a6a-5544-432c-9ee7-241acea28265" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/CPUHelper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/SmAlarm.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/SmAlarm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Stats-Monitor-Widget.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -57,8 +55,20 @@
       <file leaf-file-name="SmAlarm.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/SmAlarm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.5869219">
-              <caret line="507" column="33" selection-start-line="507" selection-start-column="33" selection-end-line="507" selection-end-column="33" />
+            <state vertical-scroll-proportion="8.555024">
+              <caret line="388" column="26" selection-start-line="388" selection-start-column="26" selection-end-line="388" selection-end-column="26" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NetworkHelper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/NetworkHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="108" column="19" selection-start-line="108" selection-start-column="19" selection-end-line="108" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -70,7 +80,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/CPUHelper.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="219" column="34" selection-start-line="219" selection-start-column="34" selection-end-line="219" selection-end-column="34" />
+              <caret line="18" column="4" selection-start-line="18" selection-start-column="4" selection-end-line="19" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1379,6 +1389,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/BatteryHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/CPUHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/SmAlarm.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/NetworkHelper.java" />
       </list>
     </option>
   </component>
@@ -1970,6 +1981,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.27639157">
           <caret line="98" column="44" selection-start-line="98" selection-start-column="44" selection-end-line="98" selection-end-column="44" />
+          <folding>
+            <element signature="e#3175#3198#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2036,7 +2050,17 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/CPUHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="219" column="34" selection-start-line="219" selection-start-column="34" selection-end-line="219" selection-end-column="34" />
+          <caret line="18" column="4" selection-start-line="18" selection-start-column="4" selection-end-line="19" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/NetworkHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="108" column="19" selection-start-line="108" selection-start-column="19" selection-end-line="108" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2045,8 +2069,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/SmAlarm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.5869219">
-          <caret line="507" column="33" selection-start-line="507" selection-start-column="33" selection-end-line="507" selection-end-column="33" />
+        <state vertical-scroll-proportion="8.555024">
+          <caret line="388" column="26" selection-start-line="388" selection-start-column="26" selection-end-line="388" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
