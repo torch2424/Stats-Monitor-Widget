@@ -763,41 +763,52 @@ public class SmAlarm extends BroadcastReceiver
 			//may need permissions
 			//declaring a constant I will be using for megabyte conversion
 			final long megs = 1048576L;
-			File externalPath = Environment.getExternalStorageDirectory();
-			File internalPath = Environment.getDataDirectory();
-			if(externalString.equals("") == false && new File(externalString).exists())
-			{
-				externalPath = new File(externalString);
-			}
-			else
-			{
-			//use this to check if another removable storage, can put this in if, very difficult to directory used space or date
-				File parentPath = new File("/mnt");
-				File[] parentDir = parentPath.listFiles();
-				//got this loop from stack, checks every directory to see if it is a an actual storage:
-				//http://stackoverflow.com/questions/11281010/how-can-i-get-external-sd-card-path-for-android-4-0
-				for ( File file : parentDir ) 
-				{
-		            if ( file.isDirectory() && file.canRead() && (file.listFiles().length > 0) ) 
-		            {  // it is a real directory (not a USB drive)...
-		            	String filePath = file.getAbsolutePath();
-		            	//if it is any of these common directories, do not edit the external path
-		                if(filePath.contains("/mnt/sdcard") || filePath.contains("/mnt/asec") || 
-		                		filePath.contains("/mnt/obb") || filePath.contains("/mnt/secure") ||
-		                		filePath.contains("/mnt/shell") || filePath.contains("/mnt/obb") ||
-		                		filePath.contains("/mnt/usbdrivea") || filePath.contains("/mnt/usbdriveb") ||
-		                		filePath.contains("/mnt/usbdrivec") || filePath.contains("/mnt/usbdrived"))
-		                {
-		                	
-		                }
-		                else
-		                {
-		                	//fixing wrong info
-		                	externalPath = file;
-		                }
-		            }
-				}
-			}
+            File externalPath = Environment.getExternalStorageDirectory();
+            File internalPath = Environment.getDataDirectory();
+
+            //Check if we have two seperate directories
+            if(Environment.getExternalStorageDirectory().exists() &&
+                    Environment.getExternalStorageDirectory() != Environment.getDataDirectory()) {
+
+            }
+            else {
+
+                //Since we have an external path, run the old code that will find the external path and use it
+
+                if(externalString.equals("") == false && new File(externalString).exists())
+                {
+                    externalPath = new File(externalString);
+                }
+                else
+                {
+                    //use this to check if another removable storage, can put this in if, very difficult to directory used space or date
+                    File parentPath = new File("/mnt");
+                    File[] parentDir = parentPath.listFiles();
+                    //got this loop from stack, checks every directory to see if it is a an actual storage:
+                    //http://stackoverflow.com/questions/11281010/how-can-i-get-external-sd-card-path-for-android-4-0
+                    for ( File file : parentDir )
+                    {
+                        if ( file.isDirectory() && file.canRead() && (file.listFiles().length > 0) )
+                        {  // it is a real directory (not a USB drive)...
+                            String filePath = file.getAbsolutePath();
+                            //if it is any of these common directories, do not edit the external path
+                            if(filePath.contains("/mnt/sdcard") || filePath.contains("/mnt/asec") ||
+                                    filePath.contains("/mnt/obb") || filePath.contains("/mnt/secure") ||
+                                    filePath.contains("/mnt/shell") || filePath.contains("/mnt/obb") ||
+                                    filePath.contains("/mnt/usbdrivea") || filePath.contains("/mnt/usbdriveb") ||
+                                    filePath.contains("/mnt/usbdrivec") || filePath.contains("/mnt/usbdrived"))
+                            {
+
+                            }
+                            else
+                            {
+                                //fixing wrong info
+                                externalPath = file;
+                            }
+                        }
+                    }
+                }
+            }
 			
 			//declaring external and internal statfs
 			StatFs externalStat = new StatFs(externalPath.getAbsolutePath());
@@ -815,11 +826,11 @@ public class SmAlarm extends BroadcastReceiver
 	        //total external storage in megabytes
 	        long totalBlocksEx = externalStat.getBlockCountLong();
 	        long totalExternal = ((blockSizeEx) * (totalBlocksEx)) / megs;
-	        
+
 	        //available internal storage in megs
 	        long availBlocksIn = internalStat.getAvailableBlocksLong();
 	        long availInternal = ((blockSizeIn) * (availBlocksIn)) / megs;
-	        
+
 	        //total blocks in internal storage in megs
 	        long totalBlocksIn = internalStat.getBlockCountLong();
 	        long totalInternal = ((blockSizeIn) * (totalBlocksIn)) / megs;
@@ -1151,6 +1162,9 @@ public class SmAlarm extends BroadcastReceiver
 		secs = prefs.getInt("SECS", 0);
 		threeBool = prefs.getBoolean("THREESEC", false);
 		fiveBool = prefs.getBoolean("FIVESEC", false);
+
+        //Create diskspace manager
+        DiskSpace diskMan = new DiskSpace(views, memoryGB, externalString);
 		
 		if(updateBool)
 		{

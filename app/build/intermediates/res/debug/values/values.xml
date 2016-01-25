@@ -57,11 +57,11 @@
     <string name="externalText">If external memory is not working for you, enter the path to it here</string>
     <string name="fiveSec">Update every 5 seconds (Network 15s)</string>
     <string name="hourFormat">24 hour time format</string>
-    <string name="internal">Internal Memory</string>
     <string name="kilobyteSpeed">Network speed in Kilobytes per second</string>
     <string name="loading">Loading...</string>
     <string name="memoryGB">Display storage memory in GB rather than MB</string>
     <string name="memoryTitle">Memory Title</string>
+    <string name="memorystorage">Storage Memory</string>
     <string name="multiCPU">Multiple CPU support (Creates a CPU section)</string>
     <string name="networkDown">Download Speed</string>
     <string name="networkTitle">Network Title</string>
