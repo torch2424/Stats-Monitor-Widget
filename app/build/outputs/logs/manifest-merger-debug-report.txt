@@ -47,7 +47,7 @@ MERGED from com.android.support:support-v4:21.0.3:16:5
 		ADDED from AndroidManifest.xml:21:9
 	android:theme
 		ADDED from AndroidManifest.xml:23:9
-receiver#com.torch2424.simplemonitor.SuperSmall
+receiver#com.torch2424.statsmonitor.com.torch2424.statsproviders.SuperSmall
 ADDED from AndroidManifest.xml:30:9
 	android:label
 		ADDED from AndroidManifest.xml:31:13
@@ -67,35 +67,35 @@ ADDED from AndroidManifest.xml:36:13
 		ADDED from AndroidManifest.xml:38:17
 	android:name
 		ADDED from AndroidManifest.xml:37:17
-receiver#com.torch2424.simplemonitor.ProviderSmall
+receiver#com.torch2424.statsmonitor.com.torch2424.statsproviders.ProviderSmall
 ADDED from AndroidManifest.xml:41:9
 	android:label
 		ADDED from AndroidManifest.xml:42:13
 	android:name
 		ADDED from AndroidManifest.xml:41:19
-receiver#com.torch2424.simplemonitor.SmProvider
+receiver#com.torch2424.statsmonitor.com.torch2424.statsproviders.SmProvider
 ADDED from AndroidManifest.xml:52:9
 	android:label
 		ADDED from AndroidManifest.xml:53:13
 	android:name
 		ADDED from AndroidManifest.xml:52:19
-receiver#com.torch2424.simplemonitor.ProviderBig
+receiver#com.torch2424.statsmonitor.com.torch2424.statsproviders.ProviderBig
 ADDED from AndroidManifest.xml:63:9
 	android:label
 		ADDED from AndroidManifest.xml:64:13
 	android:name
 		ADDED from AndroidManifest.xml:63:19
-receiver#com.torch2424.simplemonitor.ProviderBigger
+receiver#com.torch2424.statsmonitor.com.torch2424.statsproviders.ProviderBigger
 ADDED from AndroidManifest.xml:74:9
 	android:label
 		ADDED from AndroidManifest.xml:75:13
 	android:name
 		ADDED from AndroidManifest.xml:74:19
-receiver#com.torch2424.simplemonitor.SmAlarm
+receiver#com.torch2424.statsmonitor.SmAlarm
 ADDED from AndroidManifest.xml:86:10
 	android:name
 		ADDED from AndroidManifest.xml:86:20
-activity#com.torch2424.simplemonitor.ConfigureWidget
+activity#com.torch2424.statsmonitor.ConfigureWidget
 ADDED from AndroidManifest.xml:90:9
 	android:label
 		ADDED from AndroidManifest.xml:92:13
@@ -109,25 +109,25 @@ action#android.appwidget.action.APPWIDGET_CONFIGURE
 ADDED from AndroidManifest.xml:95:17
 	android:name
 		ADDED from AndroidManifest.xml:95:25
-activity#com.torch2424.simplemonitor.ColorChooser
+activity#com.torch2424.statsmonitor.ColorChooser
 ADDED from AndroidManifest.xml:98:9
 	android:label
 		ADDED from AndroidManifest.xml:100:13
 	android:name
 		ADDED from AndroidManifest.xml:99:13
-activity#com.torch2424.simplemonitor.ColorBackChooser
+activity#com.torch2424.statsmonitor.ColorBackChooser
 ADDED from AndroidManifest.xml:102:9
 	android:label
 		ADDED from AndroidManifest.xml:104:13
 	android:name
 		ADDED from AndroidManifest.xml:103:13
-activity#com.torch2424.simplemonitor.TextSizeChooser
+activity#com.torch2424.statsmonitor.TextSizeChooser
 ADDED from AndroidManifest.xml:106:9
 	android:label
 		ADDED from AndroidManifest.xml:108:13
 	android:name
 		ADDED from AndroidManifest.xml:107:13
-activity#com.torch2424.simplemonitor.AdvancedSettings
+activity#com.torch2424.statsmonitor.AdvancedSettings
 ADDED from AndroidManifest.xml:110:9
 	android:label
 		ADDED from AndroidManifest.xml:112:13
@@ -135,7 +135,7 @@ ADDED from AndroidManifest.xml:110:9
 		ADDED from AndroidManifest.xml:113:13
 	android:name
 		ADDED from AndroidManifest.xml:111:13
-activity#com.torch2424.simplemonitor.TextBackSettings
+activity#com.torch2424.statsmonitor.TextBackSettings
 ADDED from AndroidManifest.xml:115:9
 	android:label
 		ADDED from AndroidManifest.xml:117:13

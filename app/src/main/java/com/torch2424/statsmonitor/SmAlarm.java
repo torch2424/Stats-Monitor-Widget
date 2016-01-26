@@ -1,6 +1,5 @@
 package com.torch2424.statsmonitor;
 
-import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.BroadcastReceiver;
@@ -27,7 +26,6 @@ import com.torch2424.statsmonitor.com.torch2424.statsproviders.SuperSmall;
 import com.torch2424.statsmonitorwidget.R;
 
 
-@SuppressLint("SimpleDateFormat")
 public class SmAlarm extends BroadcastReceiver 
 {
 	    //creating remote views out here for access anywhere in class
