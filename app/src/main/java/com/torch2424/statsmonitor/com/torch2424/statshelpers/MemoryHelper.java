@@ -41,6 +41,10 @@ public class MemoryHelper {
     //Our views
     RemoteViews views;
 
+    //Our view boolean
+    boolean memoryView;
+    boolean ramView;
+
     public MemoryHelper(RemoteViews parentView, SharedPreferences prefs) {
 
 
@@ -112,6 +116,31 @@ public class MemoryHelper {
 
         //Get Ram Stuff
         mi = new ActivityManager.MemoryInfo();
+
+        //Finally get our views
+        memoryView = prefs.getBoolean("MEMORY", true);
+        ramView = prefs.getBoolean("RAM", true);
+        if(memoryView)
+        {
+            //Set the views to visible
+            views.setViewVisibility(R.id.internal, View.VISIBLE);
+            views.setViewVisibility(R.id.internalTitle, View.VISIBLE);
+            //Set the views to visible
+            views.setViewVisibility(R.id.external, View.VISIBLE);
+            views.setViewVisibility(R.id.externalTitle, View.VISIBLE);
+
+        }
+        else
+        {
+            //Set all memory views to false
+            views.setViewVisibility(R.id.internal, View.GONE);
+            views.setViewVisibility(R.id.internalTitle, View.GONE);
+            views.setViewVisibility(R.id.external, View.GONE);
+            views.setViewVisibility(R.id.externalTitle, View.GONE);
+        }
+
+        if(ramView) views.setViewVisibility(R.id.ram, View.VISIBLE);
+        else views.setViewVisibility(R.id.ram, View.GONE);
     }
 
     //Function to set the internal storage of the device
@@ -229,6 +258,17 @@ public class MemoryHelper {
 
         //Do a quick check if we have storage
         if(totalMB > 0) return true;
+        else return false;
+    }
+
+    //Function to return view status
+    public boolean memoryStatus() {
+        if(memoryView) return true;
+        else return false;
+    }
+
+    public boolean ramStatus() {
+        if(ramView) return true;
         else return false;
     }
 }

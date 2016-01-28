@@ -1,6 +1,7 @@
 package com.torch2424.statsmonitor.com.torch2424.statshelpers;
 
 import android.content.SharedPreferences;
+import android.view.View;
 import android.widget.RemoteViews;
 
 import com.torch2424.statsmonitorwidget.R;
@@ -25,6 +26,9 @@ public class CPUHelper {
     //Our number of cores
     int numCores;
 
+    //Our view status
+    boolean viewCpu;
+
     public CPUHelper(RemoteViews parentView, SharedPreferences prefs) {
 
         //Set our view
@@ -37,6 +41,12 @@ public class CPUHelper {
         if(multiCore) {
             numCores = getNumCores();
         }
+
+        //Get cpu view
+        viewCpu = prefs.getBoolean("CPU", true);
+
+        if(viewCpu) views.setViewVisibility(R.id.cpu, View.VISIBLE);
+        else views.setViewVisibility(R.id.cpu, View.GONE);
     }
 
     /*
@@ -268,5 +278,11 @@ public class CPUHelper {
         }
 
         return 0;
+    }
+
+    //Return the status of the cpu section
+    public boolean cpuStatus() {
+        if(viewCpu) return true;
+        else return false;
     }
 }

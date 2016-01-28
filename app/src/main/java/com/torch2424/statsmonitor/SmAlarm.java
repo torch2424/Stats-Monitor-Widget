@@ -36,8 +36,6 @@ public class SmAlarm extends BroadcastReceiver
 		//getting prefs and boolean values for which sections to display
 		SharedPreferences prefs;
 		boolean boolTimeTitle;
-		boolean boolTime;
-		boolean boolDate;
 		boolean boolSystemTitle;
 		boolean boolBattery;
 		boolean boolTemp;
@@ -58,7 +56,6 @@ public class SmAlarm extends BroadcastReceiver
 		boolean rightBool;
 		boolean centerBool;
 		boolean TitleBool;
-		boolean kilobytesBool;
 		boolean threeBool;
 		boolean fiveBool;
 		int secs; //for if people want a slower update interval
@@ -84,17 +81,8 @@ public class SmAlarm extends BroadcastReceiver
 			//getting preferences, can't use intents, don't work with broadcast reciever
 			prefs = context.getSharedPreferences("MyPrefs", 0);
 			boolTimeTitle = prefs.getBoolean("TIMETITLE", true);
-			boolTime = prefs.getBoolean("TIME", true);
-			boolDate = prefs.getBoolean("DATE", true);
 			boolSystemTitle = prefs.getBoolean("SYSTEMTITLE", true);
-			boolBattery = prefs.getBoolean("BATTERY", true);
-			boolTemp = prefs.getBoolean("BATTERYTEMP", true);
-			boolChange = prefs.getBoolean("BATTERYCHANGE", true);
-			boolCpu = prefs.getBoolean("CPU", true);
-			boolUptime = prefs.getBoolean("UPTIME", true);
 			boolMemoryTitle = prefs.getBoolean("MEMORYTITLE", true);
-			boolMemory = prefs.getBoolean("MEMORY", true);
-			boolRam = prefs.getBoolean("RAM", true);
 			boolNetworkTitle = prefs.getBoolean("NETWORKTITLE", true);
 			boolNetworkType = prefs.getBoolean("NETWORKTYPE", true);
 			boolNetworkUp = prefs.getBoolean("NETWORKUP", true);
@@ -166,122 +154,23 @@ public class SmAlarm extends BroadcastReceiver
 			views.setFloat(R.id.memoryTitle, "setTextSize", textTitleSize);
 			views.setFloat(R.id.CPUTitle, "setTextSize", textTitleSize);
 			views.setFloat(R.id.networkTitle, "setTextSize", textTitleSize);
+
 			//setting text orientation
-			if(centerBool == true)
-			{
-				views.setInt(R.id.widgetLayout, "setGravity", Gravity.CENTER);
-			}
-			else if (rightBool == true)
-			{
-				views.setInt(R.id.widgetLayout, "setGravity", Gravity.RIGHT);
-			}
-			else
-			{
-				views.setInt(R.id.widgetLayout, "setGravity", Gravity.LEFT);
-			}
+			if(centerBool) views.setInt(R.id.widgetLayout, "setGravity", Gravity.CENTER);
+			else if (rightBool) views.setInt(R.id.widgetLayout, "setGravity", Gravity.RIGHT);
+			else views.setInt(R.id.widgetLayout, "setGravity", Gravity.LEFT);
+
+
 			//views.setfloat to set text sizes, but cant be set to zero!
 			//if the preference from the checkbox is false, set the text visibility to gone, external sd check
-			 if(boolTimeTitle == false)
-			 {
-				 views.setViewVisibility(R.id.timeTitle, View.GONE);
-				 
-			 }
-			 else
-			 {
-				 views.setViewVisibility(R.id.timeTitle, View.VISIBLE);
-				 
-			 }
-			 if (boolSystemTitle == false)
-			 {
-				 views.setViewVisibility(R.id.systemTitle, View.GONE); 
-			 }
-			 else
-			 {
-				 views.setViewVisibility(R.id.systemTitle, View.VISIBLE); 
-			 }
-			 if (boolMemoryTitle == false)
-			 {
-				 views.setViewVisibility(R.id.memoryTitle, View.GONE); 
-			 }
-			 else
-			 {
-				 views.setViewVisibility(R.id.memoryTitle, View.VISIBLE); 
-			 }
-			 if (boolTime == false)
-			 {
-				 views.setViewVisibility(R.id.time, View.GONE); 
-			 }
-			 else
-			 {
-				 views.setViewVisibility(R.id.time, View.VISIBLE); 
-			 }
-			 if (boolDate == false)
-			 {
-				 views.setViewVisibility(R.id.date, View.GONE); 
-			 }
-			 else
-			 {
-				 views.setViewVisibility(R.id.date, View.VISIBLE); 
-			 }
-			 if(boolBattery == false)
-			 {
-				 views.setViewVisibility(R.id.battery, View.GONE); 
-			 }
-			 else
-			 {
-				 views.setViewVisibility(R.id.battery, View.VISIBLE); 
-			 }
-			 if(boolTemp == false)
-			 {
-				 views.setViewVisibility(R.id.batteryTemp, View.GONE); 
-			 }
-			 else
-			 {
-				 views.setViewVisibility(R.id.batteryTemp, View.VISIBLE); 
-			 }
-			 if(boolCpu == false)
-			   {
-				   views.setViewVisibility(R.id.cpu, View.GONE); 
-			   }
-			 else
-			   {
-				   views.setViewVisibility(R.id.cpu, View.VISIBLE); 
-			   }
-			 if (boolUptime == false)
-				{
-					views.setViewVisibility(R.id.uptime, View.GONE); 
-				}
-			 else
-				{
-					views.setViewVisibility(R.id.uptime, View.VISIBLE); 
-				}
-			 if(boolMemory == false)
-		        {
+			 if(boolTimeTitle) views.setViewVisibility(R.id.timeTitle, View.VISIBLE);
+			 else  views.setViewVisibility(R.id.timeTitle, View.GONE);
 
-                    //Set all memory views to false
-		        	views.setViewVisibility(R.id.internal, View.GONE); 
-		        	views.setViewVisibility(R.id.internalTitle, View.GONE);
-                    views.setViewVisibility(R.id.external, View.GONE);
-                    views.setViewVisibility(R.id.externalTitle, View.GONE);
-                }
-			 else
-		        {
+			 if (boolSystemTitle)  views.setViewVisibility(R.id.systemTitle, View.VISIBLE);
+			 else views.setViewVisibility(R.id.systemTitle, View.GONE);
 
-                    //Set the views to visible
-		        	views.setViewVisibility(R.id.internal, View.VISIBLE);
-		        	views.setViewVisibility(R.id.internalTitle, View.VISIBLE);
-                    //Set the views to visible
-                    views.setViewVisibility(R.id.external, View.VISIBLE);
-                    views.setViewVisibility(R.id.externalTitle, View.VISIBLE);
-                }
-		        if(boolRam == false)
-		        {
-		        	views.setViewVisibility(R.id.ram, View.GONE); 
-		        }
-		        else
-		        {
-		        	views.setViewVisibility(R.id.ram, View.VISIBLE); 
-		        }
+			 if (boolMemoryTitle)  views.setViewVisibility(R.id.memoryTitle, View.VISIBLE);
+			 else views.setViewVisibility(R.id.memoryTitle, View.GONE);
 		        
 		        if(boolNetworkTitle)
 		        {
@@ -335,21 +224,18 @@ public class SmAlarm extends BroadcastReceiver
         //Create our Battery Manage
         BatteryHelper battMan = new BatteryHelper(views, prefs);
 
-        //Create diskspace manager
-        MemoryHelper diskMan = new MemoryHelper(views, prefs);
-
         //Create our CPU Helper
         CPUHelper cpuMan = new CPUHelper(views, prefs);
+
+        //Create diskspace manager
+        MemoryHelper diskMan = new MemoryHelper(views, prefs);
 
         //Create Network Manager
         NetworkHelper networkMan = new NetworkHelper(views, prefs);
 
 
 		//call time methods, not calling if unchecked
-		if(boolTime || boolDate)
-		{
-            timeMan.getTime();
-		}
+		if(timeMan.timeStatus()) timeMan.getTime();
 		
 		//call system methods
 		if(boolBattery || boolTemp)
@@ -363,10 +249,7 @@ public class SmAlarm extends BroadcastReceiver
 			cpuMan.getCpuUsage();
 		}
 		
-		if(boolUptime)
-		{
-		    timeMan.getUptime();
-		}
+		if(timeMan.upTimeStatus()) timeMan.getUptime();
 		
 		//call memory methods
 		if(boolMemory)

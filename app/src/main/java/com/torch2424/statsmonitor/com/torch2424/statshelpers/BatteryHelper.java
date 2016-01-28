@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.BatteryManager;
+import android.view.View;
 import android.widget.RemoteViews;
 
 import com.torch2424.statsmonitorwidget.R;
@@ -25,6 +26,10 @@ public class BatteryHelper {
     //we just call this intent to get whatever info we want
     IntentFilter ifilter;
 
+    //View Boolean
+    boolean percentView;
+    boolean tempView;
+
     public BatteryHelper(RemoteViews parentView, SharedPreferences prefs) {
 
         //get our view
@@ -35,6 +40,16 @@ public class BatteryHelper {
 
         //Set up our I filter for grabbing our batteyr stats
         ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+
+        //Setting our views
+        percentView = prefs.getBoolean("BATTERY", true);
+        tempView = prefs.getBoolean("BATTERYTEMP", true);
+
+        if(percentView)  views.setViewVisibility(R.id.battery, View.VISIBLE);
+        else views.setViewVisibility(R.id.battery, View.GONE);
+
+        if(tempView) views.setViewVisibility(R.id.batteryTemp, View.VISIBLE);
+        else views.setViewVisibility(R.id.batteryTemp, View.GONE);
     }
 
 
@@ -80,5 +95,17 @@ public class BatteryHelper {
         }
         //set into text view
         views.setTextViewText(R.id.batteryTemp, temperatureString);
+    }
+
+    //Return our view status
+    public boolean percentStatus() {
+        if(percentView) return true;
+        else return false;
+    }
+
+    //Return our view status
+    public boolean tempStatus() {
+        if(tempView) return true;
+        else return false;
     }
 }

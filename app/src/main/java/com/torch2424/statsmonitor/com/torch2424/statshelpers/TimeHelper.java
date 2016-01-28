@@ -3,6 +3,7 @@ package com.torch2424.statsmonitor.com.torch2424.statshelpers;
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.SystemClock;
+import android.view.View;
 import android.widget.RemoteViews;
 
 import com.torch2424.statsmonitorwidget.R;
@@ -23,6 +24,11 @@ public class TimeHelper {
     boolean shortBool;
     boolean hourFormat;
 
+    //View booleans
+    boolean timeView;
+    boolean dateView;
+    boolean upTimeView;
+
     public TimeHelper(RemoteViews parentView, SharedPreferences prefs) {
 
         //Initialize our view
@@ -31,6 +37,20 @@ public class TimeHelper {
         //Grab some preferences
         shortBool = prefs.getBoolean("SHORTDAYS", false);
         hourFormat = prefs.getBoolean("24HOUR", false);
+
+        //Set our views
+        timeView = prefs.getBoolean("TIME", true);
+        dateView = prefs.getBoolean("DATE", true);
+        upTimeView = prefs.getBoolean("UPTIME", true);
+
+        if (timeView) views.setViewVisibility(R.id.time, View.GONE);
+        else views.setViewVisibility(R.id.time, View.VISIBLE);
+
+        if (dateView) views.setViewVisibility(R.id.date, View.GONE);
+        else views.setViewVisibility(R.id.date, View.VISIBLE);
+
+        if (upTimeView) views.setViewVisibility(R.id.uptime, View.GONE);
+        else views.setViewVisibility(R.id.uptime, View.VISIBLE);
     }
 
     //function for time
@@ -81,5 +101,17 @@ public class TimeHelper {
 
         //setting text to time
         views.setTextViewText(R.id.uptime, timeString);
+    }
+
+    //function to return if we are displaying time
+    public boolean timeStatus() {
+        if(timeView || dateView) return true;
+        else return false;
+    }
+
+    //function to return if we are displaying uptime
+    public boolean upTimeStatus() {
+        if(upTimeView) return true;
+        else return false;
     }
 }
