@@ -43,14 +43,14 @@ public class TimeHelper {
         dateView = prefs.getBoolean("DATE", true);
         upTimeView = prefs.getBoolean("UPTIME", true);
 
-        if (timeView) views.setViewVisibility(R.id.time, View.GONE);
-        else views.setViewVisibility(R.id.time, View.VISIBLE);
+        if (timeView) views.setViewVisibility(R.id.time, View.VISIBLE);
+        else views.setViewVisibility(R.id.time, View.GONE);
 
-        if (dateView) views.setViewVisibility(R.id.date, View.GONE);
-        else views.setViewVisibility(R.id.date, View.VISIBLE);
+        if (dateView) views.setViewVisibility(R.id.date, View.VISIBLE);
+        else views.setViewVisibility(R.id.date, View.GONE);
 
-        if (upTimeView) views.setViewVisibility(R.id.uptime, View.GONE);
-        else views.setViewVisibility(R.id.uptime, View.VISIBLE);
+        if (upTimeView) views.setViewVisibility(R.id.uptime, View.VISIBLE);
+        else views.setViewVisibility(R.id.uptime, View.GONE);
     }
 
     //function for time
@@ -79,8 +79,8 @@ public class TimeHelper {
             time = new SimpleDateFormat("hh:mm:ss a");
         }
         //setting text to time
-        views.setTextViewText(R.id.time, time.format(date));
-        views.setTextViewText(R.id.date, day.format(date));
+        views.setTextViewText(R.id.time, "Time: " + time.format(date));
+        views.setTextViewText(R.id.date, "Date: " + day.format(date));
     }
 
     public void getUptime()

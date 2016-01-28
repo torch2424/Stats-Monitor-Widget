@@ -110,7 +110,7 @@ public class NetworkHelper {
 
                     //Get and set our telephony manager for service name
                     TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-                    views.setTextViewText(R.id.networkType, tm.getNetworkOperatorName());
+                    views.setTextViewText(R.id.networkType, "Network Name: " + tm.getNetworkOperatorName());
                 }
                 else
                 {

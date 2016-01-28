@@ -293,6 +293,9 @@ public class ConfigureWidget extends Activity
 		editor.putBoolean("NETWORKUP", networkUp);
 		editor.putBoolean("NETWORKDOWN", networkDown);
 
+        //Commit the editor
+        editor.commit();
+
         //Tell the app to stop updating
         SmAlarm.setUpdating(true);
 

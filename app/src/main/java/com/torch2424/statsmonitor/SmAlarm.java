@@ -28,26 +28,25 @@ import com.torch2424.statsmonitorwidget.R;
 
 public class SmAlarm extends BroadcastReceiver 
 {
+
+        //Making Many variables static so they are not reinitialized every call
+
 	    //creating remote views out here for access anywhere in class
-		RemoteViews views;
+		static RemoteViews views;
 
         //Our Provider Components
-        ComponentName thiswidget;
-        ComponentName thiswidgetsmallest;
-        ComponentName thiswidgetsmall;
-        ComponentName thiswidgetbig;
-        ComponentName thiswidgetbigger;
-
-
-    //getting access to the config values
-		ConfigureWidget config = new ConfigureWidget();
+        static ComponentName thiswidget;
+        static ComponentName thiswidgetsmallest;
+        static ComponentName thiswidgetsmall;
+        static ComponentName thiswidgetbig;
+        static ComponentName thiswidgetbigger;
 
         //Our Helper Classes
-        TimeHelper timeMan;
-        BatteryHelper battMan;
-        CPUHelper cpuMan;
-        MemoryHelper diskMan;
-        NetworkHelper networkMan;
+        static TimeHelper timeMan;
+        static BatteryHelper battMan;
+        static CPUHelper cpuMan;
+        static MemoryHelper diskMan;
+        static NetworkHelper networkMan;
 
 
 		//getting prefs and boolean values for which sections to display
@@ -104,18 +103,16 @@ public class SmAlarm extends BroadcastReceiver
             //First Check if we need to reinitialize our settings
             if(reInit) {
 
-                Log.d("Sup", "SUPER SUPPPP");
-
                 //Set reInit to false and should update to true
                 reInit = false;
                 shouldUpdate = true;
 
                 //Grab all of our providers
-                ComponentName thiswidget = new ComponentName(context, SmProvider.class);
-                ComponentName thiswidgetsmallest = new ComponentName(context, SuperSmall.class);
-                ComponentName thiswidgetsmall = new ComponentName(context, ProviderSmall.class);
-                ComponentName thiswidgetbig = new ComponentName(context, ProviderBig.class);
-                ComponentName thiswidgetbigger = new ComponentName(context, ProviderBigger.class);
+                thiswidget = new ComponentName(context, SmProvider.class);
+                thiswidgetsmallest = new ComponentName(context, SuperSmall.class);
+                thiswidgetsmall = new ComponentName(context, ProviderSmall.class);
+                thiswidgetbig = new ComponentName(context, ProviderBig.class);
+                thiswidgetbigger = new ComponentName(context, ProviderBigger.class);
 
                 //Call all of our initialization functions
                 //getting which sections to omit
@@ -182,14 +179,6 @@ public class SmAlarm extends BroadcastReceiver
 			TitleBool = prefs.getBoolean("NOCPUTITLE", false);
             threeBool = prefs.getBoolean("THREESEC", false);
             fiveBool = prefs.getBoolean("FIVESEC", false);
-
-            //Check if we want to allow clicking the widget to configure it
-            if (tapConfig == false) {
-                //setting up on click event
-                Intent config = new Intent(context, ConfigureWidget.class);
-                PendingIntent pendingConfig = PendingIntent.getActivity(context, 0, config, 0);
-                views.setOnClickPendingIntent(R.id.widgetLayout, pendingConfig);
-            }
 		}
 
 		public void viewConfig (Context context)
@@ -267,6 +256,14 @@ public class SmAlarm extends BroadcastReceiver
 			if(centerBool) views.setInt(R.id.widgetLayout, "setGravity", Gravity.CENTER);
 			else if (rightBool) views.setInt(R.id.widgetLayout, "setGravity", Gravity.RIGHT);
 			else views.setInt(R.id.widgetLayout, "setGravity", Gravity.LEFT);
+
+            //Check if we want to allow clicking the widget to configure it
+            if (tapConfig == false) {
+                //setting up on click event
+                Intent config = new Intent(context, ConfigureWidget.class);
+                PendingIntent pendingConfig = PendingIntent.getActivity(context, 0, config, 0);
+                views.setOnClickPendingIntent(R.id.widgetLayout, pendingConfig);
+            }
 		}
 
         //Function to initialize all of our helper classes
@@ -289,7 +286,6 @@ public class SmAlarm extends BroadcastReceiver
         }
 	
 	    public void update(Context context) {
-
 
         //call time methods, not calling if unchecked
         if (timeMan.timeStatus()) timeMan.getTime();

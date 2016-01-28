@@ -12,6 +12,8 @@ import android.widget.ListView;
 
 import com.torch2424.statsmonitorwidget.R;
 
+import java.util.Scanner;
+
 public class TextSizeChooser extends Activity
 {
 	@Override
@@ -23,7 +25,15 @@ public class TextSizeChooser extends Activity
 		//get listview
 				final ListView listView = (ListView) findViewById(R.id.listView);
 				//create string array with which colors I want, can add more colors by finding their hex values
-				String [] colorArray = {"(Default) Title: 18 Text: 12", "Title: 12 Text: 6", "Title: 14 Text: 8", "Title: 16 Text: 10", "Title: 20 Text: 14", "Title: 22 Text: 16", "Title: 24 Text: 18", "Title: 26 Text: 20", "Title: 28 Text: 22"};
+				String [] colorArray = {"Title: 12 Text: 6", "Title: 13 Text: 7",
+                        "Title: 14 Text: 8", "Title: 15 Text: 9",
+                        "Title: 16 Text: 10", "Title: 17 Text: 11",
+                        "(Default) Title: 18 Text: 12", "Title: 19 Text: 13",
+                        "Title: 20 Text: 14", "Title: 21 Text: 15",
+                        "Title: 22 Text: 16", "Title: 23 Text: 17",
+                        "Title: 24 Text: 18", "Title: 25 Text: 19",
+                        "Title: 26 Text: 20", "Title: 27 Text: 21",
+                        "Title: 28 Text: 22"};
 				//creating array adapter for listview
 				ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, colorArray);		
 				listView.setAdapter(adapter);
@@ -32,60 +42,25 @@ public class TextSizeChooser extends Activity
 				{
 				    public void onItemClick(AdapterView<?> parent, View v, int position, long id) 
 				    {
-				    	//getting the selected color
+
+                        //getting the selected color
 				    	 String  selectedSize = (String) listView.getItemAtPosition(position);
-				    	 //create color
+
+				    	 //Create default
 				    	 int textTitleSize = 18;
 				    	 int textSize = 12;
+
 				    	 //creating preferences
 				    	 SharedPreferences prefs = getSharedPreferences("MyPrefs", 0);
 				 		Editor editor = prefs.edit();
-				 		//series of ifs to check for which size is selected
-				 		if(selectedSize.contains("Title: 12 Text: 6") == true)
-				 		{
-				 			textTitleSize = 12;
-				 			textSize = 6;
-				 		}
-				 		else if(selectedSize.contains("Title: 14 Text: 8") == true)
-				 		{
-				 			textTitleSize = 14;
-				 			textSize = 8;
-				 		}
-				 		else if(selectedSize.contains("Title: 16 Text: 10") == true)
-				 		{
-				 			textTitleSize = 16;
-				 			textSize = 10;
-				 		}
-				 		else if(selectedSize.contains("(Default) Title: 18 Text: 12") == true)
-				 		{
-				 			textTitleSize = 18;
-				 			textSize = 12;
-				 		}
-				 		else if(selectedSize.contains("Title: 20 Text: 14") == true)
-				 		{
-				 			textTitleSize = 20;
-				 			textSize = 14;
-				 		}
-				 		else if(selectedSize.contains("Title: 22 Text: 16") == true)
-				 		{
-				 			textTitleSize = 22;
-				 			textSize = 16;
-				 		}
-				 		else if(selectedSize.contains("Title: 24 Text: 18") == true)
-				 		{
-				 			textTitleSize = 16;
-				 			textSize = 10;
-				 		}
-				 		else if(selectedSize.contains("Title: 26 Text: 20") == true)
-				 		{
-				 			textTitleSize = 26;
-				 			textSize = 20;
-				 		}
-				 		else if(selectedSize.contains("Title: 28 Text: 22") == true)
-				 		{
-				 			textTitleSize = 28;
-				 			textSize = 22;
-				 		}
+
+                        //Parse the integers from the strings
+                        //Create a Scanner
+                        Scanner parser = new Scanner(selectedSize);
+
+                        textTitleSize = parser.nextInt();
+                        textSize = parser.nextInt();
+
 				 		//put into prefs
 				 		editor.putInt("TEXTTITLESIZE", textTitleSize);
 				 		editor.putInt("TEXTSIZE", textSize);
