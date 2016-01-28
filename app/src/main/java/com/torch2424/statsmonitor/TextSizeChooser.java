@@ -12,7 +12,11 @@ import android.widget.ListView;
 
 import com.torch2424.statsmonitorwidget.R;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TextSizeChooser extends Activity
 {
@@ -55,10 +59,15 @@ public class TextSizeChooser extends Activity
 				 		Editor editor = prefs.edit();
 
                         //Parse the integers from the strings
-                        String[] sizes = selectedSize.split(" */ *");
+                        Pattern p = Pattern.compile("\\d+");
+                        Matcher m = p.matcher(selectedSize);
+                        List<String> matches = new ArrayList<String>();
+                        while(m.find()) {
+                            matches.add(m.group());
+                        }
 
-                        textTitleSize = Integer.parseInt(sizes[0]);
-                        textSize = Integer.parseInt(sizes[1]);
+                        textTitleSize = Integer.parseInt(matches.get(0));
+                        textSize = Integer.parseInt(matches.get(1));
 
 				 		//put into prefs
 				 		editor.putInt("TEXTTITLESIZE", textTitleSize);
