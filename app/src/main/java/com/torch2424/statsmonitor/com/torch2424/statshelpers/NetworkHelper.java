@@ -9,6 +9,7 @@ import android.net.TrafficStats;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.telephony.TelephonyManager;
+import android.view.View;
 import android.widget.RemoteViews;
 
 import com.torch2424.statsmonitorwidget.R;
@@ -34,6 +35,11 @@ public class NetworkHelper {
     //Decimal format for setting precision in values
     DecimalFormat format;
 
+    //View booleans
+    boolean networkTypeView;
+    boolean upSpeedView;
+    boolean downSpeedView;
+
     public NetworkHelper(RemoteViews parentView, SharedPreferences prefs) {
 
         //set our view
@@ -49,6 +55,20 @@ public class NetworkHelper {
 
         //Initialize our decimal format
         format = new DecimalFormat("0.00");
+
+        //Set view
+        networkTypeView = prefs.getBoolean("NETWORKTYPE", true);
+        upSpeedView = prefs.getBoolean("NETWORKUP", true);
+        downSpeedView = prefs.getBoolean("NETWORKDOWN", true);
+
+        if(networkTypeView) views.setViewVisibility(R.id.networkType, View.VISIBLE);
+        else views.setViewVisibility(R.id.networkType, View.GONE);
+
+        if(upSpeedView) views.setViewVisibility(R.id.networkUp, View.VISIBLE);
+        else views.setViewVisibility(R.id.networkUp, View.GONE);
+
+        if(downSpeedView)  views.setViewVisibility(R.id.networkDown, View.VISIBLE);
+        else views.setViewVisibility(R.id.networkDown, View.GONE);
 
     }
 
@@ -173,5 +193,21 @@ public class NetworkHelper {
             }
 
         }
+    }
+
+    //Function to return view Status
+    public boolean typeStatus() {
+        if(networkTypeView) return true;
+        else return false;
+    }
+
+    public boolean upSpeedStatus() {
+        if(upSpeedView) return true;
+        else return false;
+    }
+
+    public boolean downSpeedStatus() {
+        if(downSpeedView) return true;
+        else return false;
     }
 }

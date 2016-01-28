@@ -37,19 +37,8 @@ public class SmAlarm extends BroadcastReceiver
 		SharedPreferences prefs;
 		boolean boolTimeTitle;
 		boolean boolSystemTitle;
-		boolean boolBattery;
-		boolean boolTemp;
-		boolean boolChange;
-		boolean boolCpu;
-		boolean boolUptime;
 		boolean boolMemoryTitle;
-        //Boolean for if there is an internal and external storage
-		boolean boolMemory;
-		boolean boolRam;
 		boolean boolNetworkTitle;
-		boolean boolNetworkType;
-		boolean boolNetworkUp;
-		boolean boolNetworkDown;
 
 		//advanced settings
 		boolean tapConfig;
@@ -84,21 +73,15 @@ public class SmAlarm extends BroadcastReceiver
 			boolSystemTitle = prefs.getBoolean("SYSTEMTITLE", true);
 			boolMemoryTitle = prefs.getBoolean("MEMORYTITLE", true);
 			boolNetworkTitle = prefs.getBoolean("NETWORKTITLE", true);
-			boolNetworkType = prefs.getBoolean("NETWORKTYPE", true);
-			boolNetworkUp = prefs.getBoolean("NETWORKUP", true);
-			boolNetworkDown = prefs.getBoolean("NETWORKDOWN", true);
-			
-			
+
 			//default widget textcolor is LTGRAY
 			textColor = prefs.getInt("TEXTCOLOR", Color.LTGRAY);
 			//default background is transparent
 			backColor = prefs.getInt("BACKCOLOR", Color.TRANSPARENT);
 
-
 			//text sizes
 			textSize = prefs.getInt("TEXTSIZE", 12);
 			textTitleSize = prefs.getInt("TEXTTITLESIZE", 18);
-
 
 			//advanced settings
 			tapConfig = prefs.getBoolean("TAPCONFIG", false);
@@ -106,6 +89,7 @@ public class SmAlarm extends BroadcastReceiver
 			rightBool = prefs.getBoolean("TEXTRIGHT", false);
 			TitleBool = prefs.getBoolean("NOCPUTITLE", false);
 		}
+
 		public void sectionConfig ()
 		{
 
@@ -172,42 +156,8 @@ public class SmAlarm extends BroadcastReceiver
 			 if (boolMemoryTitle)  views.setViewVisibility(R.id.memoryTitle, View.VISIBLE);
 			 else views.setViewVisibility(R.id.memoryTitle, View.GONE);
 		        
-		        if(boolNetworkTitle)
-		        {
-		        	views.setViewVisibility(R.id.networkTitle, View.VISIBLE); 
-		        }
-		        else
-		        {
-		        	views.setViewVisibility(R.id.networkTitle, View.GONE); 
-		        }
-		        
-		        if(boolNetworkType)
-		        {
-		        	views.setViewVisibility(R.id.networkType, View.VISIBLE); 
-		        }
-		        else
-		        {
-		        	views.setViewVisibility(R.id.networkType, View.GONE); 
-		        }
-		        
-		        if(boolNetworkUp)
-		        {
-		        	views.setViewVisibility(R.id.networkUp, View.VISIBLE); 
-		        }
-		        else
-		        {
-		        	views.setViewVisibility(R.id.networkUp, View.GONE); 
-		        }
-		        
-		        if(boolNetworkDown)
-		        {
-		        	views.setViewVisibility(R.id.networkDown, View.VISIBLE); 
-		        }
-		        else
-		        {
-		        	views.setViewVisibility(R.id.networkDown, View.GONE); 
-		        }
-		        
+            if(boolNetworkTitle) views.setViewVisibility(R.id.networkTitle, View.VISIBLE);
+            else views.setViewVisibility(R.id.networkTitle, View.GONE);
 		}
 	
 	public void update(Context context, Intent intent)
@@ -238,40 +188,25 @@ public class SmAlarm extends BroadcastReceiver
 		if(timeMan.timeStatus()) timeMan.getTime();
 		
 		//call system methods
-		if(boolBattery || boolTemp)
+		if(battMan.percentStatus() || battMan.tempStatus())
 		{
 			battMan.getBatteryPercent(context);
             battMan.getBatteryTemp(context);
 		}
 		
-		if(boolCpu)
-		{
-			cpuMan.getCpuUsage();
-		}
+		if(cpuMan.cpuStatus()) cpuMan.getCpuUsage();
 		
 		if(timeMan.upTimeStatus()) timeMan.getUptime();
 		
 		//call memory methods
-		if(boolMemory)
-		{
-            diskMan.getSpace();
-		}
+		if(diskMan.memoryStatus()) diskMan.getSpace();
 		
-		if(boolRam)
-		{
-			diskMan.getRam(context);
-		}
+		if(diskMan.ramStatus()) diskMan.getRam(context);
 		
 		//call netowork methods
-		if(boolNetworkType)
-		{
-		    networkMan.getNetworkType(context);
-		}
+		if(networkMan.typeStatus()) networkMan.getNetworkType(context);
 		
-		if(boolNetworkUp || boolNetworkDown)
-		{
-		    networkMan.getSpeeds();
-		}
+		if(networkMan.downSpeedStatus() || networkMan.upSpeedStatus()) networkMan.getSpeeds();
 		
 		
 		
