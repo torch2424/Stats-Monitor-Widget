@@ -7,8 +7,8 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -30,8 +30,25 @@ public class SmAlarm extends BroadcastReceiver
 {
 	    //creating remote views out here for access anywhere in class
 		RemoteViews views;
-	    //getting access to the config values
+
+        //Our Provider Components
+        ComponentName thiswidget;
+        ComponentName thiswidgetsmallest;
+        ComponentName thiswidgetsmall;
+        ComponentName thiswidgetbig;
+        ComponentName thiswidgetbigger;
+
+
+    //getting access to the config values
 		ConfigureWidget config = new ConfigureWidget();
+
+        //Our Helper Classes
+        TimeHelper timeMan;
+        BatteryHelper battMan;
+        CPUHelper cpuMan;
+        MemoryHelper diskMan;
+        NetworkHelper networkMan;
+
 
 		//getting prefs and boolean values for which sections to display
 		SharedPreferences prefs;
@@ -47,7 +64,8 @@ public class SmAlarm extends BroadcastReceiver
 		boolean TitleBool;
 		boolean threeBool;
 		boolean fiveBool;
-		int secs; //for if people want a slower update interval
+        //for if people want a slower update interval
+		static int secs = 0;
 
 
 		//setting up colors
@@ -60,12 +78,86 @@ public class SmAlarm extends BroadcastReceiver
 		int textTitleSize;
 		
 		
-		//for config activity
-		boolean updateBool;
+		//To Control when the app should be updating, and reinitializing
+		static boolean shouldUpdate;
+        static boolean reInit = true;
+
+
+        //Static function to stop updating
+        public static void setUpdating(boolean update) {
+
+            //Set the two controlling booleans to false
+            if(update) {
+                shouldUpdate = true;
+                reInit = true;
+            }
+            else {
+                shouldUpdate = false;
+                reInit = false;
+            }
+        }
+
+        @Override
+        public void onReceive(Context context, Intent intent)
+        {
+
+            //First Check if we need to reinitialize our settings
+            if(reInit) {
+
+                Log.d("Sup", "SUPER SUPPPP");
+
+                //Set reInit to false and should update to true
+                reInit = false;
+                shouldUpdate = true;
+
+                //Grab all of our providers
+                ComponentName thiswidget = new ComponentName(context, SmProvider.class);
+                ComponentName thiswidgetsmallest = new ComponentName(context, SuperSmall.class);
+                ComponentName thiswidgetsmall = new ComponentName(context, ProviderSmall.class);
+                ComponentName thiswidgetbig = new ComponentName(context, ProviderBig.class);
+                ComponentName thiswidgetbigger = new ComponentName(context, ProviderBigger.class);
+
+                //Call all of our initialization functions
+                //getting which sections to omit
+                prefsConfig(context);
+                //call title config methods to omit methods
+                viewConfig(context);
+                //Initialize all of our helper classes
+                helperConfig();
+            }
+
+            if(shouldUpdate)
+            {
+
+                if(threeBool)
+                {
+                    if(secs > 1)
+                    {
+                        update(context);
+                        secs = 0;
+                    }
+                    else secs++;
+                }
+                else if(fiveBool)
+                {
+                    if(secs > 3)
+                    {
+                        update(context);
+                        secs = 0;
+                    }
+                    else  secs++;
+                }
+                else
+                {
+                    update(context);
+                }
+            }
+
+        }
 		
 		
 		
-		public void configPrefs(Context context)
+		public void prefsConfig(Context context)
 		{
 			//getting preferences, can't use intents, don't work with broadcast reciever
 			prefs = context.getSharedPreferences("MyPrefs", 0);
@@ -88,10 +180,41 @@ public class SmAlarm extends BroadcastReceiver
 			centerBool = prefs.getBoolean("TEXTCENTER", false);
 			rightBool = prefs.getBoolean("TEXTRIGHT", false);
 			TitleBool = prefs.getBoolean("NOCPUTITLE", false);
+            threeBool = prefs.getBoolean("THREESEC", false);
+            fiveBool = prefs.getBoolean("FIVESEC", false);
+
+            //Check if we want to allow clicking the widget to configure it
+            if (tapConfig == false) {
+                //setting up on click event
+                Intent config = new Intent(context, ConfigureWidget.class);
+                PendingIntent pendingConfig = PendingIntent.getActivity(context, 0, config, 0);
+                views.setOnClickPendingIntent(R.id.widgetLayout, pendingConfig);
+            }
 		}
 
-		public void sectionConfig ()
+		public void viewConfig (Context context)
 		{
+            //Grab our views
+            views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
+
+            //Setting Title visibility
+            //views.setfloat to set text sizes, but cant be set to zero!
+            //if the preference from the checkbox is false, set the text visibility to gone, external sd check
+            if(boolTimeTitle) views.setViewVisibility(R.id.timeTitle, View.VISIBLE);
+            else  views.setViewVisibility(R.id.timeTitle, View.GONE);
+
+            if (boolSystemTitle)  views.setViewVisibility(R.id.systemTitle, View.VISIBLE);
+            else views.setViewVisibility(R.id.systemTitle, View.GONE);
+
+            if (TitleBool) views.setViewVisibility(R.id.CPUTitle, View.GONE);
+            else views.setViewVisibility(R.id.CPUTitle, View.VISIBLE);
+
+
+            if (boolMemoryTitle)  views.setViewVisibility(R.id.memoryTitle, View.VISIBLE);
+            else views.setViewVisibility(R.id.memoryTitle, View.GONE);
+
+            if(boolNetworkTitle) views.setViewVisibility(R.id.networkTitle, View.VISIBLE);
+            else views.setViewVisibility(R.id.networkTitle, View.GONE);
 
             //setting background
             views.setInt(R.id.widgetLayout, "setBackgroundColor", backColor);
@@ -116,12 +239,12 @@ public class SmAlarm extends BroadcastReceiver
 			views.setTextColor(R.id.networkUp, textColor);
 			views.setTextColor(R.id.networkDown, textColor);
 			views.setTextColor(R.id.networkType, textColor);
+
 			//setting text sizes
 			views.setFloat(R.id.time, "setTextSize", textSize);
 			views.setFloat(R.id.date, "setTextSize", textSize);
 			views.setFloat(R.id.battery, "setTextSize", textSize);
 			views.setFloat(R.id.batteryTemp, "setTextSize", textSize);
-			//views.setFloat(R.id.batteryChange, "setTextSize", textSize);
 			views.setFloat(R.id.cpu, "setTextSize", textSize);
 			views.setFloat(R.id.uptime, "setTextSize", textSize);
 			views.setFloat(R.id.internal, "setTextSize", textSize);
@@ -132,7 +255,8 @@ public class SmAlarm extends BroadcastReceiver
 			views.setFloat(R.id.networkType, "setTextSize", textSize);
 			views.setFloat(R.id.networkUp, "setTextSize", textSize);
 			views.setFloat(R.id.networkDown, "setTextSize", textSize);
-			//setting text title sizes
+
+			//Setting text title sizes
 			views.setFloat(R.id.timeTitle, "setTextSize", textTitleSize);
 			views.setFloat(R.id.systemTitle, "setTextSize", textTitleSize);
 			views.setFloat(R.id.memoryTitle, "setTextSize", textTitleSize);
@@ -143,157 +267,60 @@ public class SmAlarm extends BroadcastReceiver
 			if(centerBool) views.setInt(R.id.widgetLayout, "setGravity", Gravity.CENTER);
 			else if (rightBool) views.setInt(R.id.widgetLayout, "setGravity", Gravity.RIGHT);
 			else views.setInt(R.id.widgetLayout, "setGravity", Gravity.LEFT);
-
-
-			//views.setfloat to set text sizes, but cant be set to zero!
-			//if the preference from the checkbox is false, set the text visibility to gone, external sd check
-			 if(boolTimeTitle) views.setViewVisibility(R.id.timeTitle, View.VISIBLE);
-			 else  views.setViewVisibility(R.id.timeTitle, View.GONE);
-
-			 if (boolSystemTitle)  views.setViewVisibility(R.id.systemTitle, View.VISIBLE);
-			 else views.setViewVisibility(R.id.systemTitle, View.GONE);
-
-			 if (boolMemoryTitle)  views.setViewVisibility(R.id.memoryTitle, View.VISIBLE);
-			 else views.setViewVisibility(R.id.memoryTitle, View.GONE);
-		        
-            if(boolNetworkTitle) views.setViewVisibility(R.id.networkTitle, View.VISIBLE);
-            else views.setViewVisibility(R.id.networkTitle, View.GONE);
 		}
+
+        //Function to initialize all of our helper classes
+        public void helperConfig() {
+
+            //Create our Time manager
+            timeMan = new TimeHelper(views, prefs);
+
+            //Create our Battery Manage
+            battMan = new BatteryHelper(views, prefs);
+
+            //Create our CPU Helper
+            cpuMan = new CPUHelper(views, prefs);
+
+            //Create diskspace manager
+            diskMan = new MemoryHelper(views, prefs);
+
+            //Create Network Manager
+            networkMan = new NetworkHelper(views, prefs);
+        }
 	
-	public void update(Context context, Intent intent)
-	{
-		views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
-		//getting which sections to omit
-		configPrefs(context);
-		//call title config methods to omit methods
-		sectionConfig();
-
-        //Create our Time manager
-        TimeHelper timeMan = new TimeHelper(views, prefs);
-
-        //Create our Battery Manage
-        BatteryHelper battMan = new BatteryHelper(views, prefs);
-
-        //Create our CPU Helper
-        CPUHelper cpuMan = new CPUHelper(views, prefs);
-
-        //Create diskspace manager
-        MemoryHelper diskMan = new MemoryHelper(views, prefs);
-
-        //Create Network Manager
-        NetworkHelper networkMan = new NetworkHelper(views, prefs);
+	    public void update(Context context) {
 
 
-		//call time methods, not calling if unchecked
-		if(timeMan.timeStatus()) timeMan.getTime();
-		
-		//call system methods
-		if(battMan.percentStatus() || battMan.tempStatus())
-		{
-			battMan.getBatteryPercent(context);
+        //call time methods, not calling if unchecked
+        if (timeMan.timeStatus()) timeMan.getTime();
+
+        //call system methods
+        if (battMan.percentStatus() || battMan.tempStatus()) {
+            battMan.getBatteryPercent(context);
             battMan.getBatteryTemp(context);
-		}
-		
-		if(cpuMan.cpuStatus()) cpuMan.getCpuUsage();
-		
-		if(timeMan.upTimeStatus()) timeMan.getUptime();
-		
-		//call memory methods
-		if(diskMan.memoryStatus()) diskMan.getSpace();
-		
-		if(diskMan.ramStatus()) diskMan.getRam(context);
-		
-		//call netowork methods
-		if(networkMan.typeStatus()) networkMan.getNetworkType(context);
-		
-		if(networkMan.downSpeedStatus() || networkMan.upSpeedStatus()) networkMan.getSpeeds();
-		
-		
-		
-		if(tapConfig == false)
-		{
-			//setting up on click event
-			Intent config = new Intent(context, ConfigureWidget.class);
-			PendingIntent pendingConfig = PendingIntent.getActivity(context, 0, config, 0);
-			views.setOnClickPendingIntent(R.id.widgetLayout, pendingConfig);
-		}
-		
-		//cpu title
-		if(TitleBool)
-		{
-			views.setViewVisibility(R.id.CPUTitle, View.GONE); 
-		}
-		else
-		{
-		    views.setViewVisibility(R.id.CPUTitle, View.VISIBLE);
-		}
-		
-		//update widget for all sizes
-		ComponentName thiswidget = new ComponentName(context, SmProvider.class);
-		ComponentName thiswidgetsmallest = new ComponentName(context, SuperSmall.class);
-		ComponentName thiswidgetsmall = new ComponentName(context, ProviderSmall.class);
-		ComponentName thiswidgetbig = new ComponentName(context, ProviderBig.class);
-		ComponentName thiswidgetbigger = new ComponentName(context, ProviderBigger.class);
-		AppWidgetManager manager = AppWidgetManager.getInstance(context);
-		manager.updateAppWidget(thiswidget, views);
-		manager.updateAppWidget(thiswidgetsmall, views);
-		manager.updateAppWidget(thiswidgetbig, views);
-		manager.updateAppWidget(thiswidgetbigger, views);
-		manager.updateAppWidget(thiswidgetsmallest, views);
-	}
-		
-	@Override
-	public void onReceive(Context context, Intent intent) 
-	{
+        }
 
-		//use our preferences as a quick and easy way to store the previous value
-		prefs = context.getSharedPreferences("MyPrefs", 0);
-		Editor editor = prefs.edit();	
-		//to tell if user is configuring app or not currently
-		updateBool = prefs.getBoolean("UPDATE", true);
-		secs = prefs.getInt("SECS", 0);
-		threeBool = prefs.getBoolean("THREESEC", false);
-		fiveBool = prefs.getBoolean("FIVESEC", false);
-		
-		if(updateBool)
-		{
-		
-		 if(threeBool)
-		 {
-			if(secs > 1)
-			{
-				update(context, intent);
-				editor.putInt("SECS", 0);
-				editor.commit();
-			}
-			else
-			{
-				secs++;
-				editor.putInt("SECS", secs);
-				editor.commit();
-			}
-		 }
-		 else if(fiveBool)
-		 {
-			if(secs > 3)
-			{
-				update(context, intent);
-				editor.putInt("SECS", 0);
-				editor.commit();
-			}
-			else
-			{
-				secs++;
-				editor.putInt("SECS", secs);
-				editor.commit();
-			}
-		 }
-		 else
-		 {
-			 update(context, intent);
-		 }
-	}
-		
-	}
+        if (cpuMan.cpuStatus()) cpuMan.getCpuUsage();
+
+        if (timeMan.upTimeStatus()) timeMan.getUptime();
+
+        //call memory methods
+        if (diskMan.memoryStatus()) diskMan.getSpace();
+
+        if (diskMan.ramStatus()) diskMan.getRam(context);
+
+        //call netowork methods
+        if (networkMan.typeStatus()) networkMan.getNetworkType(context);
+
+        if (networkMan.downSpeedStatus() || networkMan.upSpeedStatus()) networkMan.getSpeeds();
+
+        //update widget for all sizes
+        AppWidgetManager manager = AppWidgetManager.getInstance(context);
+        manager.updateAppWidget(thiswidget, views);
+        manager.updateAppWidget(thiswidgetsmall, views);
+        manager.updateAppWidget(thiswidgetbig, views);
+        manager.updateAppWidget(thiswidgetbigger, views);
+        manager.updateAppWidget(thiswidgetsmallest, views);
+    }
 
 }

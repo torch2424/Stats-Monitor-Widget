@@ -69,11 +69,9 @@ public class ConfigureWidget extends Activity
 		            AppWidgetManager.EXTRA_APPWIDGET_ID, 
 		            AppWidgetManager.INVALID_APPWIDGET_ID);
 		}
-		//boolean to tell the app to stop updating
-		SharedPreferences prefs1 = context.getSharedPreferences("MyPrefs", 0);
-		Editor editor = prefs1.edit();
-				editor.putBoolean("UPDATE", false);
-				editor.commit(); 
+
+		//Tell the app to stop updating
+		SmAlarm.setUpdating(false);
 		
 		//initialize checkboxes
 		checkTimeTitle = (CheckBox) findViewById(R.id.checkTimeTitle);
