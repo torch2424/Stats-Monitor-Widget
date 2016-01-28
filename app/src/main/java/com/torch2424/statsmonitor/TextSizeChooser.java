@@ -55,11 +55,10 @@ public class TextSizeChooser extends Activity
 				 		Editor editor = prefs.edit();
 
                         //Parse the integers from the strings
-                        //Create a Scanner
-                        Scanner parser = new Scanner(selectedSize);
+                        String[] sizes = selectedSize.split(" */ *");
 
-                        textTitleSize = parser.nextInt();
-                        textSize = parser.nextInt();
+                        textTitleSize = Integer.parseInt(sizes[0]);
+                        textSize = Integer.parseInt(sizes[1]);
 
 				 		//put into prefs
 				 		editor.putInt("TEXTTITLESIZE", textTitleSize);
