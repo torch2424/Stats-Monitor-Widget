@@ -292,10 +292,10 @@ public class ConfigureWidget extends Activity
 		editor.putBoolean("NETWORKTYPE", networkType);
 		editor.putBoolean("NETWORKUP", networkUp);
 		editor.putBoolean("NETWORKDOWN", networkDown);
-		
-		//boolean to tell the app to start updating again
-		editor.putBoolean("UPDATE", true);
-		editor.commit(); 
+
+        //Tell the app to stop updating
+        SmAlarm.setUpdating(true);
+
 		//finishing up, and calling onupdate
 		AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
 		RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
@@ -324,13 +324,11 @@ public class ConfigureWidget extends Activity
 	@Override
 	public void onBackPressed() 
 	{
-		//boolean to tell the app to start updating again
-		SharedPreferences prefs = context.getSharedPreferences("MyPrefs", 0);
-		Editor editor = prefs.edit();
-				editor.putBoolean("UPDATE", true);
-				editor.commit();
-				
-				finish();
+        //Tell the app to stop updating
+        SmAlarm.setUpdating(true);
+
+        //Closes the app
+        finish();
 	}
 	
 	
