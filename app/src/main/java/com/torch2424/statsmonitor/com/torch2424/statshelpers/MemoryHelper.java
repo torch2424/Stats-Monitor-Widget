@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;
 import android.os.StatFs;
+import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -72,11 +73,14 @@ public class MemoryHelper {
         //Check if we have an external string
         if(inputExternal.equals("") == false && new File(inputExternal).exists())
         {
+            Log.d("sup", "1");
             externalPath = new File(inputExternal);
         }
         //Check if our Secondary storage exists
         else if(externalPath == null &&
                 System.getenv("SECONDARY_STORAGE") != null) {
+
+            Log.d("sup", "2");
 
             //Save our secondary storage string
             String secStore = System.getenv("SECONDARY_STORAGE");
@@ -91,7 +95,10 @@ public class MemoryHelper {
         //Check if our environment returns the correct path
         else if(externalPath == null &&
                 Environment.getExternalStorageDirectory().exists() &&
-                Environment.getExternalStorageDirectory() != Environment.getDataDirectory()) {
+                !Environment.getExternalStorageDirectory().getAbsolutePath().equals(Environment.getDataDirectory().getAbsolutePath())) {
+
+            //Need to finish up our check, it is failing in thuis check, the paths are different, but contain the smae data
+            Log.d("sup", Environment.getDataDirectory().getAbsolutePath());
             externalPath = Environment.getExternalStorageDirectory();
         }
         //We actually did only have a single storage
@@ -154,11 +161,11 @@ public class MemoryHelper {
 
         //available internal storage in megs
         long availBlocks = stats.getAvailableBlocksLong();
-        long availMB = ((blockSize) * (availBlocks)) / megs;
+        double availMB = ((blockSize) * (availBlocks)) / megs;
 
         //total blocks in internal storage in megs
         long totalBlocks = stats.getBlockCountLong();
-        long totalMB = ((blockSize) * (totalBlocks)) / megs;
+        double totalMB = ((blockSize) * (totalBlocks)) / megs;
 
         //setting up text views
         //Check if we only have one storage
@@ -169,13 +176,13 @@ public class MemoryHelper {
         if (memoryGB == true)
         {
             //use a decimal format to only show two places, and use .0 to get a decimal
-            float usedFloat = getGigs(totalMB - availMB);
-            float totalFloat = getGigs(totalMB);
+            double usedFloat = getGigs(totalMB - availMB);
+            double totalFloat = getGigs(totalMB);
             views.setTextViewText(R.id.internal, format.format(usedFloat) + "/" + format.format(totalFloat) + " GB");
         }
         else
         {
-            views.setTextViewText(R.id.internal, Long.toString(totalMB - availMB) + "/" + Long.toString(totalMB) + " MB");
+            views.setTextViewText(R.id.internal, fmt(totalMB - availMB) + "/" + fmt(totalMB) + " MB");
         }
 
         //Now check for external storage, if we have it
@@ -195,11 +202,11 @@ public class MemoryHelper {
 
         //available external storage in megs
         long availBlocks = stats.getAvailableBlocksLong();
-        long availMB = ((blockSize) * (availBlocks)) / megs;
+        double availMB = ((blockSize) * (availBlocks)) / megs;
 
         //total blocks in external storage in megs
         long totalBlocks = stats.getBlockCountLong();
-        long totalMB = ((blockSize) * (totalBlocks)) / megs;
+        double totalMB = ((blockSize) * (totalBlocks)) / megs;
 
         //setting up text views
         views.setTextViewText(R.id.externalTitle, "Used External Storage:");
@@ -208,13 +215,13 @@ public class MemoryHelper {
         if (memoryGB == true)
         {
             //use a decimal format to only show two places, and use .0 to get a decimal
-            float usedFloat = getGigs(totalMB - availMB);
-            float totalFloat = getGigs(totalMB);
+            double usedFloat = getGigs(totalMB - availMB);
+            double totalFloat = getGigs(totalMB);
             views.setTextViewText(R.id.external, format.format(usedFloat) + "/" + format.format(totalFloat) + " GB");
         }
         else
         {
-            views.setTextViewText(R.id.external, Long.toString(totalMB - availMB) + "/" + Long.toString(totalMB) + " MB");
+            views.setTextViewText(R.id.external, fmt(totalMB - availMB) + "/" + fmt(totalMB) + " MB");
         }
 
     }
@@ -228,8 +235,8 @@ public class MemoryHelper {
         long total = mi.totalMem / 1048576L;
         if(ramGB == true)
         {
-            float usedFloat = getGigs(total - avail);
-            float totalFloat = getGigs(total);
+            double usedFloat = getGigs(total - avail);
+            double totalFloat = getGigs(total);
             views.setTextViewText(R.id.ram, "Used Ram: " + format.format(usedFloat) + "/" + format.format(totalFloat) + "GB");
         }
         else
@@ -239,8 +246,8 @@ public class MemoryHelper {
     }
 
     //Function to convert from megabytes to gigabytes
-    private float getGigs(long megs) {
-        return megs / 1000.0f;
+    private double getGigs(double megs) {
+        return megs / 1000.0;
     }
 
     //Function to check if the external storage has space
@@ -259,6 +266,16 @@ public class MemoryHelper {
         //Do a quick check if we have storage
         if(totalMB > 0) return true;
         else return false;
+    }
+
+    //Function to return formatted double without trailing zeroes
+    //http://stackoverflow.com/questions/703396/how-to-nicely-format-floating-numbers-to-string-without-unnecessary-decimal-0
+    public static String fmt(double d)
+    {
+        if(d == (long) d)
+            return String.format("%d",(long)d);
+        else
+            return String.format("%s",d);
     }
 
     //Function to return view status

@@ -61,23 +61,13 @@ public class TimeHelper {
         Date date = new Date();
         SimpleDateFormat time= new SimpleDateFormat("hh:mm:ss a");
         SimpleDateFormat day = new SimpleDateFormat("EEEE, MMMM dd, yyyy");
-        if(shortBool == true)
-        {
-            day = new SimpleDateFormat("EEE, MMMM dd, yyyy");
-        }
-        else
-        {
-            day = new SimpleDateFormat("EEEE, MMMM dd, yyyy");
-        }
+        if(shortBool) day = new SimpleDateFormat("EEE, MMM dd, yyyy");
+        else day = new SimpleDateFormat("EEEE, MMMM dd, yyyy");
+
         //24 hour settings
-        if(hourFormat == true)
-        {
-            time = new SimpleDateFormat("HH:mm:ss a");
-        }
-        else
-        {
-            time = new SimpleDateFormat("hh:mm:ss a");
-        }
+        if(hourFormat == true) time = new SimpleDateFormat("HH:mm:ss a");
+        else time = new SimpleDateFormat("hh:mm:ss a");
+
         //setting text to time
         views.setTextViewText(R.id.time, "Time: " + time.format(date));
         views.setTextViewText(R.id.date, "Date: " + day.format(date));
