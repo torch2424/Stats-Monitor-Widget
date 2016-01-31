@@ -70,17 +70,14 @@ public class MemoryHelper {
         //False until proven otherwise
         oneStorage = false;
 
-        //Check if we have an external string
+        //Check if we have an external string entered by the user
         if(inputExternal.equals("") == false && new File(inputExternal).exists())
         {
-            Log.d("sup", "1");
             externalPath = new File(inputExternal);
         }
         //Check if our Secondary storage exists
         else if(externalPath == null &&
                 System.getenv("SECONDARY_STORAGE") != null) {
-
-            Log.d("sup", "2");
 
             //Save our secondary storage string
             String secStore = System.getenv("SECONDARY_STORAGE");
@@ -95,10 +92,8 @@ public class MemoryHelper {
         //Check if our environment returns the correct path
         else if(externalPath == null &&
                 Environment.getExternalStorageDirectory().exists() &&
-                !Environment.getExternalStorageDirectory().getAbsolutePath().equals(Environment.getDataDirectory().getAbsolutePath())) {
+                Environment.getExternalStorageDirectory().getTotalSpace() != Environment.getDataDirectory().getTotalSpace()) {
 
-            //Need to finish up our check, it is failing in thuis check, the paths are different, but contain the smae data
-            Log.d("sup", Environment.getDataDirectory().getAbsolutePath());
             externalPath = Environment.getExternalStorageDirectory();
         }
         //We actually did only have a single storage
@@ -132,10 +127,12 @@ public class MemoryHelper {
             //Set the views to visible
             views.setViewVisibility(R.id.internal, View.VISIBLE);
             views.setViewVisibility(R.id.internalTitle, View.VISIBLE);
-            //Set the views to visible
-            views.setViewVisibility(R.id.external, View.VISIBLE);
-            views.setViewVisibility(R.id.externalTitle, View.VISIBLE);
 
+            //Set the external views to visible if one storage
+            if(!oneStorage) {
+                views.setViewVisibility(R.id.external, View.VISIBLE);
+                views.setViewVisibility(R.id.externalTitle, View.VISIBLE);
+            }
         }
         else
         {
