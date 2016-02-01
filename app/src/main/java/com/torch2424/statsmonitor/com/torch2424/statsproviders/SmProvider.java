@@ -35,9 +35,6 @@ public class SmProvider extends AppWidgetProvider
     public void onDisabled(Context context)
     {
         //Stop the Handler
-        intent = new Intent(context, SmAlarm.class);
-        pending = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        helper.stopAlarm(pending);
+        helper.stopAlarm();
     }
 }
