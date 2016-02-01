@@ -28,7 +28,7 @@ public class SmProvider extends AppWidgetProvider
         pending = PendingIntent.getBroadcast(context,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
 
         //Use the helper to call the alarm through the runnable
-        helper.callAlarm(pending);
+        helper.callAlarm(pending, context);
     }
 
 
