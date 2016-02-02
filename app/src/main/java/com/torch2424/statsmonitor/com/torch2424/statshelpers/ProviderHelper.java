@@ -17,13 +17,19 @@ import android.util.Log;
 public class ProviderHelper {
 
     //Our update interval
-    int updateInterval = 1000;
+    final int updateInterval = 1000;
 
     //Flag to stop sending the intent on stop alarm
-    boolean quit;
+    static boolean quit;
 
     //Our pending intent, that we will update periodically
     PendingIntent updateIntent;
+
+    //Our handler
+    Handler handler;
+
+    //Our runnable
+    Runnable runUpdate;
 
     //Our screen on/off receiver, gotten from: http://stackoverflow.com/questions/1588061/android-how-to-receive-broadcast-intents-action-screen-on-off
     private BroadcastReceiver sleepReceiver;
@@ -36,7 +42,7 @@ public class ProviderHelper {
     public void callAlarm(final PendingIntent pending, Context context) {
 
         //creating Handler to update every second
-        final Handler handler = new Handler();
+        handler = new Handler();
 
         //Setting our pending intent
         updateIntent = pending;
@@ -47,7 +53,7 @@ public class ProviderHelper {
         //Set our quit to false
         quit = false;
 
-        handler.post( new Runnable() {
+         runUpdate = new Runnable() {
             public void run() {
 
                 Log.d("Running!", "Run");
@@ -60,8 +66,8 @@ public class ProviderHelper {
                 }
 
                 //Quit the handler
-                Log.d("Quitting?", Boolean.toString(quit));
-                if(quit) {
+                Log.d("Quitting?", Boolean.toString(ProviderHelper.isQuitting()));
+                if(ProviderHelper.isQuitting()) {
 
                     //Remove all pending callbacks, and then return
                     handler.removeCallbacks(this);
@@ -72,18 +78,25 @@ public class ProviderHelper {
 
 
             }
-        });
+        };
+
+        handler.post(runUpdate);
     }
 
 
     //Function to stop all callbacks
-    public void stopAlarm() {
+    public void stopAlarm(Context context) {
         //Stop Alarm here
         //simply set quit to true
         quit = true;
 
         //Unregister our broadcast receiver
+        unregisterReceiver(context);
 
+    }
+
+    public static boolean isQuitting() {
+        return quit;
     }
 
 
@@ -101,9 +114,15 @@ public class ProviderHelper {
                 String strAction = intent.getAction();
 
                 if (strAction.equals(Intent.ACTION_SCREEN_OFF)) {
+
+                    //Quit the handler
+                    quit = true;
                 }
                 else if (strAction.equals(Intent.ACTION_SCREEN_ON)) {
 
+                    //Start updating again
+                    quit = false;
+                    handler.post(runUpdate);
                 }
             }
         };

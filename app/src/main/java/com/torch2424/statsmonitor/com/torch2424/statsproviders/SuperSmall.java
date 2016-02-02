@@ -35,6 +35,6 @@ public class SuperSmall extends AppWidgetProvider
     public void onDisabled(Context context)
     {
         //Stop the Handler
-        helper.stopAlarm();
+        helper.stopAlarm(context);
     }
 }

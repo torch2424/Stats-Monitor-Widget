@@ -35,8 +35,7 @@ public class ProviderBigger extends AppWidgetProvider
 
     public void onDisabled(Context context)
     {
-        Log.d("Removed", "Removed!");
         //Stop the Handler
-        helper.stopAlarm();
+        helper.stopAlarm(context);
     }
 }
