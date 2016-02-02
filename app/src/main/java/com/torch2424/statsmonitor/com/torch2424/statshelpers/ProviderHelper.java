@@ -11,6 +11,8 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.util.Log;
 
+import com.torch2424.statsmonitor.SmAlarm;
+
 /**
  * Created by torch2424 on 1/21/16.
  */
@@ -21,9 +23,6 @@ public class ProviderHelper {
 
     //Flag to stop sending the intent on stop alarm
     static boolean quit;
-
-    //Our pending intent, that we will update periodically
-    PendingIntent updateIntent;
 
     //Our handler
     Handler handler;
@@ -39,13 +38,10 @@ public class ProviderHelper {
     //calling of alarms in one place
     //Need to pass context to our alarm for the boradcast receiver,
 
-    public void callAlarm(final PendingIntent pending, Context context) {
+    public void callAlarm(final Context context) {
 
         //creating Handler to update every second
         handler = new Handler();
-
-        //Setting our pending intent
-        updateIntent = pending;
 
         //Start our sleep receiver
         registBroadcastReceiver(context);
@@ -58,7 +54,16 @@ public class ProviderHelper {
 
                 //Send the broadcast to the pending intent
                 try {
-                    if(!ProviderHelper.isQuitting())updateIntent.send();
+                    if(!ProviderHelper.isQuitting())
+                    {
+                        //Create an update intent
+                        //Create our intents
+                        Intent intent = new Intent(context, SmAlarm.class);
+
+                        PendingIntent updateIntent = PendingIntent.getBroadcast(context.getApplicationContext() , 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                        updateIntent.send();
+                    }
                 } catch (PendingIntent.CanceledException e) {
                     Log.d("DEBUG", "PENDING ERROR");
                 }

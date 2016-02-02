@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -183,7 +184,7 @@ public class SmAlarm extends BroadcastReceiver
 		public void viewConfig (Context context)
 		{
             //Grab our views
-            views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
+            views = new RemoteViews(context.getApplicationContext().getPackageName(), R.layout.widget_layout);
 
             //Setting Title visibility
             //views.setfloat to set text sizes, but cant be set to zero!
@@ -271,7 +272,7 @@ public class SmAlarm extends BroadcastReceiver
         public void helperConfig() {
 
             //Create our Time manager
-            timeMan = new TimeHelper(prefs);
+            timeMan = new TimeHelper(views, prefs);
 
             //Create our Battery Manage
             battMan = new BatteryHelper(views, prefs);
@@ -307,23 +308,17 @@ public class SmAlarm extends BroadcastReceiver
         if (diskMan.ramStatus()) diskMan.getRam(context);
 
         //call netowork methods
-        if (networkMan.typeStatus()) networkMan.getNetworkType(context);
+        if (networkMan.typeStatus() || networkMan.ipStatus()) networkMan.getNetworkType(context);
 
         if (networkMan.downSpeedStatus() || networkMan.upSpeedStatus()) networkMan.getSpeeds();
 
-        //update widget for all sizes
+        //update widget for all size
         AppWidgetManager manager = AppWidgetManager.getInstance(context);
         manager.updateAppWidget(thiswidget, views);
         manager.updateAppWidget(thiswidgetsmall, views);
         manager.updateAppWidget(thiswidgetbig, views);
         manager.updateAppWidget(thiswidgetbigger, views);
         manager.updateAppWidget(thiswidgetsmallest, views);
-    }
-
-    //Our function to return our remote views so that the helpers can edit them
-    //Since java is a pass by reference language
-    public static RemoteViews getRemoteView() {
-        return views;
     }
 
 }

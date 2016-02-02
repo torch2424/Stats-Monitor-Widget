@@ -9,6 +9,7 @@ import android.net.TrafficStats;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.telephony.TelephonyManager;
+import android.text.format.Formatter;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -101,9 +102,14 @@ public class NetworkHelper {
             WifiManager wifiMgr = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
             WifiInfo wifiInfo = wifiMgr.getConnectionInfo();
 
-            views.setTextViewText(R.id.networkType, wifiInfo.getSSID());
+            if(networkTypeView) views.setTextViewText(R.id.networkType, wifiInfo.getSSID());
+
+            if(ipView) {
+                String ip = Formatter.formatIpAddress(wifiInfo.getIpAddress());
+                views.setTextViewText(R.id.ipAddress, "Ip: " + ip);
+            }
         }
-        else {
+        else if(networkTypeView) {
 
             //Check for mobile service
             //need to check for tablets to see if they have telephony
@@ -136,41 +142,7 @@ public class NetworkHelper {
     }
 
     //Method to get our ipv4 adress
-    public void getIp() {
-        views.setTextViewText(R.id.ipAddress, "IP: " + getIPAddress(true));
-    }
-
-    //Ip helper from: http://stackoverflow.com/questions/6064510/how-to-get-ip-address-of-the-device
-    /**
-     * Get IP address from first non-localhost interface
-     * @param ipv4  true=return ipv4, false=return ipv6
-     * @return  address or empty string
-     */
-    public static String getIPAddress(boolean useIPv4) {
-        try {
-            List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
-            for (NetworkInterface intf : interfaces) {
-                List<InetAddress> addrs = Collections.list(intf.getInetAddresses());
-                for (InetAddress addr : addrs) {
-                    if (!addr.isLoopbackAddress()) {
-                        String sAddr = addr.getHostAddress();
-                        //boolean isIPv4 = InetAddressUtils.isIPv4Address(sAddr);
-                        boolean isIPv4 = sAddr.indexOf(':')<0;
-
-                        if (useIPv4) {
-                            if (isIPv4)
-                                return sAddr;
-                        } else {
-                            if (!isIPv4) {
-                                int delim = sAddr.indexOf('%'); // drop ip6 zone suffix
-                                return delim<0 ? sAddr.toUpperCase() : sAddr.substring(0, delim).toUpperCase();
-                            }
-                        }
-                    }
-                }
-            }
-        } catch (Exception ex) { } // for now eat exceptions
-        return "";
+    public void getIp(Context context) {
     }
 
     //method to get network speed

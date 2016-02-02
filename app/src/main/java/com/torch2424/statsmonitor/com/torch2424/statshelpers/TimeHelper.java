@@ -6,7 +6,6 @@ import android.os.SystemClock;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import com.torch2424.statsmonitor.SmAlarm;
 import com.torch2424.statsmonitorwidget.R;
 
 import java.text.SimpleDateFormat;
@@ -18,6 +17,9 @@ import java.util.TimeZone;
  */
 public class TimeHelper {
 
+    //Set our view
+    RemoteViews views;
+
     //Initialize some preference booleans
     boolean shortBool;
     boolean hourFormat;
@@ -27,7 +29,10 @@ public class TimeHelper {
     boolean dateView;
     boolean upTimeView;
 
-    public TimeHelper(SharedPreferences prefs) {
+    public TimeHelper(RemoteViews parentView, SharedPreferences prefs) {
+
+        //Initialize our view
+        views = parentView;
 
         //Grab some preferences
         shortBool = prefs.getBoolean("SHORTDAYS", false);
@@ -38,14 +43,14 @@ public class TimeHelper {
         dateView = prefs.getBoolean("DATE", true);
         upTimeView = prefs.getBoolean("UPTIME", true);
 
-        if (timeView) SmAlarm.getRemoteView().setViewVisibility(R.id.time, View.VISIBLE);
-        else SmAlarm.getRemoteView().setViewVisibility(R.id.time, View.GONE);
+        if (timeView) views.setViewVisibility(R.id.time, View.VISIBLE);
+        else views.setViewVisibility(R.id.time, View.GONE);
 
-        if (dateView) SmAlarm.getRemoteView().setViewVisibility(R.id.date, View.VISIBLE);
-        else SmAlarm.getRemoteView().setViewVisibility(R.id.date, View.GONE);
+        if (dateView) views.setViewVisibility(R.id.date, View.VISIBLE);
+        else views.setViewVisibility(R.id.date, View.GONE);
 
-        if (upTimeView) SmAlarm.getRemoteView().setViewVisibility(R.id.uptime, View.VISIBLE);
-        else SmAlarm.getRemoteView().setViewVisibility(R.id.uptime, View.GONE);
+        if (upTimeView) views.setViewVisibility(R.id.uptime, View.VISIBLE);
+        else views.setViewVisibility(R.id.uptime, View.GONE);
     }
 
     //function for time
@@ -64,8 +69,8 @@ public class TimeHelper {
         else time = new SimpleDateFormat("hh:mm:ss a");
 
         //setting text to time
-        SmAlarm.getRemoteView().setTextViewText(R.id.time, "Time: " + time.format(date));
-        SmAlarm.getRemoteView().setTextViewText(R.id.date, "Date: " + day.format(date));
+        views.setTextViewText(R.id.time, "Time: " + time.format(date));
+        views.setTextViewText(R.id.date, "Date: " + day.format(date));
     }
 
     public void getUptime()
@@ -85,7 +90,7 @@ public class TimeHelper {
 
 
         //setting text to time
-        SmAlarm.getRemoteView().setTextViewText(R.id.uptime, timeString);
+        views.setTextViewText(R.id.uptime, timeString);
     }
 
     //function to return if we are displaying time

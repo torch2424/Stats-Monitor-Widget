@@ -23,7 +23,7 @@
     <string name="external">External Memory</string>
     <string name="ram">Ram</string>
     <string name="networkTitle">Network Title</string>
-    <string name="ipAddress">Ip Address (IPv4)</string>
+    <string name="ipAddress">Ip Address (IPv4, Wifi Only)</string>
     <string name="networkType">Network Name</string>
     <string name="networkUp">Upload Speed</string>
     <string name="networkDown">Download Speed</string>

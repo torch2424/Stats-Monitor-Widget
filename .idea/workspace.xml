@@ -10,19 +10,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15e07a6a-5544-432c-9ee7-241acea28265" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statshelpers/BatteryHelper.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statshelpers/BatteryHelper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statshelpers/CPUHelper.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statshelpers/CPUHelper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/ConfigureWidget.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/ConfigureWidget.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statshelpers/MemoryHelper.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statshelpers/MemoryHelper.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statshelpers/NetworkHelper.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statshelpers/NetworkHelper.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitorwidget/R$id.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitorwidget/R$id.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitorwidget/R$layout.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitorwidget/R$layout.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitorwidget/R$menu.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitorwidget/R$menu.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitorwidget/R$string.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitorwidget/R$string.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitorwidget/R$style.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitorwidget/R$style.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitorwidget/R$xml.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitorwidget/R$xml.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitorwidget/R.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitorwidget/R.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderBig.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderBig.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderBigger.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderBigger.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statshelpers/ProviderHelper$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statshelpers/ProviderHelper$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statshelpers/ProviderHelper$2$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statshelpers/ProviderHelper$2$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statshelpers/ProviderHelper$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statshelpers/ProviderHelper$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statshelpers/ProviderHelper.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statshelpers/ProviderHelper.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderSmall.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderSmall.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/SmAlarm.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/SmAlarm.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statsproviders/SmProvider.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statsproviders/SmProvider.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statsproviders/SuperSmall.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statsproviders/SuperSmall.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statshelpers/TimeHelper.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/torch2424/statsmonitor/com/torch2424/statshelpers/TimeHelper.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" />
@@ -30,15 +28,17 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/dex/debug/classes.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/dex/debug/classes.dex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/resources/resources-debug.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/resources/resources-debug.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/NetworkHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/NetworkHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/torch2424/statsmonitorwidget/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/torch2424/statsmonitorwidget/R.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/debug/layout/configure_widget.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/debug/layout/configure_widget.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeResources/debug/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeResources/debug/merger.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/debug/values/values.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/debug/values/values.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/debug/layout/widget_layout.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/debug/layout/widget_layout.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderBig.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderBig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderBigger.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderBigger.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/ProviderHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/ProviderHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderSmall.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderSmall.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/SmAlarm.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/SmAlarm.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/SmProvider.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/SmProvider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/SuperSmall.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/SuperSmall.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/TimeHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/TimeHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Stats-Monitor-Widget.iws" />
@@ -85,25 +85,78 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/SmAlarm.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="244" column="41" selection-start-line="244" selection-start-column="41" selection-end-line="244" selection-end-column="41" />
+              <caret line="289" column="45" selection-start-line="289" selection-start-column="45" selection-end-line="289" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#12199#12200#0" expanded="true" />
-                <element signature="e#12227#12228#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NetworkHelper.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ProviderHelper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/ProviderHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="52" column="31" selection-start-line="52" selection-start-column="31" selection-end-line="52" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConfigureWidget.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/ConfigureWidget.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="301" column="48" selection-start-line="301" selection-start-column="48" selection-end-line="301" selection-end-column="48" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="configure_widget.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/configure_widget.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="10.027778">
+              <caret line="125" column="47" selection-start-line="125" selection-start-column="47" selection-end-line="125" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="widget_layout.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/widget_layout.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="151" column="30" selection-start-line="151" selection-start-column="30" selection-end-line="151" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.38019803">
+              <caret line="25" column="56" selection-start-line="25" selection-start-column="56" selection-end-line="25" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NetworkHelper.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/NetworkHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39888683">
-              <caret line="139" column="72" selection-start-line="139" selection-start-column="72" selection-end-line="139" selection-end-column="72" />
-              <folding>
-                <element signature="e#4582#4583#0" expanded="true" />
-                <element signature="e#4664#4665#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0">
+              <caret line="111" column="31" selection-start-line="111" selection-start-column="31" selection-end-line="111" selection-end-column="31" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1370,21 +1423,21 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/CPUHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/TextSizeChooser.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/MemoryHelper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/ColorChooser.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/ColorBackChooser.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/configure_widget.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/widget_layout.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/ConfigureWidget.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/TimeHelper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderBigger.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderBig.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderSmall.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/SmProvider.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/SuperSmall.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/ProviderHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/TimeHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/ColorChooser.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/ColorBackChooser.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderBigger.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/configure_widget.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/widget_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/ConfigureWidget.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/SmAlarm.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/NetworkHelper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/SmAlarm.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/ProviderHelper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       </list>
     </option>
   </component>
@@ -1831,8 +1884,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#12199#12200#0" expanded="true" />
-            <element signature="e#12227#12228#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1850,8 +1901,6 @@
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#12199#12200#0" expanded="true" />
-            <element signature="e#12227#12228#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1903,8 +1952,6 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#12199#12200#0" expanded="true" />
-            <element signature="e#12227#12228#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1942,8 +1989,6 @@
           <caret line="613" column="9" selection-start-line="613" selection-start-column="9" selection-end-line="613" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#12199#12200#0" expanded="true" />
-            <element signature="e#12227#12228#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1974,8 +2019,6 @@
           <caret line="169" column="0" selection-start-line="169" selection-start-column="0" selection-end-line="169" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#12199#12200#0" expanded="true" />
-            <element signature="e#12227#12228#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2003,8 +2046,6 @@
           <caret line="1086" column="21" selection-start-line="1086" selection-start-column="21" selection-end-line="1086" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#12199#12200#0" expanded="true" />
-            <element signature="e#12227#12228#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2029,8 +2070,6 @@
           <caret line="1129" column="54" selection-start-line="1129" selection-start-column="54" selection-end-line="1129" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#12199#12200#0" expanded="true" />
-            <element signature="e#12227#12228#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2121,38 +2160,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderSmall.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="32" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderBig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="36" selection-start-line="37" selection-start-column="36" selection-end-line="37" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/SuperSmall.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="32" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/SmProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71875">
-          <caret line="37" column="32" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/advanced_layout.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -2164,36 +2171,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/ProviderHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="56" column="31" selection-start-line="56" selection-start-column="31" selection-end-line="56" selection-end-column="31" />
-          <folding>
-            <element signature="e#1541#2336#0" expanded="true" />
-            <element signature="e#2335#2336#0" expanded="true" />
-            <element signature="e#3157#4202#0" expanded="true" />
-            <element signature="e#3904#4153#0" expanded="true" />
-            <element signature="e#4152#4153#0" expanded="true" />
-            <element signature="e#4201#4202#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/CPUHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="48" column="58" selection-start-line="48" selection-start-column="58" selection-end-line="48" selection-end-column="58" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/TimeHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="87" column="31" selection-start-line="87" selection-start-column="31" selection-end-line="87" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2213,19 +2195,89 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/TimeHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43413728">
+          <caret line="31" column="22" selection-start-line="31" selection-start-column="22" selection-end-line="31" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderBigger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53246754">
-          <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="4" selection-start-line="17" selection-start-column="4" selection-end-line="32" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderBig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28712872">
-          <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.7328386">
+          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderSmall.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/SmProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/SuperSmall.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7328386">
+          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/NetworkHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="111" column="31" selection-start-line="111" selection-start-column="31" selection-end-line="111" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/SmAlarm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="289" column="45" selection-start-line="289" selection-start-column="45" selection-end-line="289" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/ProviderHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="31" selection-start-line="52" selection-start-column="31" selection-end-line="52" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/ConfigureWidget.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="301" column="48" selection-start-line="301" selection-start-column="48" selection-end-line="301" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2234,40 +2286,9 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.5">
+        <state vertical-scroll-proportion="10.027778">
           <caret line="125" column="47" selection-start-line="125" selection-start-column="47" selection-end-line="125" selection-end-column="47" />
-          <folding>
-            <element signature="e#671#692#0" expanded="true" />
-            <element signature="e#892#911#0" expanded="true" />
-            <element signature="e#1111#1125#0" expanded="true" />
-            <element signature="e#1327#1341#0" expanded="true" />
-            <element signature="e#1546#1567#0" expanded="true" />
-            <element signature="e#1773#1789#0" expanded="true" />
-            <element signature="e#2003#2020#0" expanded="true" />
-            <element signature="e#2225#2246#0" expanded="true" />
-            <element signature="e#2721#2734#0" expanded="true" />
-            <element signature="e#2946#2967#0" expanded="true" />
-            <element signature="e#3175#3198#0" expanded="true" />
-            <element signature="e#3406#3419#0" expanded="true" />
-            <element signature="e#3636#3658#0" expanded="true" />
-            <element signature="e#3870#3891#0" expanded="true" />
-            <element signature="e#4113#4132#0" expanded="true" />
-            <element signature="e#4342#4361#0" expanded="true" />
-            <element signature="e#4573#4594#0" expanded="true" />
-            <element signature="e#4788#4806#0" expanded="true" />
-            <element signature="e#5044#5086#0" expanded="true" />
-            <element signature="e#5319#5339#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/ConfigureWidget.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="10.051948">
-          <caret line="301" column="48" selection-start-line="301" selection-start-column="48" selection-end-line="301" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2276,32 +2297,17 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.5">
+        <state vertical-scroll-proportion="0.0">
           <caret line="151" column="30" selection-start-line="151" selection-start-column="30" selection-end-line="151" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/SmAlarm.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="244" column="41" selection-start-line="244" selection-start-column="41" selection-end-line="244" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#12199#12200#0" expanded="true" />
-            <element signature="e#12227#12228#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/NetworkHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39888683">
-          <caret line="139" column="72" selection-start-line="139" selection-start-column="72" selection-end-line="139" selection-end-column="72" />
-          <folding>
-            <element signature="e#4582#4583#0" expanded="true" />
-            <element signature="e#4664#4665#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.38019803">
+          <caret line="25" column="56" selection-start-line="25" selection-start-column="56" selection-end-line="25" selection-end-column="56" />
+          <folding />
         </state>
       </provider>
     </entry>
