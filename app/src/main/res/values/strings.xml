@@ -44,7 +44,7 @@
     <string name="textRight">Align text to the right</string>
     <string name="textCenter">Align text to the center</string>
     <string name="multiCPU">Multiple CPU support (Creates a CPU section)</string>
-    <string name="shortDays">Abbreviate Date Days, and Months (Mon, Tue, etc.../Jan, Febm etc...)</string>
+    <string name="shortDays">Abbreviate Date Days, and Months (Mon, Tue, etc.../Jan, Feb etc...)</string>
     <string name="kilobyteSpeed">Network speed in Kilobytes per second</string>
     <string name="Network">Network</string>
     <string name="oneSec">Update every second (Network 3s)</string>
