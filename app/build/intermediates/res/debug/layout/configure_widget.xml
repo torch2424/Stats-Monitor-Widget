@@ -120,6 +120,13 @@
         android:layout_height="wrap_content"
         android:textSize="25sp"
         android:text="@string/networkType" />
+
+        <CheckBox
+            android:id="@+id/checkNetIp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text="@string/ipAddress" />
         
         <CheckBox
         android:id="@+id/checkNetUp"

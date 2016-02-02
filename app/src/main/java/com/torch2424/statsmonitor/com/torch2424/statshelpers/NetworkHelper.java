@@ -14,7 +14,12 @@ import android.widget.RemoteViews;
 
 import com.torch2424.statsmonitorwidget.R;
 
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.text.DecimalFormat;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by torch2424 on 1/25/16.
@@ -37,6 +42,7 @@ public class NetworkHelper {
 
     //View booleans
     boolean networkTypeView;
+    boolean ipView;
     boolean upSpeedView;
     boolean downSpeedView;
 
@@ -58,11 +64,15 @@ public class NetworkHelper {
 
         //Set view
         networkTypeView = prefs.getBoolean("NETWORKTYPE", true);
+        ipView = prefs.getBoolean("IPADDRESS", true);
         upSpeedView = prefs.getBoolean("NETWORKUP", true);
         downSpeedView = prefs.getBoolean("NETWORKDOWN", true);
 
         if(networkTypeView) views.setViewVisibility(R.id.networkType, View.VISIBLE);
         else views.setViewVisibility(R.id.networkType, View.GONE);
+
+        if(ipView) views.setViewVisibility(R.id.ipAddress, View.VISIBLE);
+        else views.setViewVisibility(R.id.ipAddress, View.GONE);
 
         if(upSpeedView) views.setViewVisibility(R.id.networkUp, View.VISIBLE);
         else views.setViewVisibility(R.id.networkUp, View.GONE);
@@ -123,6 +133,44 @@ public class NetworkHelper {
                 views.setTextViewText(R.id.networkType, "No Telephony found!");
             }
         }
+    }
+
+    //Method to get our ipv4 adress
+    public void getIp() {
+        views.setTextViewText(R.id.ipAddress, "IP: " + getIPAddress(true));
+    }
+
+    //Ip helper from: http://stackoverflow.com/questions/6064510/how-to-get-ip-address-of-the-device
+    /**
+     * Get IP address from first non-localhost interface
+     * @param ipv4  true=return ipv4, false=return ipv6
+     * @return  address or empty string
+     */
+    public static String getIPAddress(boolean useIPv4) {
+        try {
+            List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
+            for (NetworkInterface intf : interfaces) {
+                List<InetAddress> addrs = Collections.list(intf.getInetAddresses());
+                for (InetAddress addr : addrs) {
+                    if (!addr.isLoopbackAddress()) {
+                        String sAddr = addr.getHostAddress();
+                        //boolean isIPv4 = InetAddressUtils.isIPv4Address(sAddr);
+                        boolean isIPv4 = sAddr.indexOf(':')<0;
+
+                        if (useIPv4) {
+                            if (isIPv4)
+                                return sAddr;
+                        } else {
+                            if (!isIPv4) {
+                                int delim = sAddr.indexOf('%'); // drop ip6 zone suffix
+                                return delim<0 ? sAddr.toUpperCase() : sAddr.substring(0, delim).toUpperCase();
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Exception ex) { } // for now eat exceptions
+        return "";
     }
 
     //method to get network speed
@@ -198,6 +246,11 @@ public class NetworkHelper {
     //Function to return view Status
     public boolean typeStatus() {
         if(networkTypeView) return true;
+        else return false;
+    }
+
+    public boolean ipStatus() {
+        if(ipView) return true;
         else return false;
     }
 

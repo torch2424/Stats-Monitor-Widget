@@ -57,6 +57,7 @@
     <string name="externalText">If external memory is not working for you, enter the path to it here</string>
     <string name="fiveSec">Update every 5 seconds (Network 15s)</string>
     <string name="hourFormat">24 hour time format</string>
+    <string name="ipAddress">Ip Address (IPv4)</string>
     <string name="kilobyteSpeed">Network speed in Kilobytes per second</string>
     <string name="loading">Loading...</string>
     <string name="memoryGB">Display storage memory in GB rather than MB</string>
