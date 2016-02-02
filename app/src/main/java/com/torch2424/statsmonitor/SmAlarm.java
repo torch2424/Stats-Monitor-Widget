@@ -224,6 +224,7 @@ public class SmAlarm extends BroadcastReceiver
 			views.setTextColor(R.id.externalTitle, textColor);
 			views.setTextColor(R.id.ram, textColor);
 			views.setTextColor(R.id.networkTitle, textColor);
+            views.setTextColor(R.id.ipAddress, textColor);
 			views.setTextColor(R.id.networkUp, textColor);
 			views.setTextColor(R.id.networkDown, textColor);
 			views.setTextColor(R.id.networkType, textColor);
@@ -241,6 +242,7 @@ public class SmAlarm extends BroadcastReceiver
 			views.setFloat(R.id.externalTitle, "setTextSize", textSize);
 			views.setFloat(R.id.ram, "setTextSize", textSize);
 			views.setFloat(R.id.networkType, "setTextSize", textSize);
+            views.setFloat(R.id.ipAddress, "setTextSize", textSize);
 			views.setFloat(R.id.networkUp, "setTextSize", textSize);
 			views.setFloat(R.id.networkDown, "setTextSize", textSize);
 

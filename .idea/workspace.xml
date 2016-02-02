@@ -10,7 +10,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="15e07a6a-5544-432c-9ee7-241acea28265" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderBigger.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderBigger.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug-unaligned.apk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/ConfigureWidget.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/ConfigureWidget.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/SmAlarm.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/SmAlarm.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/configure_widget.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/configure_widget.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/widget_layout.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/widget_layout.xml" />
     </list>
     <ignored path="Stats-Monitor-Widget.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -56,53 +66,68 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/SmAlarm.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="157" column="88" selection-start-line="157" selection-start-column="88" selection-end-line="157" selection-end-column="88" />
+              <caret line="244" column="41" selection-start-line="244" selection-start-column="41" selection-end-line="244" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#12071#12072#0" expanded="true" />
-                <element signature="e#12099#12100#0" expanded="true" />
+                <element signature="e#12199#12200#0" expanded="true" />
+                <element signature="e#12227#12228#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <file leaf-file-name="widget_layout.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/widget_layout.xml">
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.0571427">
-              <caret line="57" column="4" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="4" />
+            <state vertical-scroll-proportion="-4.5">
+              <caret line="151" column="30" selection-start-line="151" selection-start-column="30" selection-end-line="151" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProviderBigger.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderBigger.java">
+      <file leaf-file-name="NetworkHelper.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/NetworkHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.53246754">
-              <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+            <state vertical-scroll-proportion="-0.46753246">
+              <caret line="112" column="79" selection-start-line="112" selection-start-column="79" selection-end-line="112" selection-end-column="79" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ColorBackChooser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/ColorBackChooser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="43" column="41" selection-start-line="43" selection-start-column="41" selection-end-line="43" selection-end-column="41" />
-              <folding />
-            </state>
+      <file leaf-file-name="configure_widget.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/configure_widget.xml">
+          <provider editor-type-id="android-designer">
+            <state />
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TimeHelper.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/TimeHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="87" column="31" selection-start-line="87" selection-start-column="31" selection-end-line="87" selection-end-column="31" />
+            <state vertical-scroll-proportion="-10.5">
+              <caret line="125" column="47" selection-start-line="125" selection-start-column="47" selection-end-line="125" selection-end-column="47" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#671#692#0" expanded="true" />
+                <element signature="e#892#911#0" expanded="true" />
+                <element signature="e#1111#1125#0" expanded="true" />
+                <element signature="e#1327#1341#0" expanded="true" />
+                <element signature="e#1546#1567#0" expanded="true" />
+                <element signature="e#1773#1789#0" expanded="true" />
+                <element signature="e#2003#2020#0" expanded="true" />
+                <element signature="e#2225#2246#0" expanded="true" />
+                <element signature="e#2721#2734#0" expanded="true" />
+                <element signature="e#2946#2967#0" expanded="true" />
+                <element signature="e#3175#3198#0" expanded="true" />
+                <element signature="e#3406#3419#0" expanded="true" />
+                <element signature="e#3636#3658#0" expanded="true" />
+                <element signature="e#3870#3891#0" expanded="true" />
+                <element signature="e#4113#4132#0" expanded="true" />
+                <element signature="e#4342#4361#0" expanded="true" />
+                <element signature="e#4573#4594#0" expanded="true" />
+                <element signature="e#4788#4806#0" expanded="true" />
+                <element signature="e#5044#5086#0" expanded="true" />
+                <element signature="e#5319#5339#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1362,17 +1387,14 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/simplemonitor/SmProvider.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/simplemonitor/ProviderBigger.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/simplemonitor/ProviderHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/configure_widget.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/simplemonitor/ConfigureWidget.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/simplemonitor/AdvancedSettings.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/simplemonitor/DiskSpace.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/simplemonitor/SmAlarm.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/BatteryHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/CPUHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/ConfigureWidget.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/NetworkHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/TextSizeChooser.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/widget_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/MemoryHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderBig.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderSmall.java" />
@@ -1382,9 +1404,12 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/TimeHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/ColorChooser.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/ColorBackChooser.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/SmAlarm.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderBigger.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/configure_widget.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/widget_layout.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/ConfigureWidget.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/SmAlarm.java" />
       </list>
     </option>
   </component>
@@ -1831,8 +1856,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#12071#12072#0" expanded="true" />
-            <element signature="e#12099#12100#0" expanded="true" />
+            <element signature="e#12199#12200#0" expanded="true" />
+            <element signature="e#12227#12228#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1850,8 +1875,8 @@
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#12071#12072#0" expanded="true" />
-            <element signature="e#12099#12100#0" expanded="true" />
+            <element signature="e#12199#12200#0" expanded="true" />
+            <element signature="e#12227#12228#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1903,8 +1928,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#12071#12072#0" expanded="true" />
-            <element signature="e#12099#12100#0" expanded="true" />
+            <element signature="e#12199#12200#0" expanded="true" />
+            <element signature="e#12227#12228#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1942,8 +1967,8 @@
           <caret line="613" column="9" selection-start-line="613" selection-start-column="9" selection-end-line="613" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#12071#12072#0" expanded="true" />
-            <element signature="e#12099#12100#0" expanded="true" />
+            <element signature="e#12199#12200#0" expanded="true" />
+            <element signature="e#12227#12228#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1974,8 +1999,8 @@
           <caret line="169" column="0" selection-start-line="169" selection-start-column="0" selection-end-line="169" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#12071#12072#0" expanded="true" />
-            <element signature="e#12099#12100#0" expanded="true" />
+            <element signature="e#12199#12200#0" expanded="true" />
+            <element signature="e#12227#12228#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2003,8 +2028,8 @@
           <caret line="1086" column="21" selection-start-line="1086" selection-start-column="21" selection-end-line="1086" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#12071#12072#0" expanded="true" />
-            <element signature="e#12099#12100#0" expanded="true" />
+            <element signature="e#12199#12200#0" expanded="true" />
+            <element signature="e#12227#12228#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2029,8 +2054,8 @@
           <caret line="1129" column="54" selection-start-line="1129" selection-start-column="54" selection-end-line="1129" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#12071#12072#0" expanded="true" />
-            <element signature="e#12099#12100#0" expanded="true" />
+            <element signature="e#12199#12200#0" expanded="true" />
+            <element signature="e#12227#12228#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2093,20 +2118,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/ConfigureWidget.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="296" column="24" selection-start-line="296" selection-start-column="24" selection-end-line="296" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/NetworkHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="112" column="79" selection-start-line="112" selection-start-column="79" selection-end-line="112" selection-end-column="79" />
         </state>
       </provider>
     </entry>
@@ -2178,28 +2189,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/configure_widget.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="98" column="44" selection-start-line="98" selection-start-column="44" selection-end-line="98" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/widget_layout.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.8588469">
-          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/ProviderHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2249,30 +2238,91 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/SmAlarm.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderBigger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="157" column="88" selection-start-line="157" selection-start-column="88" selection-end-line="157" selection-end-column="88" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#12071#12072#0" expanded="true" />
-            <element signature="e#12099#12100#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.53246754">
+          <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.0571427">
-          <caret line="57" column="4" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="4" />
+        <state vertical-scroll-proportion="0.28712872">
+          <caret line="25" column="27" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statsproviders/ProviderBigger.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/configure_widget.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53246754">
-          <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+        <state vertical-scroll-proportion="-10.5">
+          <caret line="125" column="47" selection-start-line="125" selection-start-column="47" selection-end-line="125" selection-end-column="47" />
+          <folding>
+            <element signature="e#671#692#0" expanded="true" />
+            <element signature="e#892#911#0" expanded="true" />
+            <element signature="e#1111#1125#0" expanded="true" />
+            <element signature="e#1327#1341#0" expanded="true" />
+            <element signature="e#1546#1567#0" expanded="true" />
+            <element signature="e#1773#1789#0" expanded="true" />
+            <element signature="e#2003#2020#0" expanded="true" />
+            <element signature="e#2225#2246#0" expanded="true" />
+            <element signature="e#2721#2734#0" expanded="true" />
+            <element signature="e#2946#2967#0" expanded="true" />
+            <element signature="e#3175#3198#0" expanded="true" />
+            <element signature="e#3406#3419#0" expanded="true" />
+            <element signature="e#3636#3658#0" expanded="true" />
+            <element signature="e#3870#3891#0" expanded="true" />
+            <element signature="e#4113#4132#0" expanded="true" />
+            <element signature="e#4342#4361#0" expanded="true" />
+            <element signature="e#4573#4594#0" expanded="true" />
+            <element signature="e#4788#4806#0" expanded="true" />
+            <element signature="e#5044#5086#0" expanded="true" />
+            <element signature="e#5319#5339#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/ConfigureWidget.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="10.051948">
+          <caret line="301" column="48" selection-start-line="301" selection-start-column="48" selection-end-line="301" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/SmAlarm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="244" column="41" selection-start-line="244" selection-start-column="41" selection-end-line="244" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#12199#12200#0" expanded="true" />
+            <element signature="e#12227#12228#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/widget_layout.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.5">
+          <caret line="151" column="30" selection-start-line="151" selection-start-column="30" selection-end-line="151" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/torch2424/statsmonitor/com/torch2424/statshelpers/NetworkHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.46753246">
+          <caret line="112" column="79" selection-start-line="112" selection-start-column="79" selection-end-line="112" selection-end-column="79" />
           <folding />
         </state>
       </provider>

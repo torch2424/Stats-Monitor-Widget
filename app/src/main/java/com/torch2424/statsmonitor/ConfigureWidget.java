@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.torch2424.statsmonitorwidget.R;
 
-public class ConfigureWidget extends Activity 
+public class ConfigureWidget extends Activity
 {
 	//initializing widget id and context
 	int widgetID;
@@ -32,6 +32,7 @@ public class ConfigureWidget extends Activity
 	CheckBox checkMemory;
 	CheckBox checkRam;
 	CheckBox checkNetworkTitle;
+    CheckBox checkNetworkIp;
 	CheckBox checkNetworkType;
 	CheckBox checkNetworkUp;
 	CheckBox checkNetworkDown;
@@ -47,13 +48,14 @@ public class ConfigureWidget extends Activity
 	boolean memory;
 	boolean ram;
 	boolean networkTitle;
+    boolean ipAddress;
 	boolean networkType;
 	boolean networkUp;
 	boolean networkDown;
-	
+
 	//when activity is started
 	@Override
-	protected void onCreate(Bundle savedInstanceState) 
+	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.configure_widget);
@@ -66,13 +68,13 @@ public class ConfigureWidget extends Activity
 		Bundle extras = intent.getExtras();
 		if (extras != null) {
 		    widgetID = extras.getInt(
-		            AppWidgetManager.EXTRA_APPWIDGET_ID, 
+		            AppWidgetManager.EXTRA_APPWIDGET_ID,
 		            AppWidgetManager.INVALID_APPWIDGET_ID);
 		}
 
 		//Tell the app to stop updating
 		SmAlarm.setUpdating(false);
-		
+
 		//initialize checkboxes
 		checkTimeTitle = (CheckBox) findViewById(R.id.checkTimeTitle);
 		checkTime = (CheckBox) findViewById(R.id.checkTime);
@@ -87,10 +89,11 @@ public class ConfigureWidget extends Activity
 		checkMemory = (CheckBox) findViewById(R.id.checkMemory);
 		checkRam = (CheckBox) findViewById(R.id.checkRam);
 		checkNetworkTitle = (CheckBox) findViewById(R.id.checkNetworkTitle);
+        checkNetworkIp = (CheckBox) findViewById(R.id.checkNetIp);
 		checkNetworkType = (CheckBox) findViewById(R.id.checkNetType);
 		checkNetworkUp = (CheckBox) findViewById(R.id.checkNetUp);
 		checkNetworkDown = (CheckBox) findViewById(R.id.checkNetDown);
-		
+
 		//get preferences for each box to set checked or not
 		SharedPreferences prefs = context.getSharedPreferences("MyPrefs", 0);
 		timeTitle = prefs.getBoolean("TIMETITLE", true);
@@ -106,10 +109,11 @@ public class ConfigureWidget extends Activity
 		memory = prefs.getBoolean("MEMORY", true);
 		ram = prefs.getBoolean("RAM", true);
 		networkTitle = prefs.getBoolean("NETWORKTITLE", true);
+        ipAddress = prefs.getBoolean("IPADDRESS", true);
 		networkType = prefs.getBoolean("NETWORKTYPE", true);
 		networkUp = prefs.getBoolean("NETWORKUP", true);
 		networkDown = prefs.getBoolean("NETWORKDOWN", true);
-		
+
 		if(timeTitle == true)
 		{
 			checkTimeTitle.setChecked(true);
@@ -163,7 +167,7 @@ public class ConfigureWidget extends Activity
 		{
 			checkChange.setChecked(true);
 		}
-		
+
 		else
 		{
 			checkChange.setChecked(false);
@@ -209,7 +213,7 @@ public class ConfigureWidget extends Activity
 		{
 			checkRam.setChecked(false);
 		}
-		
+
 		if(networkTitle)
 		{
 			checkNetworkTitle.setChecked(true);
@@ -226,6 +230,10 @@ public class ConfigureWidget extends Activity
 		{
 			checkNetworkType.setChecked(false);
 		}
+
+        if(ipAddress) checkNetworkIp.setChecked(true);
+        else checkNetworkIp.setChecked(false);
+
 		if(networkUp)
 		{
 			checkNetworkUp.setChecked(true);
@@ -242,16 +250,16 @@ public class ConfigureWidget extends Activity
 		{
 			checkNetworkDown.setChecked(false);
 		}
-		
-		
+
+
 		if(Environment.getExternalStorageDirectory().exists() == false)
     	{
 			Toast.makeText(this, "No external storage found, please uncheck it!", Toast.LENGTH_LONG).show();
     	}
-		
+
 	}
 
-	
+
 	public void saveConfig(View view)
 	{
 		//getting every config and putting it in an boolean
@@ -269,10 +277,11 @@ public class ConfigureWidget extends Activity
 		ram = checkRam.isChecked();
 		networkTitle = checkNetworkTitle.isChecked();
 		networkType = checkNetworkType.isChecked();
+        ipAddress = checkNetworkIp.isChecked();
 		networkUp = checkNetworkUp.isChecked();
 		networkDown = checkNetworkDown.isChecked();
-		
-		
+
+
 		//used shared preferences to transfer data
 		SharedPreferences prefs = context.getSharedPreferences("MyPrefs", 0);
 		Editor editor = prefs.edit();
@@ -290,6 +299,7 @@ public class ConfigureWidget extends Activity
 		editor.putBoolean("RAM", ram);
 		editor.putBoolean("NETWORKTITLE", networkTitle);
 		editor.putBoolean("NETWORKTYPE", networkType);
+        editor.putBoolean("IPADDRESS", ipAddress);
 		editor.putBoolean("NETWORKUP", networkUp);
 		editor.putBoolean("NETWORKDOWN", networkDown);
 
@@ -308,24 +318,24 @@ public class ConfigureWidget extends Activity
 		setResult(RESULT_OK, resultValue);
 		Toast.makeText(this, "Widget Saved! Thank you for using Stats Monitor", Toast.LENGTH_LONG).show();
 		finish();
-				
-		
+
+
 	}
-	
+
 	public void TextBackSettings (View view)
 	{
 		Intent TextBackSettings = new Intent(ConfigureWidget.this, TextBackSettings.class);
 		startActivity(TextBackSettings);
 	}
-	
+
 	public void advancedSettings(View view)
 	{
 		Intent advanced = new Intent(ConfigureWidget.this, AdvancedSettings.class);
 		startActivity(advanced);
 	}
-	
+
 	@Override
-	public void onBackPressed() 
+	public void onBackPressed()
 	{
         //Tell the app to stop updating
         SmAlarm.setUpdating(true);
@@ -333,7 +343,7 @@ public class ConfigureWidget extends Activity
         //Closes the app
         finish();
 	}
-	
-	
+
+
 
 }
