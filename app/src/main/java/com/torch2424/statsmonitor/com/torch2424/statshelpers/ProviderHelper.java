@@ -58,7 +58,7 @@ public class ProviderHelper {
 
                 //Send the broadcast to the pending intent
                 try {
-                    updateIntent.send();
+                    if(!ProviderHelper.isQuitting())updateIntent.send();
                 } catch (PendingIntent.CanceledException e) {
                     Log.d("DEBUG", "PENDING ERROR");
                 }
@@ -118,9 +118,20 @@ public class ProviderHelper {
                 }
                 else if (strAction.equals(Intent.ACTION_SCREEN_ON)) {
 
-                    //Start updating again
-                    quit = false;
-                    handler.post(runUpdate);
+                    //First make sure there aren't any other stray runnables out there
+                    handler.removeCallbacks(runUpdate);
+                    quit = true;
+
+                    //Start updating again, after the above has been assured
+                    Handler timeout = new Handler();
+                    timeout.postDelayed(new Runnable() {
+
+                        public void run() {
+                            //Update once more
+                            quit=false;
+                            handler.post(runUpdate);
+                        }
+                    }, 250);
                 }
             }
         };
