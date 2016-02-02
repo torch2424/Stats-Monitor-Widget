@@ -33,11 +33,6 @@ public class ProviderBigger extends AppWidgetProvider
         helper.callAlarm(pending, context);
     }
 
-    public void onUpdate (Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        Log.d("HELLO", "Hello!");
-    }
-
-
     public void onDisabled(Context context)
     {
         //Stop the Handler

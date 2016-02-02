@@ -90,7 +90,7 @@
     <string name="ram">Ram</string>
     <string name="ramGB">Display RAM memory in GB rather than MB</string>
     <string name="saveConfig">Save Configurations</string>
-    <string name="shortDays">Abbreviate Date Days, and Months (Mon, Tue, etc.../Jan, Febm etc...)</string>
+    <string name="shortDays">Abbreviate Date Days, and Months (Mon, Tue, etc.../Jan, Feb etc...)</string>
     <string name="sizeFour">Stats Monitor 2x4</string>
     <string name="sizeOne">Stats Monitor 2x1</string>
     <string name="sizeSmall">Stats Monitor 1x1</string>
