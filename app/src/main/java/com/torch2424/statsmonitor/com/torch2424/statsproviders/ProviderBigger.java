@@ -1,6 +1,7 @@
 package com.torch2424.statsmonitor.com.torch2424.statsproviders;
 
 import android.app.PendingIntent;
+import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
@@ -30,6 +31,10 @@ public class ProviderBigger extends AppWidgetProvider
 
         //Use the helper to call the alarm through the runnable
         helper.callAlarm(pending, context);
+    }
+
+    public void onUpdate (Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        Log.d("HELLO", "Hello!");
     }
 
 

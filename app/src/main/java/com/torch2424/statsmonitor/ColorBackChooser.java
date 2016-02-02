@@ -41,7 +41,7 @@ public class ColorBackChooser extends Activity
 				    	//getting the selected color
 				    	 String  selectedColor  = (String) listView.getItemAtPosition(position);
 				    	 //create color
-				    	 int backColor = Color.TRANSPARENT;
+				    	 int backColor = Color.argb(128, 00, 00, 00);
 				    	 //creating preferences
 				    	 SharedPreferences prefs = getSharedPreferences("MyPrefs", 0);
 				 		Editor editor = prefs.edit();

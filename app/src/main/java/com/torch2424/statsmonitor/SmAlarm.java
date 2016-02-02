@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -163,10 +162,10 @@ public class SmAlarm extends BroadcastReceiver
 			boolMemoryTitle = prefs.getBoolean("MEMORYTITLE", true);
 			boolNetworkTitle = prefs.getBoolean("NETWORKTITLE", true);
 
-			//default widget textcolor is LTGRAY
+			//default widget textcolor is White
 			textColor = prefs.getInt("TEXTCOLOR", Color.LTGRAY);
-			//default background is transparent
-			backColor = prefs.getInt("BACKCOLOR", Color.TRANSPARENT);
+			//default background is 50% transparent
+			backColor = prefs.getInt("BACKCOLOR", Color.argb(128, 00, 00, 00));
 
 			//text sizes
 			textSize = prefs.getInt("TEXTSIZE", 12);
@@ -270,7 +269,7 @@ public class SmAlarm extends BroadcastReceiver
         public void helperConfig() {
 
             //Create our Time manager
-            timeMan = new TimeHelper(views, prefs);
+            timeMan = new TimeHelper(prefs);
 
             //Create our Battery Manage
             battMan = new BatteryHelper(views, prefs);
@@ -317,6 +316,12 @@ public class SmAlarm extends BroadcastReceiver
         manager.updateAppWidget(thiswidgetbig, views);
         manager.updateAppWidget(thiswidgetbigger, views);
         manager.updateAppWidget(thiswidgetsmallest, views);
+    }
+
+    //Our function to return our remote views so that the helpers can edit them
+    //Since java is a pass by reference language
+    public static RemoteViews getRemoteView() {
+        return views;
     }
 
 }

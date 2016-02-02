@@ -24,8 +24,8 @@ public class ColorChooser extends Activity
 		//get listview
 		final ListView listView = (ListView) findViewById(R.id.listView);
 		//create string array with which colors I want, can add more colors by finding their hex values
-		String [] colorArray = {"Black", "Blue", "Dark Gray", "Gray", "Green", "Light Gray", "Red", 
-				"White", "Yellow", "Magenta", "Cyan", "Pink", "Purple", "Orange", "Maroon", "Gold", 
+		String [] colorArray = {"White", "Black", "Blue", "Dark Gray", "Gray", "Green", "Light Gray", "Red",
+				"Yellow", "Magenta", "Cyan", "Pink", "Purple", "Orange", "Maroon", "Gold",
 				"Forest Green", "Turquoise", "Sky Blue", "Indigo", "Dark Violet", "Chocolate", "Slate Gray"};
 		//creating array adapter for listview
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, colorArray);		
@@ -38,7 +38,7 @@ public class ColorChooser extends Activity
 		    	//getting the selected color
 		    	 String  selectedColor  = (String) listView.getItemAtPosition(position);
 		    	 //create color
-		    	 int textColor = Color.LTGRAY;
+		    	 int textColor = Color.WHITE;
 		    	 //creating preferences
 		    	 SharedPreferences prefs = getSharedPreferences("MyPrefs", 0);
 		 		Editor editor = prefs.edit();
