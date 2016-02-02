@@ -56,8 +56,6 @@ public class ProviderHelper {
          runUpdate = new Runnable() {
             public void run() {
 
-                Log.d("Running!", "Run");
-
                 //Send the broadcast to the pending intent
                 try {
                     updateIntent.send();
@@ -66,7 +64,6 @@ public class ProviderHelper {
                 }
 
                 //Quit the handler
-                Log.d("Quitting?", Boolean.toString(ProviderHelper.isQuitting()));
                 if(ProviderHelper.isQuitting()) {
 
                     //Remove all pending callbacks, and then return
@@ -95,6 +92,7 @@ public class ProviderHelper {
 
     }
 
+    //Need a static function to check our quitting status for the runnable
     public static boolean isQuitting() {
         return quit;
     }
