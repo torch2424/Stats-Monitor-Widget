@@ -1,8 +1,0 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.torch2424.statsmonitorwidget.TextSizeChooser" >
-
-
-</menu>
-<!-- From: file:/home/torch2424/Source/Stats-Monitor-Widget/app/src/main/res/menu/text_size_chooser.xml -->
