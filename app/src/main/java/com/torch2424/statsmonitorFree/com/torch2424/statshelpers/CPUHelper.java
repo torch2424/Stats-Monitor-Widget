@@ -4,7 +4,7 @@ import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import com.torch2424.statsmonitorwidget.R;
+import com.torch2424.statsmonitorwidgetFree.R;
 
 import java.io.File;
 import java.io.FileFilter;

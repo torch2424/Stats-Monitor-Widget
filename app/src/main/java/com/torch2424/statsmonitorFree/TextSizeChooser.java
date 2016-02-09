@@ -10,7 +10,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.torch2424.statsmonitorwidget.R;
+import com.torch2424.statsmonitorwidgetFree.R;
 
 import java.util.ArrayList;
 import java.util.List;

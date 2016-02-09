@@ -22,7 +22,7 @@ import com.torch2424.statsmonitorFree.com.torch2424.statsproviders.ProviderBigge
 import com.torch2424.statsmonitorFree.com.torch2424.statsproviders.ProviderSmall;
 import com.torch2424.statsmonitorFree.com.torch2424.statsproviders.SmProvider;
 import com.torch2424.statsmonitorFree.com.torch2424.statsproviders.SuperSmall;
-import com.torch2424.statsmonitorwidget.R;
+import com.torch2424.statsmonitorwidgetFree.R;
 
 
 public class SmAlarm extends BroadcastReceiver 

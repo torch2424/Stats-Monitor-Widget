@@ -9,7 +9,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
-import com.torch2424.statsmonitorwidget.R;
+import com.torch2424.statsmonitorwidgetFree.R;
 
 public class AdvancedSettings extends Activity
 {

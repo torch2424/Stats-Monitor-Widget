@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Stats Monitor</string>
+    <string name="app_name">Stats Monitor Free</string>
     <string name="loading">Loading...</string>
     <string name="Time">Time</string>
     <string name="System">System</string>
@@ -58,11 +58,11 @@
     <string name="usedToFree">Swap "Used" Memory to "Free" Memory stats</string>
   
     
-    <string name="sizeSmall">Stats Monitor 1x1</string>
-    <string name="sizeOne">Stats Monitor 2x1</string>
-    <string name="sizeTwo">Stats Monitor 2x2</string>
-    <string name="sizeThree">Stats Monitor 2x3</string>
-    <string name="sizeFour">Stats Monitor 2x4</string>
+    <string name="sizeSmall">Stats Monitor Free 1x1</string>
+    <string name="sizeOne">Stats Monitor Free 2x1</string>
+    <string name="sizeTwo">Stats Monitor Free 2x2</string>
+    <string name="sizeThree">Stats Monitor Free 2x3</string>
+    <string name="sizeFour">Stats Monitor Free 2x4</string>
     
     
 </resources>

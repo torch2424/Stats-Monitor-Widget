@@ -13,7 +13,7 @@ import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import com.torch2424.statsmonitorFree.com.torch2424.statsAds.AmazonAdsHelper;
-import com.torch2424.statsmonitorwidget.R;
+import com.torch2424.statsmonitorwidgetFree.R;
 
 public class ConfigureWidget extends Activity
 {

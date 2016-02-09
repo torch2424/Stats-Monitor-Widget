@@ -8,7 +8,7 @@ import android.os.BatteryManager;
 import android.view.View;
 import android.widget.RemoteViews;
 
-import com.torch2424.statsmonitorwidget.R;
+import com.torch2424.statsmonitorwidgetFree.R;
 
 /**
  * Created by torch2424 on 1/25/16.

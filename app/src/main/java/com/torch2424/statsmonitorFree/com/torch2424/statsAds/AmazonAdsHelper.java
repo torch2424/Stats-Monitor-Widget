@@ -9,7 +9,7 @@ import com.amazon.device.ads.AdProperties;
 import com.amazon.device.ads.AdRegistration;
 import com.amazon.device.ads.DefaultAdListener;
 import com.amazon.device.ads.InterstitialAd;
-import com.torch2424.statsmonitorwidget.R;
+import com.torch2424.statsmonitorwidgetFree.R;
 
 /**
  * Created by aaron on 2/9/16.
