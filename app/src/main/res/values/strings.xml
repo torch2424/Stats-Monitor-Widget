@@ -55,7 +55,7 @@
     <string name="externalText">If external memory is not working for you, enter the path to it here</string>
     <string name="externalPath">Enter Here, Leave blank if working</string>
     <string name="noCPUTitle">Remove CPU Title (If present)</string>
-    <string name="usedToFree">Swap "Used" stats to "Available" stats</string>
+    <string name="usedToFree">Swap "Used" Memory to "Free" Memory stats</string>
   
     
     <string name="sizeSmall">Stats Monitor 1x1</string>

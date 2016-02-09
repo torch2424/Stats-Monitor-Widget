@@ -36,6 +36,9 @@ public class MemoryHelper {
     boolean memoryGB;
     boolean ramGB;
 
+    //Boolean to tell if we want used or free memory
+    boolean usedToFree;
+
     //Our decimal format for gigabyte display
     final private DecimalFormat format = new DecimalFormat("0.00");
 
@@ -57,6 +60,7 @@ public class MemoryHelper {
         //Our memory status
         memoryGB = prefs.getBoolean("MEMORYGB", false);
         ramGB = prefs.getBoolean("RAMGB", false);
+        usedToFree = prefs.getBoolean("USEDTOFREE", false);
 
         //Our external String
         String inputExternal = prefs.getString("EXTERNALPATH", "");
@@ -166,20 +170,42 @@ public class MemoryHelper {
 
         //setting up text views
         //Check if we only have one storage
-        if(!oneStorage) views.setTextViewText(R.id.internalTitle, "Used Internal Storage:");
-        else views.setTextViewText(R.id.internalTitle, "Used Storage:");
+        if(usedToFree) {
+            if(!oneStorage) views.setTextViewText(R.id.internalTitle, "Used Internal Storage:");
+            else views.setTextViewText(R.id.internalTitle, "Used Storage:");
+        }
+        else {
+            if(!oneStorage) views.setTextViewText(R.id.internalTitle, "Free Internal Storage:");
+            else views.setTextViewText(R.id.internalTitle, "Free Storage:");
+        }
 
         //Gigabyte display settings
         if (memoryGB == true)
         {
             //use a decimal format to only show two places, and use .0 to get a decimal
-            double usedFloat = getGigs(totalMB - availMB);
-            double totalFloat = getGigs(totalMB);
-            views.setTextViewText(R.id.internal, format.format(usedFloat) + "/" + format.format(totalFloat) + " GB");
+            if(usedToFree) {
+                double availFloat = getGigs(availMB);
+                double totalFloat = getGigs(totalMB);
+                views.setTextViewText(R.id.internal, format.format(availFloat) + "/" + format.format(totalFloat) + " GB");
+            }
+            else {
+
+                double usedFloat = getGigs(totalMB - availMB);
+                double totalFloat = getGigs(totalMB);
+                views.setTextViewText(R.id.internal, format.format(usedFloat) + "/" + format.format(totalFloat) + " GB");
+            }
+
         }
         else
         {
-            views.setTextViewText(R.id.internal, fmt(totalMB - availMB) + "/" + fmt(totalMB) + " MB");
+            if(usedToFree) {
+                views.setTextViewText(R.id.internal, fmt(availMB) + "/" + fmt(totalMB) + " MB");
+            }
+            else {
+
+                views.setTextViewText(R.id.internal, fmt(totalMB - availMB) + "/" + fmt(totalMB) + " MB");
+            }
+
         }
 
         //Now check for external storage, if we have it
@@ -206,19 +232,37 @@ public class MemoryHelper {
         double totalMB = ((blockSize) * (totalBlocks)) / megs;
 
         //setting up text views
-        views.setTextViewText(R.id.externalTitle, "Used External Storage:");
+        if(usedToFree) {
+            views.setTextViewText(R.id.externalTitle, "Free External Storage:");
+        }
+        else {
+            views.setTextViewText(R.id.externalTitle, "Used External Storage:");
+        }
 
         //Gigabyte display settings
         if (memoryGB == true)
         {
-            //use a decimal format to only show two places, and use .0 to get a decimal
-            double usedFloat = getGigs(totalMB - availMB);
-            double totalFloat = getGigs(totalMB);
-            views.setTextViewText(R.id.external, format.format(usedFloat) + "/" + format.format(totalFloat) + " GB");
+            if(usedToFree) {
+                //use a decimal format to only show two places, and use .0 to get a decimal
+                double availFloat = getGigs(availMB);
+                double totalFloat = getGigs(totalMB);
+                views.setTextViewText(R.id.external, format.format(availFloat) + "/" + format.format(totalFloat) + " GB");
+            }
+            else {
+                //use a decimal format to only show two places, and use .0 to get a decimal
+                double usedFloat = getGigs(totalMB - availMB);
+                double totalFloat = getGigs(totalMB);
+                views.setTextViewText(R.id.external, format.format(usedFloat) + "/" + format.format(totalFloat) + " GB");
+            }
         }
         else
         {
-            views.setTextViewText(R.id.external, fmt(totalMB - availMB) + "/" + fmt(totalMB) + " MB");
+            if(usedToFree) {
+                views.setTextViewText(R.id.external, fmt(availMB) + "/" + fmt(totalMB) + " MB");
+            }
+            else {
+                views.setTextViewText(R.id.external, fmt(totalMB - availMB) + "/" + fmt(totalMB) + " MB");
+            }
         }
 
     }
