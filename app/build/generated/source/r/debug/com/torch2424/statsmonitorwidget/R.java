@@ -9,16 +9,16 @@ package com.torch2424.statsmonitorwidget;
 
 public final class R {
     public static final class array {
-        public static final int pref_example_list_titles=0x7f050000;
-        public static final int pref_example_list_values=0x7f050001;
-        public static final int pref_sync_frequency_titles=0x7f050002;
-        public static final int pref_sync_frequency_values=0x7f050003;
+        public static final int pref_example_list_titles=0x7f070000;
+        public static final int pref_example_list_values=0x7f070001;
+        public static final int pref_sync_frequency_titles=0x7f070002;
+        public static final int pref_sync_frequency_values=0x7f070003;
     }
     public static final class attr {
     }
     public static final class dimen {
-        public static final int activity_horizontal_margin=0x7f060000;
-        public static final int activity_vertical_margin=0x7f060001;
+        public static final int activity_horizontal_margin=0x7f050000;
+        public static final int activity_vertical_margin=0x7f050001;
     }
     public static final class drawable {
         public static final int cornerslarge=0x7f020000;
@@ -105,93 +105,93 @@ public final class R {
         public static final int text_size_chooser=0x7f090003;
     }
     public static final class string {
-        public static final int ConfigTitle=0x7f070000;
-        public static final int Date=0x7f070001;
-        public static final int Memory=0x7f070002;
-        public static final int Network=0x7f070003;
-        public static final int System=0x7f070004;
-        public static final int Time=0x7f070005;
-        public static final int TimeTitle=0x7f070006;
-        public static final int action_settings=0x7f070007;
-        public static final int advanced_textview=0x7f070008;
-        public static final int app_name=0x7f070009;
-        public static final int battery=0x7f07000a;
-        public static final int batteryChange=0x7f07000b;
-        public static final int batteryTemp=0x7f07000c;
-        public static final int chooseBackColor=0x7f07000d;
-        public static final int chooseColor=0x7f07000e;
-        public static final int chooseTextSize=0x7f07000f;
-        public static final int cpu=0x7f070010;
-        public static final int degreesF=0x7f070011;
-        public static final int external=0x7f070012;
-        public static final int externalPath=0x7f070013;
-        public static final int externalText=0x7f070014;
-        public static final int fiveSec=0x7f070015;
-        public static final int hourFormat=0x7f070016;
-        public static final int ipAddress=0x7f070017;
-        public static final int kilobyteSpeed=0x7f070018;
-        public static final int loading=0x7f070019;
-        public static final int memoryGB=0x7f07001a;
-        public static final int memoryTitle=0x7f07001b;
-        public static final int memorystorage=0x7f07001c;
-        public static final int multiCPU=0x7f07001d;
-        public static final int networkDown=0x7f07001e;
-        public static final int networkTitle=0x7f07001f;
-        public static final int networkType=0x7f070020;
-        public static final int networkUp=0x7f070021;
-        public static final int noCPUTitle=0x7f070022;
-        public static final int oneSec=0x7f070023;
-        public static final int pref_default_display_name=0x7f070024;
-        public static final int pref_description_social_recommendations=0x7f070025;
-        public static final int pref_header_data_sync=0x7f070026;
-        public static final int pref_header_general=0x7f070027;
-        public static final int pref_header_notifications=0x7f070028;
-        public static final int pref_ringtone_silent=0x7f070029;
-        public static final int pref_title_add_friends_to_messages=0x7f07002a;
-        public static final int pref_title_display_name=0x7f07002b;
-        public static final int pref_title_new_message_notifications=0x7f07002c;
-        public static final int pref_title_ringtone=0x7f07002d;
-        public static final int pref_title_social_recommendations=0x7f07002e;
-        public static final int pref_title_sync_frequency=0x7f07002f;
-        public static final int pref_title_system_sync_settings=0x7f070030;
-        public static final int pref_title_vibrate=0x7f070031;
-        public static final int ram=0x7f070032;
-        public static final int ramGB=0x7f070033;
-        public static final int saveConfig=0x7f070034;
-        public static final int shortDays=0x7f070035;
-        public static final int sizeFour=0x7f070036;
-        public static final int sizeOne=0x7f070037;
-        public static final int sizeSmall=0x7f070038;
-        public static final int sizeThree=0x7f070039;
-        public static final int sizeTwo=0x7f07003a;
-        public static final int systemTitle=0x7f07003b;
-        public static final int tapConfig=0x7f07003c;
-        public static final int textBack=0x7f07003d;
-        public static final int textCenter=0x7f07003e;
-        public static final int textLeft=0x7f07003f;
-        public static final int textRight=0x7f070040;
-        public static final int threeSec=0x7f070041;
-        public static final int title_activity_advanced_settings=0x7f070042;
-        public static final int title_activity_color_back_chooser=0x7f070043;
-        public static final int title_activity_color_chooser=0x7f070044;
-        public static final int title_activity_configure_widget=0x7f070045;
-        public static final int title_activity_monitor_settings=0x7f070046;
-        public static final int title_activity_text_size_chooser=0x7f070047;
-        public static final int uptime=0x7f070048;
+        public static final int ConfigTitle=0x7f080000;
+        public static final int Date=0x7f080001;
+        public static final int Memory=0x7f080002;
+        public static final int Network=0x7f080003;
+        public static final int System=0x7f080004;
+        public static final int Time=0x7f080005;
+        public static final int TimeTitle=0x7f080006;
+        public static final int action_settings=0x7f080007;
+        public static final int advanced_textview=0x7f080008;
+        public static final int app_name=0x7f080009;
+        public static final int battery=0x7f08000a;
+        public static final int batteryChange=0x7f08000b;
+        public static final int batteryTemp=0x7f08000c;
+        public static final int chooseBackColor=0x7f08000d;
+        public static final int chooseColor=0x7f08000e;
+        public static final int chooseTextSize=0x7f08000f;
+        public static final int cpu=0x7f080010;
+        public static final int degreesF=0x7f080011;
+        public static final int external=0x7f080012;
+        public static final int externalPath=0x7f080013;
+        public static final int externalText=0x7f080014;
+        public static final int fiveSec=0x7f080015;
+        public static final int hourFormat=0x7f080016;
+        public static final int ipAddress=0x7f080017;
+        public static final int kilobyteSpeed=0x7f080018;
+        public static final int loading=0x7f080019;
+        public static final int memoryGB=0x7f08001a;
+        public static final int memoryTitle=0x7f08001b;
+        public static final int memorystorage=0x7f08001c;
+        public static final int multiCPU=0x7f08001d;
+        public static final int networkDown=0x7f08001e;
+        public static final int networkTitle=0x7f08001f;
+        public static final int networkType=0x7f080020;
+        public static final int networkUp=0x7f080021;
+        public static final int noCPUTitle=0x7f080022;
+        public static final int oneSec=0x7f080023;
+        public static final int pref_default_display_name=0x7f080024;
+        public static final int pref_description_social_recommendations=0x7f080025;
+        public static final int pref_header_data_sync=0x7f080026;
+        public static final int pref_header_general=0x7f080027;
+        public static final int pref_header_notifications=0x7f080028;
+        public static final int pref_ringtone_silent=0x7f080029;
+        public static final int pref_title_add_friends_to_messages=0x7f08002a;
+        public static final int pref_title_display_name=0x7f08002b;
+        public static final int pref_title_new_message_notifications=0x7f08002c;
+        public static final int pref_title_ringtone=0x7f08002d;
+        public static final int pref_title_social_recommendations=0x7f08002e;
+        public static final int pref_title_sync_frequency=0x7f08002f;
+        public static final int pref_title_system_sync_settings=0x7f080030;
+        public static final int pref_title_vibrate=0x7f080031;
+        public static final int ram=0x7f080032;
+        public static final int ramGB=0x7f080033;
+        public static final int saveConfig=0x7f080034;
+        public static final int shortDays=0x7f080035;
+        public static final int sizeFour=0x7f080036;
+        public static final int sizeOne=0x7f080037;
+        public static final int sizeSmall=0x7f080038;
+        public static final int sizeThree=0x7f080039;
+        public static final int sizeTwo=0x7f08003a;
+        public static final int systemTitle=0x7f08003b;
+        public static final int tapConfig=0x7f08003c;
+        public static final int textBack=0x7f08003d;
+        public static final int textCenter=0x7f08003e;
+        public static final int textLeft=0x7f08003f;
+        public static final int textRight=0x7f080040;
+        public static final int threeSec=0x7f080041;
+        public static final int title_activity_advanced_settings=0x7f080042;
+        public static final int title_activity_color_back_chooser=0x7f080043;
+        public static final int title_activity_color_chooser=0x7f080044;
+        public static final int title_activity_configure_widget=0x7f080045;
+        public static final int title_activity_monitor_settings=0x7f080046;
+        public static final int title_activity_text_size_chooser=0x7f080047;
+        public static final int uptime=0x7f080048;
     }
     public static final class style {
-        /** 
+        /**  API 11 theme customizations can go here. 
+ API 14 theme customizations can go here. 
+
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
         
- API 11 theme customizations can go here. 
- API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f080000;
+        public static final int AppBaseTheme=0x7f060000;
         /**  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f080001;
+        public static final int AppTheme=0x7f060001;
     }
     public static final class xml {
         public static final int pref_data_sync=0x7f040000;

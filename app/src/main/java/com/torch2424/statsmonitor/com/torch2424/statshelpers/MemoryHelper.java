@@ -160,7 +160,7 @@ public class MemoryHelper {
         long availBlocks = stats.getAvailableBlocksLong();
         double availMB = ((blockSize) * (availBlocks)) / megs;
 
-        //total blocks in internal storage in megs
+        //total blocks in internal storage in
         long totalBlocks = stats.getBlockCountLong();
         double totalMB = ((blockSize) * (totalBlocks)) / megs;
 
@@ -244,7 +244,7 @@ public class MemoryHelper {
 
     //Function to convert from megabytes to gigabytes
     private double getGigs(double megs) {
-        return megs / 1000.0;
+        return megs / 1024.0;
     }
 
     //Function to check if the external storage has space
