@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
+import com.torch2424.statsmonitor.com.torch2424.statsAds.AmazonAdsHelper;
 import com.torch2424.statsmonitorwidget.R;
 
 public class ConfigureWidget extends Activity
@@ -19,6 +20,11 @@ public class ConfigureWidget extends Activity
 	//initializing widget id and context
 	int widgetID;
 	public ConfigureWidget context;
+
+	//Our ads heklper
+	AmazonAdsHelper adsHelper;
+
+
 	//initialize checkboxes and edittexts and booleans
 	CheckBox checkTimeTitle;
 	CheckBox checkTime;
@@ -74,6 +80,11 @@ public class ConfigureWidget extends Activity
 
 		//Tell the app to stop updating
 		SmAlarm.setUpdating(false);
+
+
+
+		//Set up Ads
+		adsHelper = new AmazonAdsHelper();
 
 		//initialize checkboxes
 		checkTimeTitle = (CheckBox) findViewById(R.id.checkTimeTitle);
@@ -344,6 +355,14 @@ public class ConfigureWidget extends Activity
         finish();
 	}
 
+
+	//Ondestroy remove our ads
+	@Override
+	public void onDestroy()
+	{
+		super.onDestroy();
+		adsHelper.destroyAds();
+	}
 
 
 }

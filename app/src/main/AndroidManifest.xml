@@ -16,11 +16,19 @@
     <!-- for wifi -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
+    <!-- Ads Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/sm_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
+        <!-- ADS -->
+
+        <activity android:name="com.amazon.device.ads.AdActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
         
         <!-- need to copy this multiple times to allow different widget sizes -->
         
