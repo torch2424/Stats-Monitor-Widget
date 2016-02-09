@@ -29,6 +29,7 @@ public class AdvancedSettings extends Activity
 	CheckBox shortDays;
 	CheckBox kilobytes;
 	CheckBox degreesF;
+	CheckBox usedToFree;
 	EditText externalPath;
 	boolean tapBool;
 	boolean memoryBool;
@@ -43,6 +44,7 @@ public class AdvancedSettings extends Activity
 	boolean threeBool;
 	boolean fiveBool;
 	boolean degreesFBool;
+	boolean usededToFreeBool;
 	String externalString;
 	
 	@Override
@@ -66,6 +68,7 @@ public class AdvancedSettings extends Activity
 		shortDays = (CheckBox) findViewById(R.id.shortDays);
 		kilobytes = (CheckBox) findViewById(R.id.kilobyteSpeed);
 		degreesF = (CheckBox) findViewById(R.id.degreesF);
+		usedToFree = (CheckBox) findViewById(R.id.usedToFree);
 		externalPath = (EditText) findViewById(R.id.externalPath);
 		
 		//getting preferences and setting checkbox values
@@ -83,6 +86,7 @@ public class AdvancedSettings extends Activity
 		threeBool = prefs.getBoolean("THREESEC", false);
 		fiveBool = prefs.getBoolean("FIVESEC", false);
 		degreesFBool = prefs.getBoolean("DEGREESF", false);
+		usededToFreeBool = prefs.getBoolean("USEDTOFREE", false);
 		externalString = prefs.getString("EXTERNALPATH", "");
 		
 		if(tapBool == false)
@@ -205,6 +209,8 @@ public class AdvancedSettings extends Activity
 		{
 			degreesF.setChecked(false);
 		}
+		if(usededToFreeBool) usedToFree.setChecked(true);
+		else usedToFree.setChecked(false);
 		if(externalString.contentEquals(""))
 		{
 			
@@ -231,6 +237,7 @@ public class AdvancedSettings extends Activity
 		threeBool = threeSec.isChecked();
 		fiveBool = fiveSec.isChecked();
 		degreesFBool = degreesF.isChecked();
+		usededToFreeBool = usedToFree.isChecked();
 		externalString = externalPath.getText().toString();
 		
 		//putting values in preferences
@@ -249,6 +256,7 @@ public class AdvancedSettings extends Activity
 		editor.putBoolean("THREESEC", threeBool);
 		editor.putBoolean("FIVESEC", fiveBool);
 		editor.putBoolean("DEGREESF", degreesFBool);
+		editor.putBoolean("USEDTOFREE", usededToFreeBool);
 		editor.putString("EXTERNALPATH", externalString);
 		editor.commit();
 		finish();

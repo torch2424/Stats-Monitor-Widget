@@ -6,7 +6,8 @@
     <LinearLayout 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+        android:padding="10dip">
     
         <TextView
         android:id="@+id/advancedTextview"
@@ -134,6 +135,13 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:text="@string/degreesF" />
+
+        <CheckBox
+            android:id="@+id/usedToFree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="@string/usedToFree" />
         
         
         <TextView
