@@ -1,4 +1,4 @@
-package com.torch2424.statsmonitor;
+package com.torch2424.statsmonitorFree;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -14,7 +14,6 @@ import com.torch2424.statsmonitorwidget.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

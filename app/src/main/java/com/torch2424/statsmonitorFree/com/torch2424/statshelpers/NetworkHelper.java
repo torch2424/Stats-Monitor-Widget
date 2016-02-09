@@ -1,4 +1,4 @@
-package com.torch2424.statsmonitor.com.torch2424.statshelpers;
+package com.torch2424.statsmonitorFree.com.torch2424.statshelpers;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,12 +15,7 @@ import android.widget.RemoteViews;
 
 import com.torch2424.statsmonitorwidget.R;
 
-import java.net.Inet4Address;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
 import java.text.DecimalFormat;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Created by torch2424 on 1/25/16.

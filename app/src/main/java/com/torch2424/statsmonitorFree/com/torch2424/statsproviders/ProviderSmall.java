@@ -1,17 +1,14 @@
-package com.torch2424.statsmonitor.com.torch2424.statsproviders;
+package com.torch2424.statsmonitorFree.com.torch2424.statsproviders;
 
-import android.app.PendingIntent;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
-import android.content.Intent;
 
-import com.torch2424.statsmonitor.SmAlarm;
-import com.torch2424.statsmonitor.com.torch2424.statshelpers.ProviderHelper;
+import com.torch2424.statsmonitorFree.com.torch2424.statshelpers.ProviderHelper;
 
 
-public class SmProvider extends AppWidgetProvider 
+public class ProviderSmall extends AppWidgetProvider
 {
-    //2X2
+    //2X1
 
     //Simply using a helper to maange multiple providers
     ProviderHelper helper = new ProviderHelper();

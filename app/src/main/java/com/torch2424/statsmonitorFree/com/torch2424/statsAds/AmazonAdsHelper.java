@@ -1,4 +1,4 @@
-package com.torch2424.statsmonitor.com.torch2424.statsAds;
+package com.torch2424.statsmonitorFree.com.torch2424.statsAds;
 
 import android.app.Activity;
 

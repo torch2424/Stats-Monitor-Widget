@@ -35,7 +35,7 @@
         <!-- android exported false to stop it from getting stuff from other apps -->
         
         
-        <receiver android:name="com.torch2424.statsmonitor.com.torch2424.statsproviders.SuperSmall"
+        <receiver android:name="com.torch2424.statsmonitorFree.com.torch2424.statsproviders.SuperSmall"
             android:label="@string/sizeSmall">
             <intent-filter android:exported="false">
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -46,7 +46,7 @@
                 android:resource="@xml/supersmall" />
         </receiver>
         
-        <receiver android:name="com.torch2424.statsmonitor.com.torch2424.statsproviders.ProviderSmall"
+        <receiver android:name="com.torch2424.statsmonitorFree.com.torch2424.statsproviders.ProviderSmall"
             android:label="@string/sizeOne">
             <intent-filter android:exported="false">
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -57,7 +57,7 @@
                 android:resource="@xml/statssmall" />
         </receiver>
         
-        <receiver android:name="com.torch2424.statsmonitor.com.torch2424.statsproviders.SmProvider"
+        <receiver android:name="com.torch2424.statsmonitorFree.com.torch2424.statsproviders.SmProvider"
             android:label="@string/sizeTwo">
             <intent-filter android:exported="false">
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -68,7 +68,7 @@
                 android:resource="@xml/simplemonitorxml" />
         </receiver>
         
-        <receiver android:name="com.torch2424.statsmonitor.com.torch2424.statsproviders.ProviderBig"
+        <receiver android:name="com.torch2424.statsmonitorFree.com.torch2424.statsproviders.ProviderBig"
             android:label="@string/sizeThree">
             <intent-filter android:exported="false">
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -79,7 +79,7 @@
                 android:resource="@xml/statsbig" />
         </receiver>
         
-        <receiver android:name="com.torch2424.statsmonitor.com.torch2424.statsproviders.ProviderBigger"
+        <receiver android:name="com.torch2424.statsmonitorFree.com.torch2424.statsproviders.ProviderBigger"
             android:label="@string/sizeFour">
             <intent-filter android:exported="false">
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -91,12 +91,12 @@
         </receiver>
         
         
-         <receiver android:name="com.torch2424.statsmonitor.SmAlarm" >
+         <receiver android:name="com.torch2424.statsmonitorFree.SmAlarm" >
 </receiver>
          
          <!-- add the hardware thing to improve scrolling -->
         <activity
-            android:name="com.torch2424.statsmonitor.ConfigureWidget"
+            android:name="com.torch2424.statsmonitorFree.ConfigureWidget"
             android:label="@string/title_activity_configure_widget"
             android:hardwareAccelerated="false" >
             <intent-filter>
@@ -104,24 +104,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.torch2424.statsmonitor.ColorChooser"
+            android:name="com.torch2424.statsmonitorFree.ColorChooser"
             android:label="@string/title_activity_color_chooser" >
         </activity>
         <activity
-            android:name="com.torch2424.statsmonitor.ColorBackChooser"
+            android:name="com.torch2424.statsmonitorFree.ColorBackChooser"
             android:label="@string/title_activity_color_back_chooser" >
         </activity>
         <activity
-            android:name="com.torch2424.statsmonitor.TextSizeChooser"
+            android:name="com.torch2424.statsmonitorFree.TextSizeChooser"
             android:label="@string/title_activity_text_size_chooser" >
         </activity>
         <activity
-            android:name="com.torch2424.statsmonitor.AdvancedSettings"
+            android:name="com.torch2424.statsmonitorFree.AdvancedSettings"
             android:label="@string/title_activity_advanced_settings"
             android:hardwareAccelerated="false" >
         </activity>
         <activity
-            android:name="com.torch2424.statsmonitor.TextBackSettings"
+            android:name="com.torch2424.statsmonitorFree.TextBackSettings"
             android:label="@string/textBack" >
         </activity>
     </application>

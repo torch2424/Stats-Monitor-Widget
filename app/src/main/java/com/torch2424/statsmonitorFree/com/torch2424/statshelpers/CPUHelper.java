@@ -1,4 +1,4 @@
-package com.torch2424.statsmonitor.com.torch2424.statshelpers;
+package com.torch2424.statsmonitorFree.com.torch2424.statshelpers;
 
 import android.content.SharedPreferences;
 import android.view.View;

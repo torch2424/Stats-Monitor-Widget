@@ -1,4 +1,4 @@
-package com.torch2424.statsmonitor;
+package com.torch2424.statsmonitorFree;
 
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
@@ -12,7 +12,7 @@ import android.widget.CheckBox;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
-import com.torch2424.statsmonitor.com.torch2424.statsAds.AmazonAdsHelper;
+import com.torch2424.statsmonitorFree.com.torch2424.statsAds.AmazonAdsHelper;
 import com.torch2424.statsmonitorwidget.R;
 
 public class ConfigureWidget extends Activity

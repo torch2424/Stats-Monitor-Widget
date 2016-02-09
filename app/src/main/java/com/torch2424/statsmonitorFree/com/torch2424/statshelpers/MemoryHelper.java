@@ -1,11 +1,10 @@
-package com.torch2424.statsmonitor.com.torch2424.statshelpers;
+package com.torch2424.statsmonitorFree.com.torch2424.statshelpers;
 
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Environment;
 import android.os.StatFs;
-import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews;
 

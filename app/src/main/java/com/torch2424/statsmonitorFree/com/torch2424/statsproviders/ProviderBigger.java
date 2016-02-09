@@ -1,14 +1,9 @@
-package com.torch2424.statsmonitor.com.torch2424.statsproviders;
+package com.torch2424.statsmonitorFree.com.torch2424.statsproviders;
 
-import android.app.PendingIntent;
-import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 
-import com.torch2424.statsmonitor.SmAlarm;
-import com.torch2424.statsmonitor.com.torch2424.statshelpers.ProviderHelper;
+import com.torch2424.statsmonitorFree.com.torch2424.statshelpers.ProviderHelper;
 
 
 public class ProviderBigger extends AppWidgetProvider

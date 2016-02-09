@@ -1,4 +1,4 @@
-package com.torch2424.statsmonitor;
+package com.torch2424.statsmonitorFree;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
