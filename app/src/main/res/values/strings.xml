@@ -19,8 +19,8 @@
      <string name="batteryChange">Battery Percent Change Per Hour \n(Please allow an hour to take effect)</string>
     <string name="uptime">Uptime</string>
     <string name="memoryTitle">Memory Title</string>
-    <string name="memorystorage">Storage Memory</string>
-    <string name="external">External Memory</string>
+    <string name="memorystorage">Storage Memory (Internal, and External if found)</string>
+    <string name="external">External Memory (If found)</string>
     <string name="ram">Ram</string>
     <string name="networkTitle">Network Title</string>
     <string name="ipAddress">Ip Address (IPv4, Wifi Only)</string>

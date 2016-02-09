@@ -171,12 +171,13 @@ public class MemoryHelper {
         //setting up text views
         //Check if we only have one storage
         if(usedToFree) {
-            if(!oneStorage) views.setTextViewText(R.id.internalTitle, "Used Internal Storage:");
-            else views.setTextViewText(R.id.internalTitle, "Used Storage:");
-        }
-        else {
+
             if(!oneStorage) views.setTextViewText(R.id.internalTitle, "Free Internal Storage:");
             else views.setTextViewText(R.id.internalTitle, "Free Storage:");
+        }
+        else {
+            if(!oneStorage) views.setTextViewText(R.id.internalTitle, "Used Internal Storage:");
+            else views.setTextViewText(R.id.internalTitle, "Used Storage:");
         }
 
         //Gigabyte display settings
@@ -276,13 +277,25 @@ public class MemoryHelper {
         long total = mi.totalMem / 1048576L;
         if(ramGB == true)
         {
-            double usedFloat = getGigs(total - avail);
-            double totalFloat = getGigs(total);
-            views.setTextViewText(R.id.ram, "Used Ram: " + format.format(usedFloat) + "/" + format.format(totalFloat) + "GB");
+            if(usedToFree) {
+                double availFloat = getGigs(avail);
+                double totalFloat = getGigs(total);
+                views.setTextViewText(R.id.ram, "Free Ram: " + format.format(availFloat) + "/" + format.format(totalFloat) + "GB");
+            }
+            else {
+                double usedFloat = getGigs(total - avail);
+                double totalFloat = getGigs(total);
+                views.setTextViewText(R.id.ram, "Used Ram: " + format.format(usedFloat) + "/" + format.format(totalFloat) + "GB");
+            }
         }
         else
         {
-            views.setTextViewText(R.id.ram, "Used Ram: " + Long.toString(total - avail) + "/" + Long.toString(total) + "MB");
+            if(usedToFree) {
+                views.setTextViewText(R.id.ram, "Free Ram: " + Long.toString(avail) + "/" + Long.toString(total) + "MB");
+            }
+            else {
+                views.setTextViewText(R.id.ram, "Used Ram: " + Long.toString(total - avail) + "/" + Long.toString(total) + "MB");
+            }
         }
     }
 
