@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.0"
+    buildToolsVersion "23.0.2"
 
     defaultConfig {
         applicationId "com.torch2424.statsmonitorwidget"
         minSdkVersion 18
-        targetSdkVersion 21
+        targetSdkVersion 23
     }
 
     buildTypes {
@@ -19,7 +19,6 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:21.0.3'
     compile 'com.google.android.gms:play-services:+'
     compile files('libs/amazon-ads-5.6.20.jar')
 }

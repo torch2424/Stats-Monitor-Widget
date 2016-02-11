@@ -84,7 +84,7 @@ public class ConfigureWidget extends Activity
 
 
 		//Set up Ads
-		adsHelper = new AmazonAdsHelper();
+		adsHelper = new AmazonAdsHelper(this);
 
 		//initialize checkboxes
 		checkTimeTitle = (CheckBox) findViewById(R.id.checkTimeTitle);

@@ -14,7 +14,7 @@ import com.torch2424.statsmonitorwidgetFree.R;
 /**
  * Created by aaron on 2/9/16.
  */
-public class AmazonAdsHelper extends Activity {
+public class AmazonAdsHelper {
 
     //Our application key
     //MUST ADD ACTUAL KEY BEFORE BUILDS
@@ -23,17 +23,22 @@ public class AmazonAdsHelper extends Activity {
     //Our Ad layout
     AdLayout adView;
 
+    //Our Activity we are inserting ads
+    Activity activity;
+
     //Our interestrial
     private InterstitialAd interstitialAd;
 
     //Our constructor
-    public AmazonAdsHelper() {
+    public AmazonAdsHelper(Activity main) {
+
+        //Set our activity
+        activity = main;
 
         AdRegistration.setAppKey(appKey);
 
-        // Programmatically create the AmazonAdLayout
-        setContentView(R.layout.configure_widget);
-        adView = (AdLayout) findViewById(R.id.adview);
+        // Programmatically set the AmazonAdLayout
+        adView = (AdLayout) activity.findViewById(R.id.adview);
 
         //AdTargetingOptions adOptions = new AdTargetingOptions();
         // Optional: Set ad targeting options here.
@@ -45,13 +50,13 @@ public class AmazonAdsHelper extends Activity {
 
         //Start loading our interestrial
         // Create the interstitial.
-        this.interstitialAd = new InterstitialAd(this);
+        interstitialAd = new InterstitialAd(activity);
 
         // Set the listener to use the callbacks below.
-        this.interstitialAd.setListener(new MyCustomAdListener());
+        interstitialAd.setListener(new MyCustomAdListener());
 
         // Load the interstitial.
-        this.interstitialAd.loadAd();
+        interstitialAd.loadAd();
 
 
     }
@@ -67,7 +72,7 @@ public class AmazonAdsHelper extends Activity {
         @Override
         public void onAdLoaded(Ad ad, AdProperties adProperties)
         {
-            if (ad == AmazonAdsHelper.this.interstitialAd)
+            if (ad == interstitialAd)
             {
                 // Show the interstitial ad to the app's user.
                 // Note: While this implementation results in the ad being shown
@@ -76,7 +81,7 @@ public class AmazonAdsHelper extends Activity {
                 // before it’s time to show it. You can thus instead set a flag
                 // here to indicate the ad is ready to show and then wait until
                 // the best time to display the ad before calling showAd().
-                AmazonAdsHelper.this.interstitialAd.showAd();
+                interstitialAd.showAd();
             }
         }
 
@@ -84,7 +89,7 @@ public class AmazonAdsHelper extends Activity {
         public void onAdFailedToLoad(Ad ad, AdError error)
         {
             // Simply try to show again
-            AmazonAdsHelper.this.interstitialAd.loadAd();
+            interstitialAd.loadAd();
         }
 
         @Override
