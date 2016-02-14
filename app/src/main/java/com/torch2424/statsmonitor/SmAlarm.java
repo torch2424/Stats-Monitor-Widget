@@ -120,7 +120,7 @@ public class SmAlarm extends BroadcastReceiver
                 //call title config methods to omit methods
                 viewConfig(context);
                 //Initialize all of our helper classes
-                helperConfig();
+                helperConfig(context);
             }
 
             if(shouldUpdate)
@@ -269,7 +269,7 @@ public class SmAlarm extends BroadcastReceiver
 		}
 
         //Function to initialize all of our helper classes
-        public void helperConfig() {
+        public void helperConfig(Context context) {
 
             //Create our Time manager
             timeMan = new TimeHelper(views, prefs);
@@ -284,7 +284,7 @@ public class SmAlarm extends BroadcastReceiver
             diskMan = new MemoryHelper(views, prefs);
 
             //Create Network Manager
-            networkMan = new NetworkHelper(views, prefs);
+            networkMan = new NetworkHelper(views, prefs, context);
         }
 	
 	    public void update(Context context) {
@@ -307,8 +307,10 @@ public class SmAlarm extends BroadcastReceiver
 
         if (diskMan.ramStatus()) diskMan.getRam(context);
 
-        //call netowork methods
-        if (networkMan.typeStatus() || networkMan.ipStatus()) networkMan.getNetworkType(context);
+        //call network methods
+        if (networkMan.typeStatus()) networkMan.getNetworkType(context);
+
+        if (networkMan.ipStatus()) networkMan.getIp(context);
 
         if (networkMan.downSpeedStatus() || networkMan.upSpeedStatus()) networkMan.getSpeeds();
 

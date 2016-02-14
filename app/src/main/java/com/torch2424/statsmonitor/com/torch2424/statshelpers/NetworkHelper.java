@@ -47,7 +47,10 @@ public class NetworkHelper {
     boolean upSpeedView;
     boolean downSpeedView;
 
-    public NetworkHelper(RemoteViews parentView, SharedPreferences prefs) {
+    //Connectivity managers
+    ConnectivityManager conMan;
+
+    public NetworkHelper(RemoteViews parentView, SharedPreferences prefs, Context context) {
 
         //set our view
         views = parentView;
@@ -81,15 +84,15 @@ public class NetworkHelper {
         if(downSpeedView)  views.setViewVisibility(R.id.networkDown, View.VISIBLE);
         else views.setViewVisibility(R.id.networkDown, View.GONE);
 
+        //gotten from stack, get our connection manager
+        //http://stackoverflow.com/questions/2919414/get-network-type
+        conMan = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
     }
 
     //method to get network type
     public void getNetworkType(Context context)
     {
-
-        //gotten from stack, get our connection manager
-        //http://stackoverflow.com/questions/2919414/get-network-type
-        ConnectivityManager conMan = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         //Get our wifi first
         NetworkInfo.State wifi = conMan.getNetworkInfo(1).getState();
@@ -102,14 +105,10 @@ public class NetworkHelper {
             WifiManager wifiMgr = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
             WifiInfo wifiInfo = wifiMgr.getConnectionInfo();
 
-            if(networkTypeView) views.setTextViewText(R.id.networkType, wifiInfo.getSSID());
-
-            if(ipView) {
-                String ip = Formatter.formatIpAddress(wifiInfo.getIpAddress());
-                views.setTextViewText(R.id.ipAddress, "Ip: " + ip);
-            }
+            //Set the wifi name
+            views.setTextViewText(R.id.networkType, wifiInfo.getSSID());
         }
-        else if(networkTypeView) {
+        else {
 
             //Check for mobile service
             //need to check for tablets to see if they have telephony
@@ -143,6 +142,28 @@ public class NetworkHelper {
 
     //Method to get our ipv4 adress
     public void getIp(Context context) {
+
+        //Get our wifi first
+        NetworkInfo.State wifi = conMan.getNetworkInfo(1).getState();
+
+        //if wifi is connected
+        if (wifi == NetworkInfo.State.CONNECTED || wifi == NetworkInfo.State.CONNECTING)
+        {
+
+            //Find and set the wifi name
+            WifiManager wifiMgr = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+            WifiInfo wifiInfo = wifiMgr.getConnectionInfo();
+
+            //Set the ip
+            String ip = Formatter.formatIpAddress(wifiInfo.getIpAddress());
+            views.setTextViewText(R.id.ipAddress, "Ip: " + ip);
+        }
+        else {
+
+            //If not on wifi, hide the ip
+            views.setViewVisibility(R.id.ipAddress, View.GONE);
+        }
+
     }
 
     //method to get network speed
