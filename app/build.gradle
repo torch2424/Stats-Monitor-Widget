@@ -5,7 +5,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "com.torch2424.statsmonitorwidget"
+        applicationId "com.torch2424.statsmonitorwidgetFree"
         minSdkVersion 18
         targetSdkVersion 23
     }
