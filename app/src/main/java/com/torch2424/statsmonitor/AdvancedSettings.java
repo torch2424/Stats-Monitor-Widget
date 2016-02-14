@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -11,7 +12,7 @@ import android.widget.RadioButton;
 
 import com.torch2424.statsmonitorwidget.R;
 
-public class AdvancedSettings extends Activity
+public class AdvancedSettings extends AppCompatActivity
 {
 	//declaring checkboxes and booleans
 	CheckBox tapConfig;
@@ -52,6 +53,9 @@ public class AdvancedSettings extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.advanced_layout);
+		//get our action bar
+		getSupportActionBar().show();
+
 		//setting up checkboxes
 		tapConfig = (CheckBox) findViewById(R.id.tapConfig);
 		memoryGB = (CheckBox) findViewById(R.id.memoryGB);

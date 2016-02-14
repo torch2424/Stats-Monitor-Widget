@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RemoteViews;
@@ -14,7 +15,7 @@ import android.widget.Toast;
 
 import com.torch2424.statsmonitorwidget.R;
 
-public class ConfigureWidget extends Activity
+public class ConfigureWidget extends AppCompatActivity
 {
 	//initializing widget id and context
 	int widgetID;
@@ -59,6 +60,9 @@ public class ConfigureWidget extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.configure_widget);
+		//get our action bar
+		getSupportActionBar().show();
+
 		//if the user backs out it doesn't save
 		setResult(RESULT_CANCELED);
 		//get the context
