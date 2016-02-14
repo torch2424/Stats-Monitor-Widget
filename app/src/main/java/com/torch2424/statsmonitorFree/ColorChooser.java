@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -13,7 +14,7 @@ import android.widget.ListView;
 
 import com.torch2424.statsmonitorwidgetFree.R;
 
-public class ColorChooser extends Activity 
+public class ColorChooser extends AppCompatActivity
 {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
@@ -21,6 +22,9 @@ public class ColorChooser extends Activity
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.color_chooser);
+		//get our action bar
+		getSupportActionBar().show();
+
 		//get listview
 		final ListView listView = (ListView) findViewById(R.id.listView);
 		//create string array with which colors I want, can add more colors by finding their hex values
