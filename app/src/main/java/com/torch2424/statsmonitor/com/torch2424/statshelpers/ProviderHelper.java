@@ -21,6 +21,9 @@ public class ProviderHelper {
     //Our update interval
     final int updateInterval = 1000;
 
+    //Our Context
+    private Context context;
+
     //Flag to stop sending the intent on stop alarm
     static boolean quit;
 
@@ -38,7 +41,10 @@ public class ProviderHelper {
     //calling of alarms in one place
     //Need to pass context to our alarm for the boradcast receiver,
 
-    public void callAlarm(final Context context) {
+    public void callAlarm(Context parentContext) {
+
+        //Save our context
+        context = parentContext;
 
         //creating Handler to update every second
         handler = new Handler();
@@ -60,7 +66,7 @@ public class ProviderHelper {
                         //Create our intents
                         Intent intent = new Intent(context, SmAlarm.class);
 
-                        PendingIntent updateIntent = PendingIntent.getBroadcast(context.getApplicationContext() , 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                        PendingIntent updateIntent = PendingIntent.getBroadcast(context , 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
                         updateIntent.send();
                     }
