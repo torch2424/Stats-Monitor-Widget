@@ -156,7 +156,13 @@ public class NetworkHelper {
 
             //Set the ip
             String ip = Formatter.formatIpAddress(wifiInfo.getIpAddress());
-            views.setTextViewText(R.id.ipAddress, "Ip: " + ip);
+            
+            if(ipView) {
+
+                //Show the view, and set the text
+                views.setViewVisibility(R.id.ipAddress, View.VISIBLE);
+                views.setTextViewText(R.id.ipAddress, "Ip: " + ip);
+            }
         }
         else {
 
