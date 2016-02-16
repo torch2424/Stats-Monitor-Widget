@@ -1,6 +1,5 @@
 package com.torch2424.statsmonitor.com.torch2424.statshelpers;
 
-import android.app.PendingIntent;
 import android.appwidget.AppWidgetProvider;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -9,20 +8,22 @@ import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.util.Log;
 
-import com.torch2424.statsmonitor.SmAlarm;
+import com.torch2424.statsmonitor.WidgetUpdater;
 
 /**
  * Created by torch2424 on 1/21/16.
  */
-public class ProviderHelper {
+public class ProviderHelper extends AppWidgetProvider {
 
     //Our update interval
     final int updateInterval = 1000;
 
     //Our Context
     private Context context;
+
+    //Our Widget Updater
+    WidgetUpdater updater;
 
     //Flag to stop sending the intent on stop alarm
     static boolean quit;
@@ -49,6 +50,9 @@ public class ProviderHelper {
         //creating Handler to update every second
         handler = new Handler();
 
+        //Create our updater
+        updater = new WidgetUpdater(parentContext);
+
         //Start our sleep receiver
         registBroadcastReceiver(context);
 
@@ -58,21 +62,12 @@ public class ProviderHelper {
          runUpdate = new Runnable() {
             public void run() {
 
-                //Send the broadcast to the pending intent
-                try {
-                    if(!ProviderHelper.isQuitting())
-                    {
-                        //Create an update intent
-                        //Create our intents
-                        Intent intent = new Intent(context, SmAlarm.class);
-
-                        PendingIntent updateIntent = PendingIntent.getBroadcast(context , 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-                        updateIntent.send();
-                    }
-                } catch (PendingIntent.CanceledException e) {
-                    Log.d("DEBUG", "PENDING ERROR");
+                //Run our updates in the service
+                if(!ProviderHelper.isQuitting())
+                {
+                    updater.runUpdate(context);
                 }
+
 
                 //Quit the handler
                 if(ProviderHelper.isQuitting()) {
@@ -112,6 +107,7 @@ public class ProviderHelper {
 
     //Our broadcast receiver to receive events when the device is sleeping or locked
     private void registBroadcastReceiver(Context context) {
+
         final IntentFilter theFilter = new IntentFilter();
         /** System Defined Broadcast */
         theFilter.addAction(Intent.ACTION_SCREEN_ON);

@@ -81,10 +81,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/statsbigger" />
         </receiver>
-        
-        
-         <receiver android:name="com.torch2424.statsmonitor.SmAlarm" >
-</receiver>
          
          <!-- add the hardware thing to improve scrolling -->
         <activity

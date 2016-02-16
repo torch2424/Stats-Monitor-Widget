@@ -2,18 +2,23 @@ package com.torch2424.statsmonitor;
 
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
+import com.torch2424.statsmonitor.com.torch2424.statsproviders.ProviderBigger;
 import com.torch2424.statsmonitorwidget.R;
+
+import java.util.Arrays;
 
 public class ConfigureWidget extends AppCompatActivity
 {
@@ -77,7 +82,7 @@ public class ConfigureWidget extends AppCompatActivity
 		}
 
 		//Tell the app to stop updating
-		SmAlarm.setUpdating(false);
+		WidgetUpdater.setUpdating(false);
 
 		//initialize checkboxes
 		checkTimeTitle = (CheckBox) findViewById(R.id.checkTimeTitle);
@@ -311,10 +316,11 @@ public class ConfigureWidget extends AppCompatActivity
         editor.commit();
 
         //Tell the app to stop updating
-        SmAlarm.setUpdating(true);
+        WidgetUpdater.setUpdating(true);
 
 		//finishing up, and calling onupdate
 		AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+
 		RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
 		appWidgetManager.updateAppWidget(widgetID, views);
 		Intent resultValue = new Intent();
@@ -342,7 +348,7 @@ public class ConfigureWidget extends AppCompatActivity
 	public void onBackPressed()
 	{
         //Tell the app to stop updating
-        SmAlarm.setUpdating(true);
+        WidgetUpdater.setUpdating(true);
 
         //Closes the app
         finish();

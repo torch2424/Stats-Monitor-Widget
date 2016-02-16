@@ -1,8 +1,8 @@
 package com.torch2424.statsmonitor;
 
+
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -26,10 +26,13 @@ import com.torch2424.statsmonitor.com.torch2424.statsproviders.SuperSmall;
 import com.torch2424.statsmonitorwidget.R;
 
 
-public class SmAlarm extends BroadcastReceiver 
+public class WidgetUpdater
 {
 
         //Making Many variables static so they are not reinitialized every call
+
+        //Our Context
+        Context context;
 
 	    //creating remote views out here for access anywhere in class
 		static RemoteViews views;
@@ -81,6 +84,12 @@ public class SmAlarm extends BroadcastReceiver
 		static boolean shouldUpdate;
         static boolean reInit = true;
 
+        //Our constructor
+        public WidgetUpdater(Context parentContext) {
+
+            context = parentContext;
+        }
+
 
         //Static function to stop updating
         public static void setUpdating(boolean update) {
@@ -96,12 +105,14 @@ public class SmAlarm extends BroadcastReceiver
             }
         }
 
-        @Override
-        public void onReceive(Context context, Intent intent)
-        {
+
+        //Function to run our functions
+        public void runUpdate(Context parentContext) {
+
+            context = parentContext;
 
             //First Check if we need to reinitialize our settings
-            if(reInit) {
+            if (reInit) {
 
                 //Set reInit to false and should update to true
                 reInit = false;
@@ -123,34 +134,24 @@ public class SmAlarm extends BroadcastReceiver
                 helperConfig(context);
             }
 
-            if(shouldUpdate)
-            {
+            if (shouldUpdate) {
 
-                if(threeBool)
-                {
-                    if(secs > 1)
-                    {
+                if (threeBool) {
+                    if (secs > 1) {
                         update(context);
                         secs = 0;
-                    }
-                    else secs++;
-                }
-                else if(fiveBool)
-                {
-                    if(secs > 3)
-                    {
+                    } else secs++;
+                } else if (fiveBool) {
+                    if (secs > 3) {
                         update(context);
                         secs = 0;
-                    }
-                    else  secs++;
-                }
-                else
-                {
+                    } else secs++;
+                } else {
                     update(context);
                 }
             }
-
         }
+
 		
 		
 		
@@ -289,6 +290,8 @@ public class SmAlarm extends BroadcastReceiver
 	
 	    public void update(Context context) {
 
+            Log.d("WIDGET UPDATER", "Updating...");
+
         //call time methods, not calling if unchecked
         if (timeMan.timeStatus()) timeMan.getTime();
 
@@ -315,6 +318,8 @@ public class SmAlarm extends BroadcastReceiver
         if (networkMan.downSpeedStatus() || networkMan.upSpeedStatus()) networkMan.getSpeeds();
 
         //update widget for all size
+        // Need to grab our views every single time
+        views = new RemoteViews(context.getApplicationContext().getPackageName(), R.layout.widget_layout);
         AppWidgetManager manager = AppWidgetManager.getInstance(context);
         manager.updateAppWidget(thiswidget, views);
         manager.updateAppWidget(thiswidgetsmall, views);
