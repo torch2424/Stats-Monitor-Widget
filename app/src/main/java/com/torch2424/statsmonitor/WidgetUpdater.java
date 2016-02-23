@@ -34,7 +34,7 @@ public class WidgetUpdater extends BroadcastReceiver
 
 	    //creating remote views out here for access anywhere in class
         //MUST BE STATIC TO UPDATE?!?!
-		static RemoteViews views;
+		RemoteViews views;
 
         //Our Provider Components
         static ComponentName thiswidget;
@@ -94,7 +94,7 @@ public class WidgetUpdater extends BroadcastReceiver
         Log.d("STATS BROADCAST", "ONRECEIVE");
 
         //First Check if we need to reinitialize our settings
-        if (reInit) {
+        if (true) {
 
             //Set reInit to false and should update to true
             reInit = false;
@@ -108,6 +108,7 @@ public class WidgetUpdater extends BroadcastReceiver
             thiswidgetbigger = new ComponentName(parentContext, ProviderBigger.class);
 
             //Grab our views
+            //MUST SET IT ONCE THIS CAN OVERRIDE ITSELF
             views = new RemoteViews(parentContext.getPackageName(), R.layout.widget_layout);
 
             //Call all of our initialization functions
