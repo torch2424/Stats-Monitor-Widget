@@ -3,6 +3,7 @@ package com.torch2424.statsmonitor;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -26,15 +27,13 @@ import com.torch2424.statsmonitor.com.torch2424.statsproviders.SuperSmall;
 import com.torch2424.statsmonitorwidget.R;
 
 
-public class WidgetUpdater
+public class WidgetUpdater extends BroadcastReceiver
 {
 
         //Making Many variables static so they are not reinitialized every call
 
-        //Our Context
-        Context context;
-
 	    //creating remote views out here for access anywhere in class
+        //MUST BE STATIC TO UPDATE?!?!
 		static RemoteViews views;
 
         //Our Provider Components
@@ -85,10 +84,58 @@ public class WidgetUpdater
         static boolean reInit = true;
 
         //Our constructor
-        public WidgetUpdater(Context parentContext) {
+        public WidgetUpdater() {
 
-            context = parentContext;
         }
+
+    @Override
+    public void onReceive(Context parentContext, Intent intent) {
+
+        Log.d("STATS BROADCAST", "ONRECEIVE");
+
+        //First Check if we need to reinitialize our settings
+        if (reInit) {
+
+            //Set reInit to false and should update to true
+            reInit = false;
+            shouldUpdate = true;
+
+            //Grab all of our providers
+            thiswidget = new ComponentName(parentContext, SmProvider.class);
+            thiswidgetsmallest = new ComponentName(parentContext, SuperSmall.class);
+            thiswidgetsmall = new ComponentName(parentContext, ProviderSmall.class);
+            thiswidgetbig = new ComponentName(parentContext, ProviderBig.class);
+            thiswidgetbigger = new ComponentName(parentContext, ProviderBigger.class);
+
+            //Grab our views
+            views = new RemoteViews(parentContext.getPackageName(), R.layout.widget_layout);
+
+            //Call all of our initialization functions
+            //getting which sections to omit
+            prefsConfig(parentContext);
+            //call title config methods to omit methods
+            viewConfig(parentContext);
+            //Initialize all of our helper classes
+            helperConfig(parentContext);
+        }
+
+        if (shouldUpdate) {
+
+            if (threeBool) {
+                if (secs > 1) {
+                    update(parentContext);
+                    secs = 0;
+                } else secs++;
+            } else if (fiveBool) {
+                if (secs > 3) {
+                    update(parentContext);
+                    secs = 0;
+                } else secs++;
+            } else {
+                update(parentContext);
+            }
+        }
+    }
 
 
         //Static function to stop updating
@@ -105,56 +152,6 @@ public class WidgetUpdater
             }
         }
 
-
-        //Function to run our functions
-        public void runUpdate(Context parentContext) {
-
-            context = parentContext;
-
-            //First Check if we need to reinitialize our settings
-            if (reInit) {
-
-                //Set reInit to false and should update to true
-                reInit = false;
-                shouldUpdate = true;
-
-                //Grab all of our providers
-                thiswidget = new ComponentName(context, SmProvider.class);
-                thiswidgetsmallest = new ComponentName(context, SuperSmall.class);
-                thiswidgetsmall = new ComponentName(context, ProviderSmall.class);
-                thiswidgetbig = new ComponentName(context, ProviderBig.class);
-                thiswidgetbigger = new ComponentName(context, ProviderBigger.class);
-
-                //Call all of our initialization functions
-                //getting which sections to omit
-                prefsConfig(context);
-                //call title config methods to omit methods
-                viewConfig(context);
-                //Initialize all of our helper classes
-                helperConfig(context);
-            }
-
-            if (shouldUpdate) {
-
-                if (threeBool) {
-                    if (secs > 1) {
-                        update(context);
-                        secs = 0;
-                    } else secs++;
-                } else if (fiveBool) {
-                    if (secs > 3) {
-                        update(context);
-                        secs = 0;
-                    } else secs++;
-                } else {
-                    update(context);
-                }
-            }
-        }
-
-		
-		
-		
 		public void prefsConfig(Context context)
 		{
 			//getting preferences, can't use intents, don't work with broadcast reciever
@@ -184,8 +181,6 @@ public class WidgetUpdater
 
 		public void viewConfig (Context context)
 		{
-            //Grab our views
-            views = new RemoteViews(context.getApplicationContext().getPackageName(), R.layout.widget_layout);
 
             //Setting Title visibility
             //views.setfloat to set text sizes, but cant be set to zero!
@@ -261,7 +256,8 @@ public class WidgetUpdater
 			else views.setInt(R.id.widgetLayout, "setGravity", Gravity.LEFT);
 
             //Check if we want to allow clicking the widget to configure it
-            if (tapConfig == false) {
+            if (!tapConfig) {
+
                 //setting up on click event
                 Intent config = new Intent(context, ConfigureWidget.class);
                 PendingIntent pendingConfig = PendingIntent.getActivity(context, 0, config, 0);
@@ -290,9 +286,7 @@ public class WidgetUpdater
 	
 	    public void update(Context context) {
 
-            Log.d("WIDGET UPDATER", "Updating...");
-
-        //call time methods, not calling if unchecked
+            //call time methods, not calling if unchecked
         if (timeMan.timeStatus()) timeMan.getTime();
 
         //call system methods
@@ -318,9 +312,7 @@ public class WidgetUpdater
         if (networkMan.downSpeedStatus() || networkMan.upSpeedStatus()) networkMan.getSpeeds();
 
         //update widget for all size
-        // Need to grab our views every single time
-        views = new RemoteViews(context.getApplicationContext().getPackageName(), R.layout.widget_layout);
-        AppWidgetManager manager = AppWidgetManager.getInstance(context);
+            AppWidgetManager manager = AppWidgetManager.getInstance(context);
         manager.updateAppWidget(thiswidget, views);
         manager.updateAppWidget(thiswidgetsmall, views);
         manager.updateAppWidget(thiswidgetbig, views);

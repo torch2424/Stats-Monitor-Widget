@@ -1,12 +1,16 @@
 package com.torch2424.statsmonitor.com.torch2424.statshelpers;
 
-import android.appwidget.AppWidgetProvider;
+import android.app.PendingIntent;
+import android.app.Service;
+import android.appwidget.AppWidgetManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Binder;
 import android.os.Build;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.SystemClock;
 
 import com.torch2424.statsmonitor.WidgetUpdater;
@@ -14,13 +18,10 @@ import com.torch2424.statsmonitor.WidgetUpdater;
 /**
  * Created by torch2424 on 1/21/16.
  */
-public class ProviderHelper extends AppWidgetProvider {
+public class ProviderHelper extends Service {
 
     //Our update interval
     final int updateInterval = 1000;
-
-    //Our Context
-    private Context context;
 
     //Our Widget Updater
     WidgetUpdater updater;
@@ -37,24 +38,35 @@ public class ProviderHelper extends AppWidgetProvider {
     //Our screen on/off receiver, gotten from: http://stackoverflow.com/questions/1588061/android-how-to-receive-broadcast-intents-action-screen-on-off
     private BroadcastReceiver sleepReceiver;
 
+    //Our (Unused) binder
+    IBinder providerBind = new ProviderBinder();
+
+
+    @Override
+    public void onCreate() {
+
+        //Call the parent on create
+        super.onCreate();
+
+        //Start updating
+        callAlarm();
+    }
+
 
     //Add some functions that will handle on destroy and on create
     //calling of alarms in one place
     //Need to pass context to our alarm for the boradcast receiver,
 
-    public void callAlarm(Context parentContext) {
-
-        //Save our context
-        context = parentContext;
+    public void callAlarm() {
 
         //creating Handler to update every second
         handler = new Handler();
 
         //Create our updater
-        updater = new WidgetUpdater(parentContext);
+        //updater = new WidgetUpdater();
 
         //Start our sleep receiver
-        registBroadcastReceiver(context);
+        registBroadcastReceiver(this);
 
         //Set our quit to false
         quit = false;
@@ -65,7 +77,12 @@ public class ProviderHelper extends AppWidgetProvider {
                 //Run our updates in the service
                 if(!ProviderHelper.isQuitting())
                 {
-                    updater.runUpdate(context);
+
+                    //updater.runUpdate(ProviderHelper.this, manager);
+
+                    Intent intent = new Intent(ProviderHelper.this, WidgetUpdater.class);
+                    //PendingIntent pending = PendingIntent.getBroadcast(ProviderHelper.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    sendBroadcast(intent);
                 }
 
 
@@ -74,6 +91,9 @@ public class ProviderHelper extends AppWidgetProvider {
 
                     //Remove all pending callbacks, and then return
                     handler.removeCallbacks(this);
+
+                    // to make sure it isnt recreated
+                    stopSelf();
                     return;
                 }
                 //Use post at time to only update when the phone is not in deep sleep :)
@@ -84,18 +104,6 @@ public class ProviderHelper extends AppWidgetProvider {
         };
 
         handler.post(runUpdate);
-    }
-
-
-    //Function to stop all callbacks
-    public void stopAlarm(Context context) {
-        //Stop Alarm here
-        //simply set quit to true
-        quit = true;
-
-        //Unregister our broadcast receiver
-        unregisterReceiver(context);
-
     }
 
     //Need a static function to check our quitting status for the runnable
@@ -164,4 +172,33 @@ public class ProviderHelper extends AppWidgetProvider {
         }
     }
 
+
+    @Override
+    public void onDestroy()
+    {
+        //Stop Alarm here
+        //simply set quit to true
+        quit = true;
+
+        //Unregister our broadcast receiver
+        unregisterReceiver(this);
+    }
+
+
+
+    // binder for the provider
+    public class ProviderBinder extends Binder
+    {
+        public ProviderHelper getService()
+        {
+            return ProviderHelper.this;
+        }
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+
+        //Return our binder
+        return providerBind;
+    }
 }

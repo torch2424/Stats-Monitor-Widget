@@ -10,6 +10,7 @@
 
     <!-- hopefully fixes statsvfs permissions crash -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <!-- for network -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     
@@ -80,6 +81,14 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/statsbigger" />
+        </receiver>
+
+
+        <!-- Our service for updating the widget -->
+        <service android:name="com.torch2424.statsmonitor.com.torch2424.statshelpers.ProviderHelper" />
+
+        <!-- Our updater for the widget -->
+        <receiver android:name="com.torch2424.statsmonitor.WidgetUpdater" >
         </receiver>
          
          <!-- add the hardware thing to improve scrolling -->
