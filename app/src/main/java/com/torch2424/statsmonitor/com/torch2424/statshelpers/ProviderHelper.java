@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.SystemClock;
+import android.util.Log;
 
 import com.torch2424.statsmonitor.WidgetUpdater;
 
@@ -117,18 +118,22 @@ public class ProviderHelper extends Service {
     private void registBroadcastReceiver(Context context) {
 
         final IntentFilter theFilter = new IntentFilter();
+
         /** System Defined Broadcast */
         theFilter.addAction(Intent.ACTION_SCREEN_ON);
         theFilter.addAction(Intent.ACTION_SCREEN_OFF);
 
+        Log.d("Stats sleepy", "Button Press!");
+
         sleepReceiver = new BroadcastReceiver() {
             @Override
-            public void onReceive(Context context, Intent intent) {
+            public void onReceive(final Context context, Intent intent) {
                 String strAction = intent.getAction();
 
                 if (strAction.equals(Intent.ACTION_SCREEN_OFF)) {
 
                     //Quit the handler
+                    Log.d("Stats sleepy", "Bye");
                     quit = true;
                 }
                 else if (strAction.equals(Intent.ACTION_SCREEN_ON)) {
@@ -145,6 +150,10 @@ public class ProviderHelper extends Service {
                             //Update once more
                             quit=false;
                             handler.post(runUpdate);
+                            Log.d("Stats sleepy", "Hiii");
+                            //Start our service
+                            Intent providerIntent = new Intent(context, ProviderHelper.class);
+                            context.startService(providerIntent);
                         }
                     }, 250);
                 }
@@ -181,7 +190,7 @@ public class ProviderHelper extends Service {
         quit = true;
 
         //Unregister our broadcast receiver
-        unregisterReceiver(this);
+        //unregisterReceiver(this);
     }
 
 
