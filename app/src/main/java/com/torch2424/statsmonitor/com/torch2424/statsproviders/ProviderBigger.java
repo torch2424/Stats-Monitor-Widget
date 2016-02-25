@@ -24,6 +24,7 @@ public class ProviderBigger extends AppWidgetProvider
     {
 
         //Kill the service
+        ProviderHelper.destroyWidget();
         Intent providerIntent = new Intent(context, ProviderHelper.class);
         context.stopService(providerIntent);
     }

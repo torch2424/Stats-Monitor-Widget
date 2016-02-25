@@ -1,8 +1,6 @@
 package com.torch2424.statsmonitor.com.torch2424.statshelpers;
 
-import android.app.PendingIntent;
 import android.app.Service;
-import android.appwidget.AppWidgetManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -24,11 +22,11 @@ public class ProviderHelper extends Service {
     //Our update interval
     final int updateInterval = 1000;
 
-    //Our Widget Updater
-    WidgetUpdater updater;
-
     //Flag to stop sending the intent on stop alarm
     static boolean quit;
+
+    //Flag to completely kill the widget, including our broadcast receiver
+    static boolean finishWidget;
 
     //Our handler
     Handler handler;
@@ -49,7 +47,8 @@ public class ProviderHelper extends Service {
         //Call the parent on create
         super.onCreate();
 
-        //Start updating
+        //Start updating and start our sleep receiver
+        registerBroadcastReceiver(this);
         callAlarm();
     }
 
@@ -63,14 +62,9 @@ public class ProviderHelper extends Service {
         //creating Handler to update every second
         handler = new Handler();
 
-        //Create our updater
-        //updater = new WidgetUpdater();
-
-        //Start our sleep receiver
-        registBroadcastReceiver(this);
-
         //Set our quit to false
         quit = false;
+        finishWidget = false;
 
          runUpdate = new Runnable() {
             public void run() {
@@ -78,20 +72,20 @@ public class ProviderHelper extends Service {
                 //Run our updates in the service
                 if(!ProviderHelper.isQuitting())
                 {
-
-                    //updater.runUpdate(ProviderHelper.this, manager);
-
                     Intent intent = new Intent(ProviderHelper.this, WidgetUpdater.class);
                     //PendingIntent pending = PendingIntent.getBroadcast(ProviderHelper.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                     sendBroadcast(intent);
                 }
 
 
-                //Quit the handler
+                //Quit the handler to be
                 if(ProviderHelper.isQuitting()) {
 
                     //Remove all pending callbacks, and then return
                     handler.removeCallbacks(this);
+
+                    //Check if we are completely killing the widget
+                    if(ProviderHelper.isFInishing()) unregisterReceiver(ProviderHelper.this);
 
                     // to make sure it isnt recreated
                     stopSelf();
@@ -107,15 +101,29 @@ public class ProviderHelper extends Service {
         handler.post(runUpdate);
     }
 
+
+    //Control our finish variable here
+    public static void destroyWidget() {
+
+        //Simply set quit, and stop our broad cast receiver
+        finishWidget = true;
+        quit = true;
+    }
+
+    //Return if we are finishing
+    public static boolean isFInishing() {
+        return finishWidget;
+    }
+
     //Need a static function to check our quitting status for the runnable
     public static boolean isQuitting() {
+
         return quit;
     }
 
 
-
     //Our broadcast receiver to receive events when the device is sleeping or locked
-    private void registBroadcastReceiver(Context context) {
+    private void registerBroadcastReceiver(Context context) {
 
         final IntentFilter theFilter = new IntentFilter();
 
@@ -123,34 +131,36 @@ public class ProviderHelper extends Service {
         theFilter.addAction(Intent.ACTION_SCREEN_ON);
         theFilter.addAction(Intent.ACTION_SCREEN_OFF);
 
-        Log.d("Stats sleepy", "Button Press!");
+        Log.d("Stats sleepy", "Receiver registered!!");
 
         sleepReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(final Context context, Intent intent) {
+
                 String strAction = intent.getAction();
+
+                Log.d("Stats sleepy", "Sleepy Button Press!!");
 
                 if (strAction.equals(Intent.ACTION_SCREEN_OFF)) {
 
-                    //Quit the handler
-                    Log.d("Stats sleepy", "Bye");
+                    //Simply set quit to true for the service to handle
                     quit = true;
                 }
                 else if (strAction.equals(Intent.ACTION_SCREEN_ON)) {
 
                     //First make sure there aren't any other stray runnables out there
                     handler.removeCallbacks(runUpdate);
-                    quit = true;
 
                     //Start updating again, after the above has been assured
                     Handler timeout = new Handler();
                     timeout.postDelayed(new Runnable() {
 
                         public void run() {
+
                             //Update once more
                             quit=false;
                             handler.post(runUpdate);
-                            Log.d("Stats sleepy", "Hiii");
+
                             //Start our service
                             Intent providerIntent = new Intent(context, ProviderHelper.class);
                             context.startService(providerIntent);
@@ -180,19 +190,6 @@ public class ProviderHelper extends Service {
             sleepReceiver = null;
         }
     }
-
-
-    @Override
-    public void onDestroy()
-    {
-        //Stop Alarm here
-        //simply set quit to true
-        quit = true;
-
-        //Unregister our broadcast receiver
-        //unregisterReceiver(this);
-    }
-
 
 
     // binder for the provider

@@ -91,8 +91,6 @@ public class WidgetUpdater extends BroadcastReceiver
     @Override
     public void onReceive(Context parentContext, Intent intent) {
 
-        Log.d("STATS BROADCAST", "ONRECEIVE");
-
         //First Check if we need to reinitialize our settings
         if (true) {
 
@@ -313,6 +311,7 @@ public class WidgetUpdater extends BroadcastReceiver
         if (networkMan.downSpeedStatus() || networkMan.upSpeedStatus()) networkMan.getSpeeds();
 
         //update widget for all size
+            Log.d("statsUpdating", "UPDATINGNGGGGNGNGNGN");
             AppWidgetManager manager = AppWidgetManager.getInstance(context);
         manager.updateAppWidget(thiswidget, views);
         manager.updateAppWidget(thiswidgetsmall, views);
