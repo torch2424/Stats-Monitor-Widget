@@ -91,6 +91,8 @@ public class WidgetUpdater extends BroadcastReceiver
     @Override
     public void onReceive(Context parentContext, Intent intent) {
 
+        Log.d("statsUpdating", "On Receive");
+
         //First Check if we need to reinitialize our settings
         if (true) {
 

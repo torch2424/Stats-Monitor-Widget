@@ -14,6 +14,8 @@ import android.util.Log;
 
 import com.torch2424.statsmonitor.WidgetUpdater;
 
+import java.security.PublicKey;
+
 /**
  * Created by torch2424 on 1/21/16.
  */
@@ -25,8 +27,9 @@ public class ProviderHelper extends Service {
     //Flag to stop sending the intent on stop alarm
     static boolean quit;
 
-    //Flag to completely kill the widget, including our broadcast receiver
-    static boolean finishWidget;
+    //Flag to completely start/kill the widget, including our broadcast receiver
+    static boolean startReceiver;
+    static boolean finishReceiver;
 
     //Our handler
     Handler handler;
@@ -47,8 +50,7 @@ public class ProviderHelper extends Service {
         //Call the parent on create
         super.onCreate();
 
-        //Start updating and start our sleep receiver
-        registerBroadcastReceiver(this);
+        //Start updating
         callAlarm();
     }
 
@@ -64,7 +66,10 @@ public class ProviderHelper extends Service {
 
         //Set our quit to false
         quit = false;
-        finishWidget = false;
+        finishReceiver = false;
+
+        //Check if we are just starting
+        if(startReceiver) registerBroadcastReceiver(this);
 
          runUpdate = new Runnable() {
             public void run() {
@@ -102,17 +107,23 @@ public class ProviderHelper extends Service {
     }
 
 
+    //Start the widget here
+    public static void startWidget() {
+
+        startReceiver = true;
+    }
+
     //Control our finish variable here
     public static void destroyWidget() {
 
         //Simply set quit, and stop our broad cast receiver
-        finishWidget = true;
+        finishReceiver = true;
         quit = true;
     }
 
     //Return if we are finishing
     public static boolean isFInishing() {
-        return finishWidget;
+        return finishReceiver;
     }
 
     //Need a static function to check our quitting status for the runnable

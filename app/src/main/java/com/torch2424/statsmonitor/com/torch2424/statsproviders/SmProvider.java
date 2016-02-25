@@ -16,6 +16,7 @@ public class SmProvider extends AppWidgetProvider
     {
 
         //Start our service
+        ProviderHelper.startWidget();
         Intent providerIntent = new Intent(context, ProviderHelper.class);
         context.startService(providerIntent);
     }
