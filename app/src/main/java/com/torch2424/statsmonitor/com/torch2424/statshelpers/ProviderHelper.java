@@ -69,7 +69,11 @@ public class ProviderHelper extends Service {
         finishReceiver = false;
 
         //Check if we are just starting
-        if(startReceiver) registerBroadcastReceiver(this);
+        if(startReceiver) {
+            //Register our receiver, and stop is from registering again
+            registerBroadcastReceiver(this);
+            startReceiver = false;
+        }
 
          runUpdate = new Runnable() {
             public void run() {
