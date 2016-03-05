@@ -18,6 +18,7 @@ import com.torch2424.statsmonitor.com.torch2424.statshelpers.BatteryHelper;
 import com.torch2424.statsmonitor.com.torch2424.statshelpers.CPUHelper;
 import com.torch2424.statsmonitor.com.torch2424.statshelpers.MemoryHelper;
 import com.torch2424.statsmonitor.com.torch2424.statshelpers.NetworkHelper;
+import com.torch2424.statsmonitor.com.torch2424.statshelpers.ProviderHelper;
 import com.torch2424.statsmonitor.com.torch2424.statshelpers.TimeHelper;
 import com.torch2424.statsmonitor.com.torch2424.statsproviders.ProviderBig;
 import com.torch2424.statsmonitor.com.torch2424.statsproviders.ProviderBigger;
@@ -33,15 +34,14 @@ public class WidgetUpdater extends BroadcastReceiver
         //Making Many variables static so they are not reinitialized every call
 
 	    //creating remote views out here for access anywhere in class
-        //MUST BE STATIC TO UPDATE?!?!
 		RemoteViews views;
 
         //Our Provider Components
-        static ComponentName thiswidget;
-        static ComponentName thiswidgetsmallest;
-        static ComponentName thiswidgetsmall;
-        static ComponentName thiswidgetbig;
-        static ComponentName thiswidgetbigger;
+        ComponentName thiswidget;
+        ComponentName thiswidgetsmallest;
+        ComponentName thiswidgetsmall;
+        ComponentName thiswidgetbig;
+        ComponentName thiswidgetbigger;
 
         //Our Helper Classes
         static TimeHelper timeMan;
@@ -65,8 +65,6 @@ public class WidgetUpdater extends BroadcastReceiver
 		boolean TitleBool;
 		boolean threeBool;
 		boolean fiveBool;
-        //for if people want a slower update interval
-		static int secs = 0;
 
 
 		//setting up colors
@@ -83,55 +81,52 @@ public class WidgetUpdater extends BroadcastReceiver
 		static boolean shouldUpdate;
         static boolean reInit = true;
 
-        //Our constructor
-        public WidgetUpdater() {
-
-        }
-
     @Override
     public void onReceive(Context parentContext, Intent intent) {
 
-        Log.d("statsUpdating", "On Receive");
+        //Grab our views
+        //MUST SET IT ONCE THIS CAN OVERRIDE ITSELF
+        views = new RemoteViews(parentContext.getPackageName(), R.layout.widget_layout);
+
+        //Call all of our initialization functions
+        //getting which sections to omit
+        prefsConfig(parentContext);
+        //call title config methods to omit methods
+        viewConfig(parentContext);
 
         //First Check if we need to reinitialize our settings
-        if (true) {
+        if (reInit) {
+
+            //Re-Initialize all of our helper classes
+            helperConfig(parentContext);
 
             //Set reInit to false and should update to true
             reInit = false;
             shouldUpdate = true;
-
-            //Grab all of our providers
-            thiswidget = new ComponentName(parentContext, SmProvider.class);
-            thiswidgetsmallest = new ComponentName(parentContext, SuperSmall.class);
-            thiswidgetsmall = new ComponentName(parentContext, ProviderSmall.class);
-            thiswidgetbig = new ComponentName(parentContext, ProviderBig.class);
-            thiswidgetbigger = new ComponentName(parentContext, ProviderBigger.class);
-
-            //Grab our views
-            //MUST SET IT ONCE THIS CAN OVERRIDE ITSELF
-            views = new RemoteViews(parentContext.getPackageName(), R.layout.widget_layout);
-
-            //Call all of our initialization functions
-            //getting which sections to omit
-            prefsConfig(parentContext);
-            //call title config methods to omit methods
-            viewConfig(parentContext);
-            //Initialize all of our helper classes
-            helperConfig(parentContext);
         }
+        //Re-set helper views every update
+        else helperViews();
+
+
+        //Grab all of our providers
+        thiswidget = new ComponentName(parentContext, SmProvider.class);
+        thiswidgetsmallest = new ComponentName(parentContext, SuperSmall.class);
+        thiswidgetsmall = new ComponentName(parentContext, ProviderSmall.class);
+        thiswidgetbig = new ComponentName(parentContext, ProviderBig.class);
+        thiswidgetbigger = new ComponentName(parentContext, ProviderBigger.class);
 
         if (shouldUpdate) {
 
             if (threeBool) {
-                if (secs > 1) {
+                if (ProviderHelper.getSeconds() > 1) {
                     update(parentContext);
-                    secs = 0;
-                } else secs++;
+                    ProviderHelper.setSeconds(0);
+                } else ProviderHelper.setSeconds(ProviderHelper.getSeconds() + 1);
             } else if (fiveBool) {
-                if (secs > 3) {
+                if (ProviderHelper.getSeconds() > 3) {
                     update(parentContext);
-                    secs = 0;
-                } else secs++;
+                    ProviderHelper.setSeconds(0);
+                } else ProviderHelper.setSeconds(ProviderHelper.getSeconds() + 1);
             } else {
                 update(parentContext);
             }
@@ -283,6 +278,34 @@ public class WidgetUpdater extends BroadcastReceiver
 
             //Create Network Manager
             networkMan = new NetworkHelper(views, prefs, context);
+        }
+
+        //Function to reset all of our helper views
+        public void helperViews() {
+
+            //Simply re-set all of the views for the helpers, if not null, and is updating
+            if (timeMan != null &&
+                    (timeMan.timeStatus() ||
+                    timeMan.upTimeStatus()))timeMan.setViews(views);
+
+            if (battMan != null &&
+                    (battMan.percentStatus() ||
+                    battMan.tempStatus())) {
+                battMan.setViews(views);
+            }
+
+            if (cpuMan != null &&
+                    cpuMan.cpuStatus()) cpuMan.setViews(views);
+
+            if(diskMan != null &&
+                    (diskMan.memoryStatus() ||
+                    diskMan.ramStatus())) diskMan.setViews(views);
+
+            if(networkMan != null &&
+                    (networkMan.ipStatus() ||
+                    networkMan.typeStatus() ||
+                    networkMan.upSpeedStatus() ||
+                    networkMan.downSpeedStatus())) networkMan.setViews(views);
         }
 	
 	    public void update(Context context) {

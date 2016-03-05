@@ -14,8 +14,6 @@ import android.util.Log;
 
 import com.torch2424.statsmonitor.WidgetUpdater;
 
-import java.security.PublicKey;
-
 /**
  * Created by torch2424 on 1/21/16.
  */
@@ -26,6 +24,10 @@ public class ProviderHelper extends Service {
 
     //Flag to stop sending the intent on stop alarm
     static boolean quit;
+
+    //Count our seconds here, since the services stays alive
+    // (For settings in the updater)
+    static int seconds;
 
     //Flag to completely start/kill the widget, including our broadcast receiver
     static boolean startReceiver;
@@ -68,6 +70,9 @@ public class ProviderHelper extends Service {
         quit = false;
         finishReceiver = false;
 
+        //Reset the updater seconds
+        seconds = 0;
+
         //Check if we are just starting
         if(startReceiver) {
             //Register our receiver, and stop is from registering again
@@ -78,31 +83,37 @@ public class ProviderHelper extends Service {
          runUpdate = new Runnable() {
             public void run() {
 
-                //Run our updates in the service
-                if(!ProviderHelper.isQuitting())
-                {
+
+
+                Log.d("statsUpdating", "Service Runnin! qutting? " + ProviderHelper.isQuitting());
+
+                //First, Check if we are quitting the handler
+                if(ProviderHelper.isQuitting()) {
+
+                    //Check if we are completely killing the widget, if we aren't do nothing
+                    if (ProviderHelper.isFInishing()) {
+                        //Remove all pending callbacks, and then return
+                        handler.removeCallbacks(this);
+
+                        //Unregister our receiver since we are completely quitting
+                        unregisterReceiver(ProviderHelper.this);
+
+                        // to make sure it isnt recreated
+                        stopSelf();
+                        return;
+                    }
+                }
+                //If we are not quitting, update!
+                else {
+
+                    //Run updates
                     Intent intent = new Intent(ProviderHelper.this, WidgetUpdater.class);
-                    //PendingIntent pending = PendingIntent.getBroadcast(ProviderHelper.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                     sendBroadcast(intent);
                 }
 
 
-                //Quit the handler to be
-                if(ProviderHelper.isQuitting()) {
-
-                    //Remove all pending callbacks, and then return
-                    handler.removeCallbacks(this);
-
-                    //Check if we are completely killing the widget
-                    if(ProviderHelper.isFInishing()) unregisterReceiver(ProviderHelper.this);
-
-                    // to make sure it isnt recreated
-                    stopSelf();
-                    return;
-                }
                 //Use post at time to only update when the phone is not in deep sleep :)
-                else handler.postAtTime(this, SystemClock.uptimeMillis() + updateInterval);
-
+                handler.postAtTime(this, SystemClock.uptimeMillis() + updateInterval);
 
             }
         };
@@ -136,6 +147,15 @@ public class ProviderHelper extends Service {
         return quit;
     }
 
+    //Getter and setter for seconds
+    public static int getSeconds() {
+        return seconds;
+    }
+
+    public static void setSeconds(int input) {
+        seconds = input;
+    }
+
 
     //Our broadcast receiver to receive events when the device is sleeping or locked
     private void registerBroadcastReceiver(Context context) {
@@ -145,8 +165,6 @@ public class ProviderHelper extends Service {
         /** System Defined Broadcast */
         theFilter.addAction(Intent.ACTION_SCREEN_ON);
         theFilter.addAction(Intent.ACTION_SCREEN_OFF);
-
-        Log.d("Stats sleepy", "Receiver registered!!");
 
         sleepReceiver = new BroadcastReceiver() {
             @Override

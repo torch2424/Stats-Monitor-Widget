@@ -26,10 +26,7 @@ import java.util.List;
 /**
  * Created by torch2424 on 1/25/16.
  */
-public class NetworkHelper {
-
-    //Set our view
-    RemoteViews views;
+public class NetworkHelper extends UpdateHelper{
 
     //Boolean for kilobytes per second speeds
     boolean kilobytesBool;
@@ -52,6 +49,9 @@ public class NetworkHelper {
     ConnectivityManager conMan;
 
     public NetworkHelper(RemoteViews parentView, SharedPreferences prefs, Context context) {
+
+        //Call the parent constructor
+        super(parentView);
 
         //set our view
         views = parentView;

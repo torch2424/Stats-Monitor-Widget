@@ -15,10 +15,7 @@ import java.util.TimeZone;
 /**
  * Created by torch2424 on 1/25/16.
  */
-public class TimeHelper {
-
-    //Set our view
-    RemoteViews views;
+public class TimeHelper extends UpdateHelper{
 
     //Initialize some preference booleans
     boolean shortBool;
@@ -30,6 +27,9 @@ public class TimeHelper {
     boolean upTimeView;
 
     public TimeHelper(RemoteViews parentView, SharedPreferences prefs) {
+
+        //Call the parent constructor
+        super(parentView);
 
         //Initialize our view
         views = parentView;

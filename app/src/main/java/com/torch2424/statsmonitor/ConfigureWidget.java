@@ -15,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
+import com.torch2424.statsmonitor.com.torch2424.statshelpers.ProviderHelper;
 import com.torch2424.statsmonitor.com.torch2424.statsproviders.ProviderBigger;
 import com.torch2424.statsmonitorwidget.R;
 
