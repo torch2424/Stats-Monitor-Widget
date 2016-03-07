@@ -83,10 +83,6 @@ public class ProviderHelper extends Service {
          runUpdate = new Runnable() {
             public void run() {
 
-
-
-                Log.d("statsUpdating", "Service Runnin! qutting? " + ProviderHelper.isQuitting());
-
                 //First, Check if we are quitting the handler
                 if(ProviderHelper.isQuitting()) {
 
@@ -171,8 +167,6 @@ public class ProviderHelper extends Service {
             public void onReceive(final Context context, Intent intent) {
 
                 String strAction = intent.getAction();
-
-                Log.d("Stats sleepy", "Sleepy Button Press!!");
 
                 if (strAction.equals(Intent.ACTION_SCREEN_OFF)) {
 
