@@ -311,38 +311,38 @@ public class WidgetUpdater extends BroadcastReceiver
 	    public void update(Context context) {
 
             //call time methods, not calling if unchecked
-        if (timeMan.timeStatus()) timeMan.getTime();
+            if (timeMan.timeStatus()) timeMan.getTime();
 
-        //call system methods
-        if (battMan.percentStatus() || battMan.tempStatus()) {
-            battMan.getBatteryPercent(context);
-            battMan.getBatteryTemp(context);
-        }
+            //call system methods
+            if (battMan.percentStatus() || battMan.tempStatus()) {
+                battMan.getBatteryPercent(context);
+                battMan.getBatteryTemp(context);
+            }
 
-        if (cpuMan.cpuStatus()) cpuMan.getCpuUsage();
+            if (cpuMan.cpuStatus()) cpuMan.getCpuUsage();
 
-        if (timeMan.upTimeStatus()) timeMan.getUptime();
+            if (timeMan.upTimeStatus()) timeMan.getUptime();
 
-        //call memory methods
-        if (diskMan.memoryStatus()) diskMan.getSpace();
+            //call memory methods
+            if (diskMan.memoryStatus()) diskMan.getSpace();
 
-        if (diskMan.ramStatus()) diskMan.getRam(context);
+            if (diskMan.ramStatus()) diskMan.getRam(context);
 
-        //call network methods
-        if (networkMan.typeStatus()) networkMan.getNetworkType(context);
+            //call network methods
+            if (networkMan.typeStatus()) networkMan.getNetworkType(context);
 
-        if (networkMan.ipStatus()) networkMan.getIp(context);
+            if (networkMan.ipStatus()) networkMan.getIp(context);
 
-        if (networkMan.downSpeedStatus() || networkMan.upSpeedStatus()) networkMan.getSpeeds();
+            if (networkMan.downSpeedStatus() || networkMan.upSpeedStatus()) networkMan.getSpeeds();
 
-        //update widget for all size
+            //update widget for all size
             Log.d("statsUpdating", "UPDATINGNGGGGNGNGNGN");
             AppWidgetManager manager = AppWidgetManager.getInstance(context);
-        manager.updateAppWidget(thiswidget, views);
-        manager.updateAppWidget(thiswidgetsmall, views);
-        manager.updateAppWidget(thiswidgetbig, views);
-        manager.updateAppWidget(thiswidgetbigger, views);
-        manager.updateAppWidget(thiswidgetsmallest, views);
-    }
+            manager.updateAppWidget(thiswidget, views);
+            manager.updateAppWidget(thiswidgetsmall, views);
+            manager.updateAppWidget(thiswidgetbig, views);
+            manager.updateAppWidget(thiswidgetbigger, views);
+            manager.updateAppWidget(thiswidgetsmallest, views);
+        }
 
 }
