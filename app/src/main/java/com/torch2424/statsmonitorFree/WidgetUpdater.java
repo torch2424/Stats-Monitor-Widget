@@ -1,5 +1,6 @@
 package com.torch2424.statsmonitorFree;
 
+
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.BroadcastReceiver;
@@ -8,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -16,6 +18,7 @@ import com.torch2424.statsmonitorFree.com.torch2424.statshelpers.BatteryHelper;
 import com.torch2424.statsmonitorFree.com.torch2424.statshelpers.CPUHelper;
 import com.torch2424.statsmonitorFree.com.torch2424.statshelpers.MemoryHelper;
 import com.torch2424.statsmonitorFree.com.torch2424.statshelpers.NetworkHelper;
+import com.torch2424.statsmonitorFree.com.torch2424.statshelpers.ProviderHelper;
 import com.torch2424.statsmonitorFree.com.torch2424.statshelpers.TimeHelper;
 import com.torch2424.statsmonitorFree.com.torch2424.statsproviders.ProviderBig;
 import com.torch2424.statsmonitorFree.com.torch2424.statsproviders.ProviderBigger;
@@ -25,20 +28,20 @@ import com.torch2424.statsmonitorFree.com.torch2424.statsproviders.SuperSmall;
 import com.torch2424.statsmonitorwidgetFree.R;
 
 
-public class SmAlarm extends BroadcastReceiver 
+public class WidgetUpdater extends BroadcastReceiver
 {
 
         //Making Many variables static so they are not reinitialized every call
 
 	    //creating remote views out here for access anywhere in class
-		static RemoteViews views;
+		RemoteViews views;
 
         //Our Provider Components
-        static ComponentName thiswidget;
-        static ComponentName thiswidgetsmallest;
-        static ComponentName thiswidgetsmall;
-        static ComponentName thiswidgetbig;
-        static ComponentName thiswidgetbigger;
+        ComponentName thiswidget;
+        ComponentName thiswidgetsmallest;
+        ComponentName thiswidgetsmall;
+        ComponentName thiswidgetbig;
+        ComponentName thiswidgetbigger;
 
         //Our Helper Classes
         static TimeHelper timeMan;
@@ -62,8 +65,6 @@ public class SmAlarm extends BroadcastReceiver
 		boolean TitleBool;
 		boolean threeBool;
 		boolean fiveBool;
-        //for if people want a slower update interval
-		static int secs = 0;
 
 
 		//setting up colors
@@ -80,6 +81,58 @@ public class SmAlarm extends BroadcastReceiver
 		static boolean shouldUpdate;
         static boolean reInit = true;
 
+    @Override
+    public void onReceive(Context parentContext, Intent intent) {
+
+        //Grab our views
+        //MUST SET IT ONCE THIS CAN OVERRIDE ITSELF
+        views = new RemoteViews(parentContext.getPackageName(), R.layout.widget_layout);
+
+        //Call all of our initialization functions
+        //getting which sections to omit
+        prefsConfig(parentContext);
+        //call title config methods to omit methods
+        viewConfig(parentContext);
+
+        //First Check if we need to reinitialize our settings
+        if (reInit) {
+
+            //Re-Initialize all of our helper classes
+            helperConfig(parentContext);
+
+            //Set reInit to false and should update to true
+            reInit = false;
+            shouldUpdate = true;
+        }
+        //Re-set helper views every update
+        else helperViews();
+
+
+        //Grab all of our providers
+        thiswidget = new ComponentName(parentContext, SmProvider.class);
+        thiswidgetsmallest = new ComponentName(parentContext, SuperSmall.class);
+        thiswidgetsmall = new ComponentName(parentContext, ProviderSmall.class);
+        thiswidgetbig = new ComponentName(parentContext, ProviderBig.class);
+        thiswidgetbigger = new ComponentName(parentContext, ProviderBigger.class);
+
+        if (shouldUpdate) {
+
+            if (threeBool) {
+                if (ProviderHelper.getSeconds() > 1) {
+                    update(parentContext);
+                    ProviderHelper.setSeconds(0);
+                } else ProviderHelper.setSeconds(ProviderHelper.getSeconds() + 1);
+            } else if (fiveBool) {
+                if (ProviderHelper.getSeconds() > 3) {
+                    update(parentContext);
+                    ProviderHelper.setSeconds(0);
+                } else ProviderHelper.setSeconds(ProviderHelper.getSeconds() + 1);
+            } else {
+                update(parentContext);
+            }
+        }
+    }
+
 
         //Static function to stop updating
         public static void setUpdating(boolean update) {
@@ -95,64 +148,6 @@ public class SmAlarm extends BroadcastReceiver
             }
         }
 
-        @Override
-        public void onReceive(Context context, Intent intent)
-        {
-
-            //First Check if we need to reinitialize our settings
-            if(reInit) {
-
-                //Set reInit to false and should update to true
-                reInit = false;
-                shouldUpdate = true;
-
-                //Grab all of our providers
-                thiswidget = new ComponentName(context, SmProvider.class);
-                thiswidgetsmallest = new ComponentName(context, SuperSmall.class);
-                thiswidgetsmall = new ComponentName(context, ProviderSmall.class);
-                thiswidgetbig = new ComponentName(context, ProviderBig.class);
-                thiswidgetbigger = new ComponentName(context, ProviderBigger.class);
-
-                //Call all of our initialization functions
-                //getting which sections to omit
-                prefsConfig(context);
-                //call title config methods to omit methods
-                viewConfig(context);
-                //Initialize all of our helper classes
-                helperConfig(context);
-            }
-
-            if(shouldUpdate)
-            {
-
-                if(threeBool)
-                {
-                    if(secs > 1)
-                    {
-                        update(context);
-                        secs = 0;
-                    }
-                    else secs++;
-                }
-                else if(fiveBool)
-                {
-                    if(secs > 3)
-                    {
-                        update(context);
-                        secs = 0;
-                    }
-                    else  secs++;
-                }
-                else
-                {
-                    update(context);
-                }
-            }
-
-        }
-		
-		
-		
 		public void prefsConfig(Context context)
 		{
 			//getting preferences, can't use intents, don't work with broadcast reciever
@@ -182,8 +177,6 @@ public class SmAlarm extends BroadcastReceiver
 
 		public void viewConfig (Context context)
 		{
-            //Grab our views
-            views = new RemoteViews(context.getApplicationContext().getPackageName(), R.layout.widget_layout);
 
             //Setting Title visibility
             //views.setfloat to set text sizes, but cant be set to zero!
@@ -259,7 +252,8 @@ public class SmAlarm extends BroadcastReceiver
 			else views.setInt(R.id.widgetLayout, "setGravity", Gravity.LEFT);
 
             //Check if we want to allow clicking the widget to configure it
-            if (tapConfig == false) {
+            if (!tapConfig) {
+
                 //setting up on click event
                 Intent config = new Intent(context, ConfigureWidget.class);
                 PendingIntent pendingConfig = PendingIntent.getActivity(context, 0, config, 0);
@@ -285,41 +279,69 @@ public class SmAlarm extends BroadcastReceiver
             //Create Network Manager
             networkMan = new NetworkHelper(views, prefs, context);
         }
+
+        //Function to reset all of our helper views
+        public void helperViews() {
+
+            //Simply re-set all of the views for the helpers, if not null, and is updating
+            if (timeMan != null &&
+                    (timeMan.timeStatus() ||
+                    timeMan.upTimeStatus()))timeMan.setViews(views);
+
+            if (battMan != null &&
+                    (battMan.percentStatus() ||
+                    battMan.tempStatus())) {
+                battMan.setViews(views);
+            }
+
+            if (cpuMan != null &&
+                    cpuMan.cpuStatus()) cpuMan.setViews(views);
+
+            if(diskMan != null &&
+                    (diskMan.memoryStatus() ||
+                    diskMan.ramStatus())) diskMan.setViews(views);
+
+            if(networkMan != null &&
+                    (networkMan.ipStatus() ||
+                    networkMan.typeStatus() ||
+                    networkMan.upSpeedStatus() ||
+                    networkMan.downSpeedStatus())) networkMan.setViews(views);
+        }
 	
 	    public void update(Context context) {
 
-        //call time methods, not calling if unchecked
-        if (timeMan.timeStatus()) timeMan.getTime();
+            //call time methods, not calling if unchecked
+            if (timeMan.timeStatus()) timeMan.getTime();
 
-        //call system methods
-        if (battMan.percentStatus() || battMan.tempStatus()) {
-            battMan.getBatteryPercent(context);
-            battMan.getBatteryTemp(context);
+            //call system methods
+            if (battMan.percentStatus() || battMan.tempStatus()) {
+                battMan.getBatteryPercent(context);
+                battMan.getBatteryTemp(context);
+            }
+
+            if (cpuMan.cpuStatus()) cpuMan.getCpuUsage();
+
+            if (timeMan.upTimeStatus()) timeMan.getUptime();
+
+            //call memory methods
+            if (diskMan.memoryStatus()) diskMan.getSpace();
+
+            if (diskMan.ramStatus()) diskMan.getRam(context);
+
+            //call network methods
+            if (networkMan.typeStatus()) networkMan.getNetworkType(context);
+
+            if (networkMan.ipStatus()) networkMan.getIp(context);
+
+            if (networkMan.downSpeedStatus() || networkMan.upSpeedStatus()) networkMan.getSpeeds();
+
+            //update widget for all size
+            AppWidgetManager manager = AppWidgetManager.getInstance(context);
+            manager.updateAppWidget(thiswidget, views);
+            manager.updateAppWidget(thiswidgetsmall, views);
+            manager.updateAppWidget(thiswidgetbig, views);
+            manager.updateAppWidget(thiswidgetbigger, views);
+            manager.updateAppWidget(thiswidgetsmallest, views);
         }
-
-        if (cpuMan.cpuStatus()) cpuMan.getCpuUsage();
-
-        if (timeMan.upTimeStatus()) timeMan.getUptime();
-
-        //call memory methods
-        if (diskMan.memoryStatus()) diskMan.getSpace();
-
-        if (diskMan.ramStatus()) diskMan.getRam(context);
-
-        //call network methods
-        if (networkMan.typeStatus()) networkMan.getNetworkType(context);
-
-        if (networkMan.ipStatus()) networkMan.getIp(context);
-
-        if (networkMan.downSpeedStatus() || networkMan.upSpeedStatus()) networkMan.getSpeeds();
-
-        //update widget for all size
-        AppWidgetManager manager = AppWidgetManager.getInstance(context);
-        manager.updateAppWidget(thiswidget, views);
-        manager.updateAppWidget(thiswidgetsmall, views);
-        manager.updateAppWidget(thiswidgetbig, views);
-        manager.updateAppWidget(thiswidgetbigger, views);
-        manager.updateAppWidget(thiswidgetsmallest, views);
-    }
 
 }

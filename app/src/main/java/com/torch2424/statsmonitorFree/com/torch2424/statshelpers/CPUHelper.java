@@ -15,10 +15,7 @@ import java.util.regex.Pattern;
 /**
  * Created by torch2424 on 1/25/16.
  */
-public class CPUHelper {
-
-    //Set our view
-    RemoteViews views;
+public class CPUHelper extends UpdateHelper{
 
     //Our boolean for multiCore support
     boolean multiCore;
@@ -30,6 +27,9 @@ public class CPUHelper {
     boolean viewCpu;
 
     public CPUHelper(RemoteViews parentView, SharedPreferences prefs) {
+
+        //Call the parent constructor
+        super(parentView);
 
         //Set our view
         views = parentView;

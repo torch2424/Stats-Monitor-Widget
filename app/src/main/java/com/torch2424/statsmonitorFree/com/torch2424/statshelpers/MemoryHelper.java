@@ -16,7 +16,7 @@ import java.text.DecimalFormat;
 /**
  * Created by torch2424 on 1/24/16.
  */
-public class MemoryHelper {
+public class MemoryHelper extends UpdateHelper{
 
     //Declaring a constant I will be using for megabyte conversion
     final private long megs = 1048576L;
@@ -41,15 +41,14 @@ public class MemoryHelper {
     //Our decimal format for gigabyte display
     final private DecimalFormat format = new DecimalFormat("0.00");
 
-    //Our views
-    RemoteViews views;
-
     //Our view boolean
     boolean memoryView;
     boolean ramView;
 
     public MemoryHelper(RemoteViews parentView, SharedPreferences prefs) {
 
+        //Call the parent constructor
+        super(parentView);
 
         //Set our view
         views = parentView;

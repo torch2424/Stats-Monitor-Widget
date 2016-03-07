@@ -1,6 +1,5 @@
 package com.torch2424.statsmonitorFree;
 
-import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -83,7 +82,7 @@ public class ConfigureWidget extends AppCompatActivity
 		}
 
 		//Tell the app to stop updating
-		SmAlarm.setUpdating(false);
+		WidgetUpdater.setUpdating(false);
 
 
 
@@ -322,10 +321,11 @@ public class ConfigureWidget extends AppCompatActivity
         editor.commit();
 
         //Tell the app to stop updating
-        SmAlarm.setUpdating(true);
+        WidgetUpdater.setUpdating(true);
 
 		//finishing up, and calling onupdate
 		AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+
 		RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
 		appWidgetManager.updateAppWidget(widgetID, views);
 		Intent resultValue = new Intent();
@@ -353,7 +353,7 @@ public class ConfigureWidget extends AppCompatActivity
 	public void onBackPressed()
 	{
         //Tell the app to stop updating
-        SmAlarm.setUpdating(true);
+        WidgetUpdater.setUpdating(true);
 
         //Closes the app
         finish();

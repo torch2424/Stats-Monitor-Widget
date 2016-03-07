@@ -13,10 +13,7 @@ import com.torch2424.statsmonitorwidgetFree.R;
 /**
  * Created by torch2424 on 1/25/16.
  */
-public class BatteryHelper {
-
-    //Set our view
-    RemoteViews views;
+public class BatteryHelper extends UpdateHelper{
 
     //Boolean for temperature
     boolean farenBool;
@@ -32,8 +29,8 @@ public class BatteryHelper {
 
     public BatteryHelper(RemoteViews parentView, SharedPreferences prefs) {
 
-        //get our view
-        views = parentView;
+        //Call the parent constructor
+        super(parentView);
 
         //Get our preferences
         farenBool = prefs.getBoolean("DEGREESF", false);
