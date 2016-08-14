@@ -1,7 +1,7 @@
 # Stats-Monitor-Widget
 A Conky like system monitor widget for android
 
-![Stats Img](https://aaronthedev.com/images/statsscreen.eac61134.png)
+![Stats Img](https://files.aaronthedev.com/$/esjnb)
 
 ##Submitting Pull Requests and Issues
 **Please Please Please** Submit any bugs or any fixes you would like fixed about the app. 
