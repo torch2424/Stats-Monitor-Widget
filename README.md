@@ -1,3 +1,6 @@
+### No longer Under Active Development by torch2424
+I have college, work, and all sort of other things I need to keep up with. :(
+
 # Stats-Monitor-Widget
 A Conky like system monitor widget for android
 
